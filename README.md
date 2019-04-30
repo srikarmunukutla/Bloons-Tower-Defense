@@ -1,4 +1,4 @@
 # btd_csfinal
 AP Computer Science Final Project
 
-Making an edit to this to test if it works.
+This is our Bloons Tower Defense game for our AP Computer Science Final Project.
