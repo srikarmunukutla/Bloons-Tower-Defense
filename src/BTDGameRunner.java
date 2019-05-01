@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 import java.io.*;
@@ -25,8 +23,12 @@ public class BTDGameRunner {
 		new BTDGameRunner().start();
 	}
 
-
+	Timer monkey;
+	long ticks = 0;
 	private void start() {
+		//Testing balloon and Monkey
+		bloonal.add(new Bloon(3,200,200,0));
+		monkeyal.add(new DartMonkey(1300,300));
 		panel = new JPanel() {
 			@Override 
 			public void paintComponent(Graphics g) {
@@ -47,17 +49,35 @@ public class BTDGameRunner {
 			}
 		};
 		JButton button = new JButton("Play");
-//		b.setBounds
 		panel.setBackground(Color.WHITE);
 		
-		panel.setPreferredSize(new Dimension(700, 520));
+		panel.setPreferredSize(new Dimension(1800, 960));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
-		
-//		grid = new boolean[10][18];
-		
+
+
+		monkey = new Timer(1, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (Monkey mo : monkeyal) {
+					if (ticks%mo.getReloadRate() == 0) {
+						mo.target(bloonal, panel, gameprojectiles);
+					}
+				}
+				for (Bloon bl : bloonal) {
+					if(ticks % 5 == 0) {
+						bl.update(1);
+					}
+				}
+				panel.repaint();
+				ticks++;
+			}
+
+		});
+		monkey.start();
+
 	}
 	
 	protected Image getImage(String fn) {
