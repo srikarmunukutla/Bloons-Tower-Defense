@@ -45,7 +45,7 @@ public abstract class Monkey {
     public void setAngle(double deg){
         angle = deg;
     }
-    private final static String PATH_PREFIX = "res/images/";
+    private final static String PATH_PREFIX = "images/";
     protected Image getImage(String fn) {
         Image img = null;
         try {
