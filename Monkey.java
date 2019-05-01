@@ -1,4 +1,3 @@
-import javafx.scene.layout.Priority;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,7 +19,8 @@ public abstract class Monkey {
     private double angle = 0;
     private int damage;
     private int numtarget;
-    public Monkey(int a, int b, int ra, String str, int target, int dmg){
+    private int reloadrate;
+    public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload){
         x = a;
         y = b;
         img = getImage(PATH_PREFIX + str);
@@ -28,6 +28,7 @@ public abstract class Monkey {
         r = new Rectangle(a-range,b-range,range*2,range*2);
         numtarget = target;
         damage = dmg;
+        reloadrate = reload;
     }
     public void draw(Graphics g, JPanel panel){
         Graphics2D g2d = (Graphics2D) g.create();
@@ -61,6 +62,9 @@ public abstract class Monkey {
     }
     public int getY(){
         return y;
+    }
+    public int getReloadRate(){
+        return reloadrate;
     }
     public PriorityQueue<Bloon> getTargets(ArrayList<Bloon> al){
         PriorityQueue<Bloon> pq = new PriorityQueue<>(new Comparator<Bloon>() {
