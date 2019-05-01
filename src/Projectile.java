@@ -78,14 +78,11 @@ public abstract class Projectile {
                 double slope = 1.0 * (b.getY() - y) / (b.getX() - x);
                 if (!finish && b.getRect().intersects(getRect())){
                     hm.remove(random);
-                    b.decreaseHealth(dmg);
                     for (int j = bloons.size()-1; j >= 0; j--){
                         if (b.equals(bloons.get(j))){
-                            if (bloons.get(j).getHealth() <= 0){
-                                bloons.addAll(bloons.get(j).hit((int)b.getX(),(int)b.getY()));
-                                bloons.remove(j);
-                                break;
-                            }
+                            bloons.addAll(bloons.get(j).hit((int)b.getX(),(int)b.getY(),dmg));
+                            bloons.remove(j);
+                            break;
                         }
                     }
                     finish = true;
