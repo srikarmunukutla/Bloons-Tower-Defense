@@ -30,7 +30,7 @@ public class BTDGameRunner {
 		bloonal.add(new Bloon(3,200,200,0));
 		monkeyal.add(new DartMonkey(1300,300));
 		panel = new JPanel() {
-			@Override 
+			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Iterator it = gameprojectiles.entrySet().iterator();
@@ -50,7 +50,7 @@ public class BTDGameRunner {
 		};
 		JButton button = new JButton("Play");
 		panel.setBackground(Color.WHITE);
-		
+
 		panel.setPreferredSize(new Dimension(1800, 960));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
@@ -79,17 +79,17 @@ public class BTDGameRunner {
 		monkey.start();
 
 	}
-	
+
 	protected Image getImage(String fn) {
-        Image img = null;
-        fn = PATH_PREFIX+fn;
-        try {
-            img = ImageIO.read(this.getClass().getResource(fn));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return img;
-    }
+		Image img = null;
+		fn = PATH_PREFIX+fn;
+		try {
+			img = ImageIO.read(this.getClass().getResource(fn));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return img;
+	}
 
 }
