@@ -31,4 +31,6 @@ public abstract class Map {
 	public void draw(Graphics g) {
 		g.drawImage(img, 0, 0, width, height, null);
 	}
+	
+	protected abstract void setTrack();
 }
