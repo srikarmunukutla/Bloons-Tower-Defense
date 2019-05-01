@@ -103,16 +103,8 @@ public abstract class Monkey {
             Dart dart = new Dart(getX(), getY());
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectiles.put(random, dart);
-            gameprojectiles.get(random).launch(b, panel,gameprojectiles,random);
-            for (int j = 0; j < al.size(); j++){
-                if (b.equals(al.get(j))){
-                    al.get(j).decreaseHealth(damage);
-                    if (al.get(j).getHealth() <= 0){
-                        al.remove(j);
-                        j--;
-                    }
-                }
-            }
+            gameprojectiles.get(random).launch(b, panel,gameprojectiles,random,damage,al);
+
 
         }
     }

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Projectile {
@@ -65,7 +66,7 @@ public abstract class Projectile {
     Timer timer;
     private final int REFRESH = 1;
 
-    public void launch(Bloon b, JPanel panel, HashMap<Integer,Projectile> hm, int random) {
+    public void launch(Bloon b, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> al) {
         timer = new Timer(REFRESH, new ActionListener() {
             double dx = x;
             double dy = y;
@@ -75,6 +76,15 @@ public abstract class Projectile {
                 double slope = 1.0 * (b.getY() - y) / (b.getX() - x);
                 if (b.getRect().intersects(getRect())){
                     hm.remove(random);
+                    b.decreaseHealth(dmg);
+                    for (int j = 0; j < al.size(); j++){
+                        if (b.equals(al.get(j))){
+                            if (al.get(j).getHealth() <= 0){
+                                al.remove(j);
+                                j--;
+                            }
+                        }
+                    }
                 }
                 if (b.getX() < x) {
                     dx -= 5;
