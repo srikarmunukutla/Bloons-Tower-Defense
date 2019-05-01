@@ -17,8 +17,8 @@ public class BTDGameRunner {
 
 	public static void main(String[] args) {
 		new BTDGameRunner().start();
-
 	}
+
 
 	private void start() {
 		panel = new JPanel() {
