@@ -16,12 +16,13 @@ public abstract class Projectile {
     private final int WIDTH = 45;
     private Image img;
     private double angle = 40;
-
+    boolean finish;
     public Projectile(int a, int b, String str) {
         x = a;
         y = b;
         r = new Rectangle(x, y, WIDTH, HEIGHT);
         img = getImage(PATH_PREFIX + str);
+        finish =false;
     }
 
     public void draw(Graphics g, JPanel panel) {
@@ -74,7 +75,7 @@ public abstract class Projectile {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double slope = 1.0 * (b.getY() - y) / (b.getX() - x);
-                if (b.getRect().intersects(getRect())){
+                if (!finish && b.getRect().intersects(getRect())){
                     hm.remove(random);
                     b.decreaseHealth(dmg);
                     for (int j = 0; j < al.size(); j++){
@@ -85,6 +86,7 @@ public abstract class Projectile {
                             }
                         }
                     }
+                    finish = true;
                 }
                 if (b.getX() < x) {
                     dx -= 5;
