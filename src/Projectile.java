@@ -17,7 +17,7 @@ public abstract class Projectile {
     private Image img;
     private double angle = 40;
     boolean finish;
-    private final int PROJSPEED = 10;
+    private final int PROJSPEED = 20;
     public Projectile(int a, int b, String str) {
         x = a;
         y = b;
@@ -75,7 +75,12 @@ public abstract class Projectile {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                double slope = 1.0 * (b.getY() - y) / (b.getX() - x);
+                double slope;
+                if ( (b.getX() - x) == 0){
+                    slope = 100;
+                }else {
+                    slope = 1.0 * (b.getY() - y) / (b.getX() - x);
+                }
                 if (!finish && b.getRect().intersects(getRect())){
                     hm.remove(random);
                     for (int j = bloons.size()-1; j >= 0; j--){
