@@ -31,8 +31,6 @@ public class BTDGameRunner {
 			@Override 
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawImage(getImage("bloon1.png"), 20, 20, 20, 20, null);
-//				g.drawImage(getImage("BTD Home Screen.png"), 0, 0, 815, 600, null);
 				Iterator it = gameprojectiles.entrySet().iterator();
 				for (Bloon bl : bloonal) {
 					if (bl.getHealth() > 0) {
