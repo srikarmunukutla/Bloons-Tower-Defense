@@ -69,7 +69,7 @@ public class Bloon {
     public ArrayList<Bloon> hit(int a, int b, int damage) {
         ArrayList<Bloon> bloons = new ArrayList<Bloon>();
     	int startrank = rank;
-		int starthealth = health-damage;
+		health -= damage;
 		while (rank > 0 && health <= 0) {
 			if (rank == 10|| rank == 7 || rank == 8) {
 				rank--;
