@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class Bloon {
     private int rank, radius, health;
     private Image img;
-    public final static String PATH_PREFIX = "res/images/";
+    public final static String PATH_PREFIX = "images/";
     private double x, y, angle, distance = 0;
     int[] width = {24,25,27,29,30,21,21,30,30,30,30,80,150,250};
     int[] height = {32,34,36,38,40,28,28,40,40,40,40,50,100,150};

@@ -49,7 +49,7 @@ public abstract class Projectile {
         y = b;
     }
 
-    private final static String PATH_PREFIX = "res/images/";
+    private final static String PATH_PREFIX = "images/";
 
     protected Image getImage(String fn) {
         Image img = null;
