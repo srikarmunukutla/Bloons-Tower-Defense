@@ -16,7 +16,7 @@ public abstract class Monkey {
     private final int SQUARESIZE = 50;
     private Image img;
     private int range;
-    private double angle = 30;
+    private double angle = 0;
     private int damage;
     private int numtarget;
     private int reloadrate;
