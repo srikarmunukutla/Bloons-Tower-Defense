@@ -17,6 +17,7 @@ public abstract class Projectile {
     private Image img;
     private double angle = 40;
     boolean finish;
+    private final int PROJSPEED = 10;
     public Projectile(int a, int b, String str) {
         x = a;
         y = b;
@@ -67,7 +68,7 @@ public abstract class Projectile {
     Timer timer;
     private final int REFRESH = 1;
 
-    public void launch(Bloon b, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> al) {
+    public void launch(Bloon b, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons) {
         timer = new Timer(REFRESH, new ActionListener() {
             double dx = x;
             double dy = y;
@@ -78,23 +79,24 @@ public abstract class Projectile {
                 if (!finish && b.getRect().intersects(getRect())){
                     hm.remove(random);
                     b.decreaseHealth(dmg);
-                    for (int j = 0; j < al.size(); j++){
-                        if (b.equals(al.get(j))){
-                            if (al.get(j).getHealth() <= 0){
-                                al.remove(j);
-                                j--;
+                    for (int j = bloons.size()-1; j >= 0; j--){
+                        if (b.equals(bloons.get(j))){
+                            if (bloons.get(j).getHealth() <= 0){
+                                bloons.addAll(bloons.get(j).hit((int)b.getX(),(int)b.getY()));
+                                bloons.remove(j);
+                                break;
                             }
                         }
                     }
                     finish = true;
                 }
                 if (b.getX() < x) {
-                    dx -= 5;
-                    dy -= 5*slope;
+                    dx -= PROJSPEED;
+                    dy -= PROJSPEED*slope;
                     setAngle(180*Math.atan(slope)/Math.PI+180);
                 } else {
-                    dx += 5;
-                    dy += 5*slope;
+                    dx += PROJSPEED;
+                    dy += PROJSPEED*slope;
                     setAngle(180*Math.atan(slope)/Math.PI);
                 }
                 moveTo((int) dx, (int) dy);
