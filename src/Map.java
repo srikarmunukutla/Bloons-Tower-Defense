@@ -7,9 +7,14 @@ public abstract class Map {
 	protected boolean[][] grid;
 	protected String PATH_PREFIX = "images/";
 	protected Image img = null;
+	private int height = 520, width = 700;
 	
 	public Map(int r, int c) {
 		grid = new boolean[r][c];
+	}
+	
+	public Map() {
+		grid = new boolean[height][width];
 	}
 	
 	protected Image getImage(String fn) {
@@ -24,6 +29,6 @@ public abstract class Map {
 	}
 	
 	public void draw(Graphics g) {
-//		g.drawImage(img, 0, 0, dx2, dy2, sx1, sy1, sx2, sy2, observer)
+		g.drawImage(img, 0, 0, width, height, null);
 	}
 }
