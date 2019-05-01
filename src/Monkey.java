@@ -84,6 +84,9 @@ public abstract class Monkey {
         }
         return pq;
     }
+    public Projectile getProj(){
+        return null;
+    }
     public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles){
         //If no balloons, no code to run
         if (al.size() == 0){
@@ -104,9 +107,9 @@ public abstract class Monkey {
             } else {
                 setAngle(180*Math.atan(1.0*(b.getY() - y) / (b.getX() - x))/Math.PI+90);
             }
-            Dart dart = new Dart(getX(), getY());
+            Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
-            gameprojectiles.put(random, dart);
+            gameprojectiles.put(random, pr);
             gameprojectiles.get(random).launch(b, panel,gameprojectiles,random,damage,al);
 
 
