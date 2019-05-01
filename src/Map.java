@@ -4,14 +4,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class Map {
-	private boolean[][] grid;
-	private String PATH_PREFIX = "Pictures/";
+	protected boolean[][] grid;
+	protected String PATH_PREFIX = "images/";
+	protected Image img = null;
 	
 	public Map(int r, int c) {
 		grid = new boolean[r][c];
 	}
 	
-	private Image getImage(String fn) {
+	protected Image getImage(String fn) {
 		Image img = null;
 		fn = PATH_PREFIX + fn;
 		try {
@@ -23,6 +24,6 @@ public abstract class Map {
 	}
 	
 	public void draw(Graphics g) {
-//		g.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer)
+//		g.drawImage(img, 0, 0, dx2, dy2, sx1, sy1, sx2, sy2, observer)
 	}
 }
