@@ -97,38 +97,6 @@ public class Bloon {
 			}
 		}
 		return bloons;
-//        if (rank == 1) {
-//            return bloons;
-//        }
-//        if (rank < 6) {
-//            bloons.add(new Bloon(rank-1, x, y, angle, distance));
-//        }
-//        else if (rank == 6 || rank == 7 || rank == 10 || rank == 11) {
-//            if (rank == 6 || rank == 11) {
-//                bloons.add(new Bloon(rank-1, (int) (x-10*Math.cos(theta)), y+10*Math.sin(theta), angle, distance-10));
-//                bloons.add(new Bloon(rank-1, (int) (x+10*Math.cos(theta)), y-10*Math.sin(theta), angle, distance+10));
-//            }
-//            else {
-//                bloons.add(new Bloon(rank-2, (int) (x-10*Math.cos(theta)), y+10*Math.sin(theta), angle, distance-10));
-//                bloons.add(new Bloon(rank-2, (int) (x+10*Math.cos(theta)), y-10*Math.sin(theta), angle, distance+10));
-//            }
-//        }
-//        else if (rank == 8) {
-//            bloons.add(new Bloon(6, (int) (x-5*Math.cos(theta)), y+5*Math.sin(theta), angle, distance-5));
-//            bloons.add(new Bloon(7, (int) (x+5*Math.cos(theta)), y-5*Math.sin(theta), angle, distance+5));
-//        }
-//        else if (rank == 9) {
-//            bloons.add(new Bloon(6, (int) (x-5*Math.cos(theta)), y+5*Math.sin(theta), angle, distance-5));
-//            bloons.add(new Bloon(6, (int) (x+5*Math.cos(theta)), y-5*Math.sin(theta), angle, distance+5));
-//        }
-//        else if (rank >= 12 && rank <= 14) {
-//            int[] arr = {10, 15, 20};
-//            int index = rank-12;
-//            bloons.add(new Bloon(rank-1, (int) (x-3*arr[index]*Math.cos(theta)), y+3*arr[index]*Math.sin(theta), angle, distance-3*arr[index]));
-//            bloons.add(new Bloon(rank-1, (int) (x-arr[index]*Math.cos(theta)), y+arr[index]*Math.sin(theta), angle, distance-arr[index]));
-//            bloons.add(new Bloon(rank-1, (int) (x+arr[index]*Math.cos(theta)), y-arr[index]*Math.sin(theta), angle, distance+arr[index]));
-//            bloons.add(new Bloon(rank-1, (int) (x+3*arr[index]*Math.cos(theta)), y-3*arr[index]*Math.sin(theta), angle, distance+3*arr[index]));
-//        }
     }
 
     protected Image getImage(String fn) {
