@@ -104,7 +104,7 @@ public class Bloon {
 				}
 				else {
 					for (int i = numBloons/2-1; i >= 0; i--) {
-						bloons.add(new Bloon(rank+1-(i%2), (int) (x-(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y+(1+2*i)*sep[rank-1]*Math.cos(theta)), angle, distance-(1-2*i)*sep[rank-1]));
+						bloons.add(new Bloon(rank+(i%2), (int) (x-(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y+(1+2*i)*sep[rank-1]*Math.cos(theta)), angle, distance-(1-2*i)*sep[rank-1]));
 					}
 					for (int i = 0; i < numBloons/2; i++) {
 						bloons.add(new Bloon(rank+1-(i%2), (int) (x+(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y-(1+2*i)*sep[rank-1]*Math.cos(theta)), angle, distance+(1+2*i)*sep[rank-1]));
