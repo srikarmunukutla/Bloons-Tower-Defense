@@ -67,9 +67,7 @@ public class BTDGameRunner {
 					}
 				}
 				for (Bloon bl : bloonal) {
-					if(ticks % 10 == 0) {
-						bl.update(0.2);
-					}
+					bl.update(0.15);
 				}
 				if (ticks < 150 && ticks%50 == 0){
 //					monkeyal.add(new DartMonkey((int)(1800*Math.random()),300));
