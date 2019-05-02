@@ -67,11 +67,11 @@ public class BTDGameRunner {
 					}
 				}
 				for (Bloon bl : bloonal) {
-					if(ticks % 5 == 0) {
+					if(ticks % 20 == 0) {
 						bl.update(1);
 					}
 				}
-				if (ticks < 200 && ticks%50 == 0){
+				if (ticks < 150 && ticks%50 == 0){
 					monkeyal.add(new DartMonkey((int)(1800*Math.random()),300));
 					bloonal.add(new Bloon(3,200,200,0));
 				}

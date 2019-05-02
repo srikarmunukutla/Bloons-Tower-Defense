@@ -4,7 +4,6 @@ public class Map3 extends Map {
 		super(r, c);
 		img = getImage("Map3.png");
 	}
-	
 	public Map3() {
 		super();
 		img = getImage("Map3.png");
