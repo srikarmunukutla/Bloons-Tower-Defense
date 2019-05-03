@@ -32,5 +32,9 @@ public abstract class Map {
 		g.drawImage(img, 0, 0, width, height, null);
 	}
 	
+	public boolean[][] getGrid() {
+		return grid;
+	}
+	
 	protected abstract void initializeTrack();
 }
