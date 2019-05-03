@@ -68,7 +68,7 @@ public class BTDGameRunner {
 					}
 				}
 				for (Bloon bl : bloonal) {
-					bl.update(0.05);
+					bl.update(0.15);
 				}
 				panel.repaint();
 				ticks++;

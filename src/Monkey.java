@@ -80,7 +80,7 @@ public abstract class Monkey {
             }
         });
         for (int i = 0; i < al.size(); i++){
-            pq.add(al.get(0));
+            pq.add(al.get(i));
         }
         return pq;
     }
