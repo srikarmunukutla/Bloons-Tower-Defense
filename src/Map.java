@@ -32,5 +32,5 @@ public abstract class Map {
 		g.drawImage(img, 0, 0, width, height, null);
 	}
 	
-	protected abstract void setTrack();
+	protected abstract void initializeTrack();
 }
