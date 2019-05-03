@@ -18,12 +18,14 @@ public abstract class Projectile {
     private double angle = 40;
     boolean finish;
     private final int PROJSPEED = 20;
+    private int ticks;
     public Projectile(int a, int b, String str) {
         x = a;
         y = b;
         r = new Rectangle(x, y, WIDTH, HEIGHT);
         img = getImage(PATH_PREFIX + str);
         finish =false;
+        ticks = 0;
     }
 
     public void draw(Graphics g, JPanel panel) {
@@ -81,7 +83,7 @@ public abstract class Projectile {
                 }else {
                     slope = 1.0 * (b.getY() - y) / (b.getX() - x);
                 }
-                if (!finish && b.getRect().intersects(getRect())){
+                if (!finish && (b.getRect().intersects(getRect()) || ticks > 50)){
                     hm.remove(random);
                     for (int j = bloons.size()-1; j >= 0; j--){
                         if (b.equals(bloons.get(j))){
@@ -102,6 +104,7 @@ public abstract class Projectile {
                     setAngle(180*Math.atan(slope)/Math.PI);
                 }
                 moveTo((int) dx, (int) dy);
+                ticks++;
                 panel.repaint();
             }
         });

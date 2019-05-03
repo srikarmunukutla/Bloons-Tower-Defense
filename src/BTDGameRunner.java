@@ -28,7 +28,8 @@ public class BTDGameRunner {
 	private void start() {
 		//Testing balloon and Monkey
 		bloonal.add(new Bloon(5,200,300,0));
-		monkeyal.add(new DartMonkey(500,300));
+		monkeyal.add(new DartMonkey(500,400));
+		monkeyal.add(new DartMonkey(600,200));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -67,11 +68,7 @@ public class BTDGameRunner {
 					}
 				}
 				for (Bloon bl : bloonal) {
-					bl.update(0.15);
-				}
-				if (ticks < 150 && ticks%50 == 0){
-//					monkeyal.add(new DartMonkey((int)(1800*Math.random()),300));
-//					bloonal.add(new Bloon(3,200,200,0));
+					bl.update(0.05);
 				}
 				panel.repaint();
 				ticks++;
