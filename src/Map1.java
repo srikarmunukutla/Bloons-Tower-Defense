@@ -34,7 +34,7 @@ public class Map1 extends Map {
 		
 		// third portion
 		for(int c = 268; c < 389; c++) {
-			int r = 176;
+			int r = 177;
 			if(c > 304) {
 				r = 90;
 			}
@@ -46,7 +46,7 @@ public class Map1 extends Map {
 		
 		// fourth portion
 		for(int c = 389; c < 426; c++) {
-			for(int r = 53; r < 275; r++) {
+			for(int r = 53; r < 276; r++) {
 				grid[r][c] = true;
 			}
 		}
