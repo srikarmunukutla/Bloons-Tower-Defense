@@ -77,11 +77,14 @@ public abstract class Projectile {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                double slope;
-                if ( (b.getX() - x) == 0){
-                    slope = 100;
-                }else {
-                    slope = 1.0 * (b.getY() - y) / (b.getX() - x);
+                double slopex = 0;
+                double slopey = 0;
+                if (Math.abs(b.getY()-y) < Math.abs(b.getX()-x)){
+                    slopex = 1.0 * (b.getY() - y) / (b.getX() - x);
+                    slopey = 1;
+                }else{
+                    slopey = 1.0*(b.getX()-x) / (b.getY()-y);
+                    slopex = 1;
                 }
                 if (!finish && (b.getRect().intersects(getRect()) || ticks > 50)){
                     hm.remove(random);
@@ -94,14 +97,36 @@ public abstract class Projectile {
                     }
                     finish = true;
                 }
-                if (b.getX() < x) {
-                    dx -= PROJSPEED;
-                    dy -= PROJSPEED*slope;
-                    setAngle(180*Math.atan(slope)/Math.PI+180);
-                } else {
-                    dx += PROJSPEED;
-                    dy += PROJSPEED*slope;
-                    setAngle(180*Math.atan(slope)/Math.PI);
+
+                if(slopey == 1){
+                    if (b.getX() < x){
+                        dx -= PROJSPEED*slopey;
+                        dy -= PROJSPEED*slopex;
+                    }else{
+                        dx += PROJSPEED*slopey;
+                        dy += PROJSPEED*slopex;
+                    }
+                }else{
+                    if (b.getY() < y){
+                        dx -= PROJSPEED*slopey;
+                        dy -= PROJSPEED*slopex;
+                    }else{
+                        dx += PROJSPEED*slopey;
+                        dy += PROJSPEED*slopex;
+                    }
+                }
+                if (b.getX() < x){
+                    if (slopey == 1) {
+                        setAngle(180 * Math.atan(slopex) / Math.PI + 180);
+                    }else{
+                        setAngle(180 * Math.atan(1/slopey) / Math.PI + 180);
+                    }
+                }else {
+                    if (slopey == 1) {
+                        setAngle(180 * Math.atan(slopex) / Math.PI);
+                    } else {
+                        setAngle(180 * Math.atan(1 / slopey) / Math.PI );
+                    }
                 }
                 moveTo((int) dx, (int) dy);
                 ticks++;
