@@ -27,11 +27,11 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(7,150,300,0));
-		monkeyal.add(new DartMonkey(500,400));
-		monkeyal.add(new DartMonkey(700,200));
-		monkeyal.add(new DartMonkey(900,400));
-		monkeyal.add(new DartMonkey(1100,200));
+		bloonal.add(new Bloon(5,500,500,0));
+		monkeyal.add(new DartMonkey(200,900));
+		monkeyal.add(new DartMonkey(350,100));
+		monkeyal.add(new DartMonkey(1200,900));
+		monkeyal.add(new DartMonkey(800,100));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -65,9 +65,7 @@ public class BTDGameRunner {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (Monkey mo : monkeyal) {
-					if (ticks%mo.getReloadRate() == 0) {
-						mo.target(bloonal, panel, gameprojectiles);
-					}
+					mo.target(bloonal, panel, gameprojectiles,ticks);
 				}
 				for (Bloon bl : bloonal) {
 					bl.update(0.15);

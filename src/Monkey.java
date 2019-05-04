@@ -87,7 +87,10 @@ public abstract class Monkey {
     public Projectile getProj(){
         return null;
     }
-    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles){
+    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles, long ticks){
+        if (ticks % getReloadRate() != 0){
+            return;
+        }
         //If no balloons, no code to run
         if (al.size() == 0){
             return;
