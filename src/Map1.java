@@ -1,6 +1,6 @@
 
 public class Map1 extends Map {
-	private int trackSize = 37;
+//	private int trackSize = 37;
 	
 	public Map1(int r, int c) {
 		super(r, c);
