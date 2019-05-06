@@ -21,6 +21,7 @@ public abstract class Monkey {
     private int numtarget;
     private int reloadrate;
     int pierce;
+    int secsbefreload = 0;
     public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload, int p){
         x = a;
         y = b;
@@ -81,20 +82,19 @@ public abstract class Monkey {
                 }
             }
         });
-        for (int i = 0; i < al.size(); i++){
-            pq.add(al.get(i));
-        }
+        pq.addAll(al);
         return pq;
     }
     public Projectile getProj(){
         return null;
     }
-    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles, long ticks){
-        if (ticks % getReloadRate() != 0){
-            return;
-        }
+    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles){
         //If no balloons, no code to run
         if (al.size() == 0){
+            return;
+        }
+        if (secsbefreload > 0){
+            secsbefreload--;
             return;
         }
         PriorityQueue<Bloon> pq = this.getTargets(al);
@@ -106,6 +106,9 @@ public abstract class Monkey {
             if (!b.getRect().intersects(r)){
                 i--;
                 continue;
+            }
+            if (secsbefreload == 0){
+                secsbefreload = getReloadRate();
             }
             if (b.getX() < x) {
                 setAngle(180*Math.atan(1.0*(b.getY() - y) / (b.getX() - x))/Math.PI-90);
