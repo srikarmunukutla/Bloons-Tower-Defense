@@ -9,14 +9,14 @@ public class Map1 extends Map {
 
 	protected void initializeTrack() {
 		// first portion
-		for(int c = 0; c < 154 * Wratio; c++) {
-			for(int r = 53 * Hratio; r < 90 * Hratio; r++) {
+		for(int c = 0; c < (154 * Wratio); c++) {
+			for(int r = (53 * Hratio); r < (90 * Hratio); r++) {
 				grid[r][c] = true;
 			}
 		}
 		
 		// second portion
-		for(int c = 154 * Wratio; c < 268 * Wratio; c++) {
+		for(int c = (154 * Wratio); c < (268 * Wratio); c++) {
 			int r = 53 * Hratio;
 			if(c > 193 * Wratio) {
 				r = 140 * Hratio;
