@@ -73,7 +73,7 @@ public abstract class Projectile {
     private double slopey;
     private int multiplier;
     private int pierce;
-    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons, int p) {
+    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons, int p, Rectangle re) {
         pierce = p;
         if (Math.abs(by-y) < Math.abs(bx-x)){
             slopex = 1.0 * (by - y) / (bx - x);
@@ -113,12 +113,16 @@ public abstract class Projectile {
             double dy = y;
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!re.intersects(r)){
+                    hm.remove(random);
+                    timer.stop();
+                }
                 for (int j = bloons.size()-1; j >= 0; j--){
                     if (bloons.get(j).getRect().intersects(r)){
                         bloons.addAll(bloons.get(j).hit((int)bx,(int)by,dmg));
                         bloons.remove(j);
                         pierce--;
-                        if (pierce == 0 || ticks > 100) {
+                        if (pierce == 0) {
                             hm.remove(random);
                             timer.stop();
                         }
