@@ -28,9 +28,7 @@ public class BTDGameRunner {
 	private void start() {
 		//Testing balloon and Monkey
 		bloonal.add(new Bloon(8,500,500,0));
-		monkeyal.add(new DartMonkey(825,400));
-		monkeyal.add(new DartMonkey(850,600));
-		monkeyal.add(new DartMonkey(800,400));
+		monkeyal.add(new TackShooter(900,400));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -46,7 +44,7 @@ public class BTDGameRunner {
 				}
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
-					((Dart)pair.getValue()).draw(g,this);
+					((Projectile)pair.getValue()).draw(g,this);
 				}
 			}
 		};
