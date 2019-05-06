@@ -20,24 +20,29 @@ public class TesterClass {
 	private static int height = 676, width = 910;
 
 	public static void main(String[] args) {
-		BTDMap m1 = new Map1(height, width);
-		m1.initializeTrack();
-		grid = m1.getGrid();
 		new TesterClass().start();
 	}
 
 	private void start() {
+		BTDMap m1 = new Map1(height, width);
+		m1.initializeTrack();
+		grid = m1.getGrid();
+		m1.addBloon(new Bloon(12,30,93,0));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.setColor(Color.BLACK);
-				for(int r = 0; r < grid.length; r++) {
-					for(int c = 0; c < grid[0].length; c++) {
-						if(grid[r][c]) {
-							g.drawRect(c, r, 1, 1);
-						}
-					}
+				m1.draw(g);
+//				for(int r = 0; r < grid.length; r++) {
+//					for(int c = 0; c < grid[0].length; c++) {
+//						if(grid[r][c]) {
+//							g.drawRect(c, r, 1, 1);
+//						}
+//					}
+//				}
+				for(Bloon b: m1.getBloonList()) {
+					b.draw(g);
 				}
 			}
 		};
@@ -53,11 +58,15 @@ public class TesterClass {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
-				if(ticks == 5) {
-					timer.stop();
-//					frame.dispose();
-					System.exit(0);
+				for(Bloon b: m1.getBloonList()) {
+					b.update(5);
 				}
+				panel.repaint();
+//				if(ticks == 5) {
+//					timer.stop();
+////					frame.dispose();
+//					System.exit(0);
+//				}
 			}
 		});
 		
