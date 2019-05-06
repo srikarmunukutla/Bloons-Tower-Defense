@@ -64,7 +64,7 @@ public class BTDGameRunner {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (Monkey mo : monkeyal) {
-					mo.target(bloonal, panel, gameprojectiles,ticks);
+					mo.target(bloonal, panel, gameprojectiles);
 				}
 				for (Bloon bl : bloonal) {
 					bl.update(0.15);

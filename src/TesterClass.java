@@ -18,12 +18,12 @@ public class TesterClass {
 	private int ticks = 0;
 	private Timer timer;
 
-//	public static void main(String[] args) {
-//		Map1 m1 = new Map1();
-//		m1.initializeTrack();
-//		grid = m1.getGrid();
-//		new TesterClass().start();
-//	}
+	public static void main(String[] args) {
+		Map1 m1 = new Map1();
+		m1.initializeTrack();
+		grid = m1.getGrid();
+		new TesterClass().start();
+	}
 
 	private void start() {
 		panel = new JPanel() {
