@@ -69,37 +69,49 @@ public abstract class Projectile {
 
     Timer timer;
     private final int REFRESH = 1;
-
-    public void launch(Bloon b, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons) {
+    private double slopex;
+    private double slopey;
+    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons) {
+        if (Math.abs(by-y) < Math.abs(bx-x)){
+            slopex = 1.0 * (by - y) / (bx - x);
+            slopey = 1;
+        }else{
+            slopey = 1.0*(bx-x) / (by-y);
+            slopex = 1;
+        }
+        if (bx < x){
+            if (slopey == 1) {
+                setAngle(180 * Math.atan(slopex) / Math.PI + 180);
+            }else{
+                setAngle(180 * Math.atan(1/slopey) / Math.PI + 180);
+            }
+        }else {
+            if (slopey == 1) {
+                setAngle(180 * Math.atan(slopex) / Math.PI);
+            } else {
+                setAngle(180 * Math.atan(1 / slopey) / Math.PI );
+            }
+        }
         timer = new Timer(REFRESH, new ActionListener() {
             double dx = x;
             double dy = y;
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                double slopex = 0;
-                double slopey = 0;
-                if (Math.abs(b.getY()-y) < Math.abs(b.getX()-x)){
-                    slopex = 1.0 * (b.getY() - y) / (b.getX() - x);
-                    slopey = 1;
-                }else{
-                    slopey = 1.0*(b.getX()-x) / (b.getY()-y);
-                    slopex = 1;
-                }
-                if (!finish && (b.getRect().intersects(getRect()) || ticks > 50)){
-                    hm.remove(random);
+                if (!finish){
                     for (int j = bloons.size()-1; j >= 0; j--){
-                        if (b.equals(bloons.get(j))){
-                            bloons.addAll(bloons.get(j).hit((int)b.getX(),(int)b.getY(),dmg));
+                        if (bloons.get(j).getRect().intersects(r)){
+                            hm.remove(random);
+                            bloons.addAll(bloons.get(j).hit((int)bx,(int)by,dmg));
                             bloons.remove(j);
-                            break;
+                            finish = true;
+                            return;
                         }
                     }
-                    finish = true;
                 }
 
+
                 if(slopey == 1){
-                    if (b.getX() < x){
+                    if (bx < x){
                         dx -= PROJSPEED*slopey;
                         dy -= PROJSPEED*slopex;
                     }else{
@@ -107,7 +119,7 @@ public abstract class Projectile {
                         dy += PROJSPEED*slopex;
                     }
                 }else{
-                    if (b.getY() < y){
+                    if (by < y){
                         dx -= PROJSPEED*slopey;
                         dy -= PROJSPEED*slopex;
                     }else{
@@ -115,19 +127,7 @@ public abstract class Projectile {
                         dy += PROJSPEED*slopex;
                     }
                 }
-                if (b.getX() < x){
-                    if (slopey == 1) {
-                        setAngle(180 * Math.atan(slopex) / Math.PI + 180);
-                    }else{
-                        setAngle(180 * Math.atan(1/slopey) / Math.PI + 180);
-                    }
-                }else {
-                    if (slopey == 1) {
-                        setAngle(180 * Math.atan(slopex) / Math.PI);
-                    } else {
-                        setAngle(180 * Math.atan(1 / slopey) / Math.PI );
-                    }
-                }
+
                 moveTo((int) dx, (int) dy);
                 ticks++;
                 panel.repaint();

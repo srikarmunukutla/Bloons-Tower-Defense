@@ -20,7 +20,8 @@ public abstract class Monkey {
     private int damage;
     private int numtarget;
     private int reloadrate;
-    public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload){
+    int pierce;
+    public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload, int p){
         x = a;
         y = b;
         img = getImage(PATH_PREFIX + str);
@@ -29,6 +30,7 @@ public abstract class Monkey {
         numtarget = target;
         damage = dmg;
         reloadrate = reload;
+        pierce = p;
     }
     public void draw(Graphics g, JPanel panel){
         Graphics2D g2d = (Graphics2D) g.create();
@@ -113,7 +115,7 @@ public abstract class Monkey {
             Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectiles.put(random, pr);
-            gameprojectiles.get(random).launch(b, panel,gameprojectiles,random,damage,al);
+            gameprojectiles.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectiles,random,damage,al);
 
 
         }
