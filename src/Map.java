@@ -7,10 +7,12 @@ public abstract class Map {
 	protected boolean[][] grid;
 	protected String PATH_PREFIX = "images/";
 	protected Image img = null;
-	private int height = 520, width = 700;
+	protected int height = 520, width = 700;
 	
 	public Map(int r, int c) {
 		grid = new boolean[r][c];
+		height = r;
+		width = c;
 	}
 	
 	public Map() {
