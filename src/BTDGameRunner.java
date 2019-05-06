@@ -28,7 +28,7 @@ public class BTDGameRunner {
 	private void start() {
 		//Testing balloon and Monkey
 		bloonal.add(new Bloon(8,30,200,0));
-		monkeyal.add(new TackShooter(100,100));
+		monkeyal.add(new TackShooter(300,200));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {

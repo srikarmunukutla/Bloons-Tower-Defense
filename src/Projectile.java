@@ -125,6 +125,7 @@ public abstract class Projectile {
                         if (pierce == 0) {
                             hm.remove(random);
                             timer.stop();
+                            return;
                         }
                     }
                 }
