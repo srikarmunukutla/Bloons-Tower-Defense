@@ -115,7 +115,7 @@ public abstract class Monkey {
             Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectiles.put(random, pr);
-            gameprojectiles.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectiles,random,damage,al);
+            gameprojectiles.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectiles,random,damage,al,pierce);
 
 
         }

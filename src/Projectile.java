@@ -71,7 +71,10 @@ public abstract class Projectile {
     private final int REFRESH = 1;
     private double slopex;
     private double slopey;
-    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons) {
+    private int multiplier;
+    private int pierce;
+    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons, int p) {
+        pierce = p;
         if (Math.abs(by-y) < Math.abs(bx-x)){
             slopex = 1.0 * (by - y) / (bx - x);
             slopey = 1;
@@ -92,42 +95,37 @@ public abstract class Projectile {
                 setAngle(180 * Math.atan(1 / slopey) / Math.PI );
             }
         }
+        if(slopey == 1){
+            if (bx < x){
+                multiplier = -1;
+            }else{
+                multiplier = 1;
+            }
+        }else{
+            if (by < y){
+                multiplier = -1;
+            }else{
+                multiplier = 1;
+            }
+        }
         timer = new Timer(REFRESH, new ActionListener() {
             double dx = x;
             double dy = y;
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!finish){
-                    for (int j = bloons.size()-1; j >= 0; j--){
-                        if (bloons.get(j).getRect().intersects(r)){
+                for (int j = bloons.size()-1; j >= 0; j--){
+                    if (bloons.get(j).getRect().intersects(r)){
+                        bloons.addAll(bloons.get(j).hit((int)bx,(int)by,dmg));
+                        bloons.remove(j);
+                        pierce--;
+                        if (pierce == 0 || ticks > 100) {
                             hm.remove(random);
-                            bloons.addAll(bloons.get(j).hit((int)bx,(int)by,dmg));
-                            bloons.remove(j);
-                            finish = true;
-                            return;
+                            timer.stop();
                         }
                     }
                 }
-
-
-                if(slopey == 1){
-                    if (bx < x){
-                        dx -= PROJSPEED*slopey;
-                        dy -= PROJSPEED*slopex;
-                    }else{
-                        dx += PROJSPEED*slopey;
-                        dy += PROJSPEED*slopex;
-                    }
-                }else{
-                    if (by < y){
-                        dx -= PROJSPEED*slopey;
-                        dy -= PROJSPEED*slopex;
-                    }else{
-                        dx += PROJSPEED*slopey;
-                        dy += PROJSPEED*slopex;
-                    }
-                }
-
+                dx += multiplier*PROJSPEED*slopey;
+                dy += multiplier*PROJSPEED*slopex;
                 moveTo((int) dx, (int) dy);
                 ticks++;
                 panel.repaint();

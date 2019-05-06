@@ -29,8 +29,8 @@ public class BTDGameRunner {
 		//Testing balloon and Monkey
 		bloonal.add(new Bloon(5,500,500,0));
 		monkeyal.add(new DartMonkey(200,600));
-		monkeyal.add(new DartMonkey(350,400));
-		monkeyal.add(new DartMonkey(1200,600));
+		monkeyal.add(new DartMonkey(825,400));
+		monkeyal.add(new DartMonkey(850,600));
 		monkeyal.add(new DartMonkey(800,400));
 		panel = new JPanel() {
 			@Override
