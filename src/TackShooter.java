@@ -16,10 +16,21 @@ public class TackShooter extends Monkey{
         }
         for (int i = 0; i < al.size(); i++) {
         	if (al.get(i).getRect().intersects(r)) {
-        		
-        		continue;
+        		for (int j = 0; j < 8; j++) {
+            		Projectile pr = getProj();
+            		int random = (int) ((Math.random()) * Integer.MAX_VALUE);
+                    gameprojectiles.put(random, pr);
+                    double x = this.getX()+17*Math.cos(j*Math.PI/4);
+                    double y = this.getY()-17*Math.sin(j*Math.PI/4);
+                    gameprojectiles.get(random).launch((int) x,(int) y, panel,gameprojectiles,random, this.getDamage(), al, pierce, r);
+        		}
+        		break;
         	}
         }
+    }
+    @Override
+    public Projectile getProj(){
+        return new Tack(this.getX(),this.getY());
     }
 
 }
