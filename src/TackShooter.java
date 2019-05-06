@@ -4,7 +4,7 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 public class TackShooter extends Monkey{
-
+	private int secbeforereload = 0;
 	public TackShooter(int a, int b) {
 		super(a,b,200,"Tack_Shooter.png",8,1,150,1);
 	}
@@ -14,8 +14,15 @@ public class TackShooter extends Monkey{
         if (al.size() == 0){
             return;
         }
+        if (secsbefreload > 0){
+            secsbefreload--;
+            return;
+        }
         for (int i = 0; i < al.size(); i++) {
         	if (al.get(i).getRect().intersects(r)) {
+        		if (secsbefreload == 0){
+                    secsbefreload = getReloadRate();
+                }
         		for (int j = 0; j < 8; j++) {
             		Projectile pr = getProj();
             		int random = (int) ((Math.random()) * Integer.MAX_VALUE);
