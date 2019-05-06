@@ -39,7 +39,7 @@ public abstract class Monkey {
         at.setToRotation(Math.toRadians(angle), x+SQUARESIZE/2, y+SQUARESIZE/2 );
         at.translate(x, y);
         g2d.setTransform(at);
-        g2d.drawImage(img, 0, 0, panel);
+        g2d.drawImage(img, -SQUARESIZE/2, -SQUARESIZE/2,SQUARESIZE,SQUARESIZE, panel);
         g2d.dispose();
     }
     public Rectangle getRect(){
