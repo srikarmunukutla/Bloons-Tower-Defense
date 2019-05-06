@@ -71,6 +71,9 @@ public class BTDGameRunner {
 				}
 				panel.repaint();
 				ticks++;
+				if (ticks % 50 == 0){
+
+				}
 			}
 
 		});

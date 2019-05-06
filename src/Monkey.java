@@ -69,6 +69,9 @@ public abstract class Monkey {
     public int getReloadRate(){
         return reloadrate;
     }
+    public int getDamage(){
+        return damage;
+    }
     public PriorityQueue<Bloon> getTargets(ArrayList<Bloon> al){
         PriorityQueue<Bloon> pq = new PriorityQueue<>(new Comparator<Bloon>() {
             @Override

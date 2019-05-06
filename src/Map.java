@@ -7,16 +7,16 @@ public abstract class Map {
 	protected boolean[][] grid;
 	protected String PATH_PREFIX = "images/";
 	protected Image img = null;
-	protected int height = 520, width = 700;
+	protected int height, width;
+	protected int origH = 520, origW = 700;
+	protected int Hratio, Wratio;
 	
 	public Map(int r, int c) {
-		grid = new boolean[r][c];
 		height = r;
 		width = c;
-	}
-	
-	public Map() {
 		grid = new boolean[height][width];
+		Hratio = (height/origH);
+		Wratio = (width/origW);
 	}
 	
 	protected Image getImage(String fn) {

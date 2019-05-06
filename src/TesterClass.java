@@ -19,7 +19,7 @@ public class TesterClass {
 	private Timer timer;
 
 	public static void main(String[] args) {
-		Map1 m1 = new Map1();
+		Map1 m1 = new Map1(520, 700);
 		m1.initializeTrack();
 		grid = m1.getGrid();
 		new TesterClass().start();
