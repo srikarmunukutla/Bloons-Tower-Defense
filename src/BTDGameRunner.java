@@ -51,7 +51,7 @@ public class BTDGameRunner {
 		JButton button = new JButton("Play");
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(1800, 960));
+		panel.setPreferredSize(new Dimension(910, 676));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();

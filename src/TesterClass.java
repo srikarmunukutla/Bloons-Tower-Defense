@@ -20,10 +20,9 @@ public class TesterClass {
 	private static int height = 676, width = 910;
 
 	public static void main(String[] args) {
-		Map1 m1 = new Map1(height, width);
+		BTDMap m1 = new Map1(height, width);
 		m1.initializeTrack();
 		grid = m1.getGrid();
-		System.out.println(grid.length + " " + grid[0].length);
 		new TesterClass().start();
 	}
 
@@ -50,19 +49,19 @@ public class TesterClass {
 		frame.pack();
 		frame.setVisible(true);
 		
-//		timer = new Timer(1000, new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				ticks++;
-//				if(ticks == 5) {
-//					timer.stop();
-////					frame.dispose();
-//					System.exit(0);
-//				}
-//			}
-//		});
-//		
-//		timer.start();
+		timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ticks++;
+				if(ticks == 5) {
+					timer.stop();
+//					frame.dispose();
+					System.exit(0);
+				}
+			}
+		});
+		
+		timer.start();
 		
 	}
 
