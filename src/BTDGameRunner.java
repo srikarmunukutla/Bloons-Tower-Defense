@@ -27,8 +27,7 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(5,500,500,0));
-		monkeyal.add(new DartMonkey(200,600));
+		bloonal.add(new Bloon(8,500,500,0));
 		monkeyal.add(new DartMonkey(825,400));
 		monkeyal.add(new DartMonkey(850,600));
 		monkeyal.add(new DartMonkey(800,400));
