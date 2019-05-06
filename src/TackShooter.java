@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.PriorityQueue;
 
 import javax.swing.JPanel;
 
@@ -10,11 +9,8 @@ public class TackShooter extends Monkey{
 		super(a,b,200,"Tack_Shooter.png",8,1,150,1);
 	}
 	@Override
-    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles, long ticks){
-        if (ticks % getReloadRate() != 0){
-            return;
-        }
-        //If no balloons, no code to run
+    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles){
+        //If no bloons, no code to run
         if (al.size() == 0){
             return;
         }
