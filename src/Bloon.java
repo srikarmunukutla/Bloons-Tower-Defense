@@ -11,8 +11,8 @@ public class Bloon {
     private Image img;
     public final static String PATH_PREFIX = "images/";
     private double x, y, angle, distance = 0;
-    int[] width = {24,25,27,29,30,21,21,30,30,30,30,80,150,250};
-    int[] height = {32,34,36,38,40,28,28,40,40,40,40,50,100,150};
+    int[] width = {24,25,27,29,30,21,21,30,30,30,30,80,120,170};
+    int[] height = {32,34,36,38,40,28,28,40,40,40,40,50,80,102};
     int[] healthArr = {1,1,1,1,1,1,1,1,1,1,10,200,700,4000};
     double[] speed = {3,4,5,10,11,5,6,5,3,7,8,3,1,0.5};
     int[] count = {1,1,1,1,1,2,2,4,4,8,16,64,256,1024};

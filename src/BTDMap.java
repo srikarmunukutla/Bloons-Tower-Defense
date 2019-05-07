@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public abstract class BTDMap {
 	protected boolean[][] grid;
-	protected ArrayList<Bloon> bloons;
+	protected ArrayList<Bloon> bloonsList;
 	protected Image img = null;
 	protected int height, width;
 	protected double Hratio, Wratio;
@@ -20,10 +20,18 @@ public abstract class BTDMap {
 		grid = new boolean[height][width];
 		Hratio = (height/origH);
 		Wratio = (width/origW);
-		bloons = new ArrayList<Bloon>();
+		bloonsList = new ArrayList<Bloon>();
 	}
 	
 	protected abstract void initializeTrack();
+	
+	public void addBloon(Bloon b) {
+		bloonsList.add(b);
+	}
+	
+	public ArrayList<Bloon> getBloonList() {
+		return bloonsList;
+	}
 	
 	public int getHeight() {
 		return height;
