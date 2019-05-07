@@ -44,6 +44,19 @@ public class Bloon {
         health = healthArr[rank-1];
         rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
     }
+    
+    public Bloon(int r, double x, double y, double angle, double distance, int health) {
+        rank = r;
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+        this.distance = distance;
+        String s = "bloon"+r+".png";
+        img = getImage(s);
+        radius = (width[rank-1]+height[rank-1])/4;
+        this.health = health;
+        rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
+    }
 
     public Bloon(int r, double x, double y, double angle, boolean regrow, boolean camo) {
         rank = r;
@@ -86,7 +99,7 @@ public class Bloon {
 		int numBloons = count[startrank-1]/count[rank-1];
 		double theta = angle * Math.PI/180;
 		if (numBloons == 1) {
-			bloons.add(new Bloon(rank, x, y, angle, distance));
+			bloons.add(new Bloon(rank, x, y, angle, distance, health));
 		}
 		else {
 			if (rank != 6 || (rank == 6 && startrank == 9)) {
