@@ -121,7 +121,6 @@ public class Bloon {
         try {
             img = ImageIO.read(this.getClass().getResource(fn));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return img;

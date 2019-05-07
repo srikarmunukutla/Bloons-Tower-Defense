@@ -27,10 +27,8 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(8,500,500,0));
-		monkeyal.add(new DartMonkey(825,400));
-		monkeyal.add(new DartMonkey(850,600));
-		monkeyal.add(new DartMonkey(800,400));
+		bloonal.add(new Bloon(8,30,200,0));
+		monkeyal.add(new TackShooter(300,200));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -46,14 +44,14 @@ public class BTDGameRunner {
 				}
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
-					((Dart)pair.getValue()).draw(g,this);
+					((Projectile)pair.getValue()).draw(g,this);
 				}
 			}
 		};
 		JButton button = new JButton("Play");
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(1800, 960));
+		panel.setPreferredSize(new Dimension(910, 676));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
@@ -67,7 +65,7 @@ public class BTDGameRunner {
 					mo.target(bloonal, panel, gameprojectiles);
 				}
 				for (Bloon bl : bloonal) {
-					bl.update(0.15);
+					bl.update(0.05);
 				}
 				panel.repaint();
 				ticks++;

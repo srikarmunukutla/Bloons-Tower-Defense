@@ -17,9 +17,10 @@ public class TesterClass {
 	private static boolean[][] grid;
 	private int ticks = 0;
 	private Timer timer;
+	private static int height = 676, width = 910;
 
 	public static void main(String[] args) {
-		Map1 m1 = new Map1(520, 700);
+		BTDMap m1 = new Map1(height, width);
 		m1.initializeTrack();
 		grid = m1.getGrid();
 		new TesterClass().start();
@@ -42,7 +43,7 @@ public class TesterClass {
 		};
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(910, 676));
+		panel.setPreferredSize(new Dimension(width, height));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
