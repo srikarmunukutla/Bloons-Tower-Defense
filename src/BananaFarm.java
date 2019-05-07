@@ -8,15 +8,16 @@ import javax.imageio.ImageIO;
 public class BananaFarm {
 	int bananaOutput, numBananas, x, y, secsbeforereload;
     private final static String PATH_PREFIX = "images/";
-	Image img = getImage(PATH_PREFIX + "Banana_Farm.png");
+	Image img;
 	Rectangle rect;
 	private final static int CONSTANT = 7800;
-	public BananaFarm(int a, int b) {
+	public BananaFarm(int a, int b, String imgString) {
 		bananaOutput = 20;
 		numBananas = 4;
 		x = a;
 		y = b;
 		secsbeforereload = CONSTANT/numBananas;
+		img = getImage(PATH_PREFIX + imgString);
 	}
 	
     protected Image getImage(String fn) {
