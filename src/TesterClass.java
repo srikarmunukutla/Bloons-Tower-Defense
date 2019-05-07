@@ -28,6 +28,7 @@ public class TesterClass {
 		m1.initializeTrack();
 		grid = m1.getGrid();
 		m1.addBloon(new Bloon(12,30,93,0));
+		m1.addBloon(new Bloon(10,30,93,0));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
