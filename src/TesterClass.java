@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -27,21 +28,26 @@ public class TesterClass {
 		BTDMap m1 = new Map1(height, width);
 		m1.initializeTrack();
 		grid = m1.getGrid();
-		m1.addBloon(new Bloon(12,30,93,0));
-		m1.addBloon(new Bloon(10,30,93,0));
+		m1.addBloon(new Bloon(12,30,93,0, new HashSet<Integer>()));
+		m1.addBloon(new Bloon(10,30,93,0, new HashSet<Integer>()));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.setColor(Color.BLACK);
 				m1.draw(g);
-//				for(int r = 0; r < grid.length; r++) {
-//					for(int c = 0; c < grid[0].length; c++) {
-//						if(grid[r][c]) {
-//							g.drawRect(c, r, 1, 1);
-//						}
-//					}
-//				}
+				for(int r = 0; r < grid.length; r++) {
+					for(int c = 0; c < grid[0].length; c++) {
+						if(grid[r][c].coveredByTrack()) {
+							g.drawRect(c, r, 1, 1);
+						}
+						if(grid[r][c].getAngle() != 0) {
+							g.setColor(Color.GREEN);
+							g.drawRect(c, r, 1, 1);
+							g.setColor(Color.BLACK);
+						}
+					}
+				}
 				for(Bloon b: m1.getBloonList()) {
 					b.draw(g);
 				}
@@ -60,7 +66,10 @@ public class TesterClass {
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
 				for(Bloon b: m1.getBloonList()) {
-					b.update(0.05);
+					b.update(0.2);
+					if(grid[(int) b.getY()][(int) b.getX()].getAngle() != b.getAngle()) {
+						b.setAngle(grid[(int) b.getY()][(int) b.getX()].getAngle());
+					}
 				}
 				panel.repaint();
 //				if(ticks == 5) {
