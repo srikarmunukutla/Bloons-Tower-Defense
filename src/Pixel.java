@@ -23,4 +23,9 @@ public class Pixel {
 	public void setTrack(boolean bool) {
 		isTrack = bool;
 	}
+	
+	public void setPixel(int theta, boolean bool) {
+		angle = theta;
+		isTrack = bool;
+	}
 }
