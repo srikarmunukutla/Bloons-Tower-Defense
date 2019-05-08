@@ -46,10 +46,11 @@ public class Spikes {
 		if(al.size()==0) {
 			return;
 		}
-		for(int i= 0;i < al.size();i++) {
+		for(int i= al.size()-1;i >= 0;i--) {
 			if(al.get(i).getRect().intersects(rect)) {
 				health--;
 				al.addAll(al.get(i).hit((int)al.get(i).getX(),(int)al.get(i).getY(),1));
+				al.remove(i);
 				if(health==0) {
 					return;
 				}
