@@ -32,7 +32,8 @@ public class Map1 extends BTDMap {
 			}
 		}
 		
-		for(int c = (int) (173 * Wratio); c < (int) (176 * Wratio); c++) {
+		// first turn
+		for(int c = (int) (172 * Wratio); c < (int) (176 * Wratio); c++) {
 			for(int r = (int) (71 * Hratio); r < (int) (159 * Wratio); r++) {
 				grid[r][c].setAngle(-90);
 			}
@@ -50,8 +51,9 @@ public class Map1 extends BTDMap {
 			}
 		}
 		
-		for(int c = (int) (285 * Wratio); c < (int) (288 * Wratio); c++) {
-			for(int r = (int) (71 * Hratio); r < (int) (159 * Wratio); r++) {
+		// second turn
+		for(int c = (int) (284 * Wratio); c < (int) (288 * Wratio); c++) {
+			for(int r = (int) (71 * Hratio); r < (int) (176 * Wratio); r++) {
 				grid[r][c].setAngle(90);
 			}
 		}
@@ -63,8 +65,9 @@ public class Map1 extends BTDMap {
 			}
 		}
 		
-		for(int c = (int) (407 * Wratio); c < (int) (410 * Wratio); c++) {
-			for(int r = (int) (71 * Hratio); r < (int) (259 * Hratio); r++) {
+		// third turn
+		for(int c = (int) (406 * Wratio); c < (int) (410 * Wratio); c++) {
+			for(int r = (int) (53 * Hratio); r < (int) (255 * Hratio); r++) {
 				grid[r][c].setAngle(-90);
 			}
 		}
@@ -81,14 +84,16 @@ public class Map1 extends BTDMap {
 			}
 		}
 		
-		for(int c = (int) (289 * Wratio); c < (int) (408 * Wratio); c++) {
-			for(int r = (int) (256 * Hratio); r < (int) (259 * Hratio); r++) {
+		// fourth turn
+		for(int c = (int) (292 * Wratio); c < (int) (410 * Wratio); c++) {
+			for(int r = (int) (255 * Hratio); r < (int) (259 * Hratio); r++) {
 				grid[r][c].setAngle(180);
 			}
 		}
 		
-		for(int c = (int) (289 * Wratio); c < (int) (292 * Wratio); c++) {
-			for(int r = (int) (257 * Hratio); r < (int) (443 * Hratio); r++) {
+		// fifth turn
+		for(int c = (int) (288 * Wratio); c < (int) (292 * Wratio); c++) {
+			for(int r = (int) (239 * Hratio); r < (int) (443 * Hratio); r++) {
 				grid[r][c].setAngle(-90);
 			}
 		}
@@ -105,8 +110,11 @@ public class Map1 extends BTDMap {
 			}
 		}
 		
-		for(int c = (int) (412 * Wratio); c < (int) (415 * Wratio); c++) {
-//			for(int )
+		// sixth turn
+		for(int c = (int) (411 * Wratio); c < (int) (415 * Wratio); c++) {
+			for(int r = (int) (356 * Hratio); r < (int) (461 * Hratio); r++) {
+				grid[r][c].setAngle(90);
+			}
 		}
 		
 		// seventh portion
@@ -118,6 +126,13 @@ public class Map1 extends BTDMap {
 			while(r > (int) (338 * Hratio)) {
 				r--;
 				grid[r][c].setTrack(true);
+			}
+		}
+		
+		// seventh turn
+		for(int c = (int) (522 * Wratio); c < (int) (526 * Wratio); c++) {
+			for(int r = (int) (338 * Hratio); r < (int) (443 * Hratio); r++) {
+				grid[r][c].setAngle(-90);
 			}
 		}
 		

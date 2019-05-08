@@ -36,18 +36,18 @@ public class TesterClass {
 				super.paintComponent(g);
 				g.setColor(Color.BLACK);
 				m1.draw(g);
-				for(int r = 0; r < grid.length; r++) {
-					for(int c = 0; c < grid[0].length; c++) {
-						if(grid[r][c].coveredByTrack()) {
-							g.drawRect(c, r, 1, 1);
-						}
-						if(grid[r][c].getAngle() != 0) {
-							g.setColor(Color.GREEN);
-							g.drawRect(c, r, 1, 1);
-							g.setColor(Color.BLACK);
-						}
-					}
-				}
+//				for(int r = 0; r < grid.length; r++) {
+//					for(int c = 0; c < grid[0].length; c++) {
+//						if(grid[r][c].coveredByTrack()) {
+//							g.drawRect(c, r, 1, 1);
+//						}
+//						if(grid[r][c].getAngle() != 0) {
+//							g.setColor(Color.GREEN);
+//							g.drawRect(c, r, 1, 1);
+//							g.setColor(Color.BLACK);
+//						}
+//					}
+//				}
 				for(Bloon b: m1.getBloonList()) {
 					b.draw(g);
 				}
@@ -66,7 +66,7 @@ public class TesterClass {
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
 				for(Bloon b: m1.getBloonList()) {
-					b.update(0.2);
+					b.update(0.25);
 					if(grid[(int) b.getY()][(int) b.getX()].getAngle() != b.getAngle()) {
 						b.setAngle(grid[(int) b.getY()][(int) b.getX()].getAngle());
 					}
