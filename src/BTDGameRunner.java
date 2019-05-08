@@ -27,8 +27,9 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(10,30,200,0,new HashSet<Integer>()));
-		monkeyal.add(new NinjaMonkey(100,100));
+		bloonal.add(new Bloon(12,30,200,0,new HashSet<Integer>()));
+		BananaFarm bf = new BananaFarm(200,200);
+		ArrayList<Banana> alb = new ArrayList<Banana>();
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -38,9 +39,12 @@ public class BTDGameRunner {
 					if (bl.getHealth() > 0) {
 						bl.draw(g);
 					}
-				}
+				}bf.draw(g);
 				for (Monkey mo : monkeyal){
 					mo.draw(g,this);
+				}
+				for (Banana b : alb){
+					b.draw(g);
 				}
 				for (Spikes sp : spikeal){
 					sp.draw(g,this);
@@ -51,6 +55,13 @@ public class BTDGameRunner {
 				}
 			}
 		};
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent me) {
+				clickedAt(me);
+				panel.repaint();
+			}
+		});
 		panel.setBackground(Color.WHITE);
 
 		panel.setPreferredSize(new Dimension(910, 676));
@@ -77,6 +88,13 @@ public class BTDGameRunner {
 						i--;
 					}
 				}
+				Banana bnan = bf.makeBananas();
+				if (bnan != null) {
+					alb.add(bnan);
+				}
+				for (Banana b: alb) {
+					b.update(0.05);
+				}
 				panel.repaint();
 				ticks++;
 			}
@@ -96,6 +114,9 @@ public class BTDGameRunner {
 			e.printStackTrace();
 		}
 		return img;
+	}
+	private void clickedAt(MouseEvent me){
+		monkeyal.add(new SuperMonkey(me.getX(),me.getY()));
 	}
 
 }
