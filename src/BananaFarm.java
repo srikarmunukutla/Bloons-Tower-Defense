@@ -11,6 +11,7 @@ public class BananaFarm {
 	Image img;
 	Rectangle rect;
 	private final static int CONSTANT = 7800;
+	private final static int SQUARESIZE = 100;
 	public BananaFarm(int a, int b, String imgString) {
 		bananaOutput = 20;
 		numBananas = 4;
@@ -18,6 +19,7 @@ public class BananaFarm {
 		y = b;
 		secsbeforereload = CONSTANT/numBananas;
 		img = getImage(PATH_PREFIX + imgString);
+		rect = new Rectangle(a-SQUARESIZE/2, b-SQUARESIZE/2, SQUARESIZE, SQUARESIZE);
 	}
 	
     protected Image getImage(String fn) {
@@ -47,7 +49,7 @@ public class BananaFarm {
     }
     
     public void draw(Graphics g) {
-    	
+    	g.drawImage(img, x-SQUARESIZE/2, y-SQUARESIZE/2, SQUARESIZE, SQUARESIZE, null);
     }
     
     public Rectangle getRect() {

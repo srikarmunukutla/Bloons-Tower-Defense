@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 public class Banana {
 	int money;
     private final static String PATH_PREFIX = "images/";
-	Image img = getImage(PATH_PREFIX + "Banana_Farm.png");
+	Image img = getImage(PATH_PREFIX + "Banana.png");
 	public Banana(int value) {
 		money = value;
 	}
