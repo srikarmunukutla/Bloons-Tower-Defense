@@ -63,7 +63,7 @@ public class BananaFarm {
     	}
     	double randomAngle = 360 * Math.random();
     	double random = (int) 200 * Math.random();
-    	Banana b = new Banana(bananaOutput, randomAngle, random, x, y);
+    	Banana b = new Banana(bananaOutput, randomAngle, random, x, y,x,y);
     	secsbeforereload = CONSTANT/numBananas;
     	return b;
     }
