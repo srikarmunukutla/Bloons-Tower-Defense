@@ -12,6 +12,7 @@ public class Map1 extends BTDMap {
 	}
 
 	protected void initializeTrack() {
+		initializeGrid();
 		// first portion
 		for(int c = 0; c < (int) (154 * Wratio); c++) {
 			for(int r = (int) (53 * Hratio); r < (int) (90 * Hratio); r++) {

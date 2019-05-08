@@ -55,12 +55,12 @@ public class TesterClass {
 		frame.pack();
 		frame.setVisible(true);
 		
-		timer = new Timer(1000, new ActionListener() {
+		timer = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
 				for(Bloon b: m1.getBloonList()) {
-					b.update(5);
+					b.update(0.05);
 				}
 				panel.repaint();
 //				if(ticks == 5) {
