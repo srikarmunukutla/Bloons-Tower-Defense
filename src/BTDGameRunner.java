@@ -16,9 +16,11 @@ public class BTDGameRunner {
 	HashMap<Integer,Projectile> gameprojectiles = new HashMap<Integer, Projectile>();
 	private ArrayList<Bloon> bloonal = new ArrayList<Bloon>();
 	ArrayList<Monkey> monkeyal = new ArrayList<Monkey>();
+	private ArrayList<Spikes> spikeal = new ArrayList<Spikes>();
+
 	private boolean startedGame = false;
 //	private int width = 18, height = 10;
-
+	private Spikes spik;
 	public static void main(String[] args) {
 		new BTDGameRunner().start();
 	}
@@ -27,8 +29,10 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(12,30,200,0));
-		monkeyal.add(new SuperMonkey(300,400));
+		bloonal.add(new Bloon(10,30,200,0));
+		spikeal.add(new Spikes(200,200));
+		monkeyal.add(new SuperMonkey(100,100));
+		//monkeyal.add(new SuperMonkey(300,400));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -42,13 +46,15 @@ public class BTDGameRunner {
 				for (Monkey mo : monkeyal){
 					mo.draw(g,this);
 				}
+				for (Spikes sp : spikeal){
+					sp.draw(g,this);
+				}
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
 					((Projectile)pair.getValue()).draw(g,this);
 				}
 			}
 		};
-		JButton button = new JButton("Play");
 		panel.setBackground(Color.WHITE);
 
 		panel.setPreferredSize(new Dimension(910, 676));
@@ -66,12 +72,17 @@ public class BTDGameRunner {
 				}
 				for (Bloon bl : bloonal) {
 					bl.update(0.05);
+					System.out.println(bl.getHealth());
+				}
+				for (int i = 0; i < spikeal.size(); i++){
+					spikeal.get(i).collided(bloonal,spikeal);
+					if (spikeal.get(i).getHealth() == 0){
+						spikeal.remove(i);
+						i--;
+					}
 				}
 				panel.repaint();
 				ticks++;
-				if (ticks % 50 == 0){
-
-				}
 			}
 
 		});

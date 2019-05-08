@@ -36,23 +36,26 @@ public class Spikes {
         }
         return img;
     }
-	
+	public int getHealth(){
+		return health;
+	}
 	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(spikes, x, y, width,height, null);
 	}
-	public void collided(ArrayList<Bloon> al, JPanel panel) {
+	public void collided(ArrayList<Bloon> al, ArrayList<Spikes> spikeal) {
 		if(al.size()==0) {
 			return;
 		}
-		for(int i=0;i<al.size();i++) {
+		for(int i= 0;i < al.size();i++) {
 			if(al.get(i).getRect().intersects(rect)) {
 				health--;
-				al.get(i).hit((int) al.get(i).getX(),(int) al.get(i).getY(),1);
+				al.addAll(al.get(i).hit((int)al.get(i).getX(),(int)al.get(i).getY(),1));
 				if(health==0) {
-					panel.repaint();
+					return;
 				}
 			}
 		}
+
 	}
 	
 	

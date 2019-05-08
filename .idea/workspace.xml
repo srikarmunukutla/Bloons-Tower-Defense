@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8f699abe-dff4-4655-b84d-6ce903ffc3a0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projectile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BTDGameRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTDGameRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spikes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spikes.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,22 +23,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="21" />
+          <entry key="java" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="21" />
+          <entry key="JAVA" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3572" />
+          <entry key="java" value="4239" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3572" />
+          <entry key="JAVA" value="4239" />
         </counts>
       </usages-collector>
     </session>
@@ -45,42 +46,37 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MonkeyApprentice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="e#87#88#0" expanded="true" />
-                <element signature="e#106#107#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TackShooter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <element signature="e#192#193#0" expanded="true" />
-                <element signature="e#242#243#0" expanded="true" />
-                <element signature="e#1332#1333#0" expanded="true" />
-                <element signature="e#1388#1389#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BTDGameRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+            <state relative-caret-position="155">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#633#641#0" expanded="true" />
                 <element signature="e#916#1360#0" expanded="true" />
                 <element signature="e#1359#1360#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Bloon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="185" selection-start-line="185" selection-end-line="185" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Spikes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+              <folding>
+                <element signature="e#953#954#0" expanded="true" />
+                <element signature="e#966#967#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,24 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Projectile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Map1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-              <folding>
-                <element signature="e#190#191#0" expanded="true" />
-                <element signature="e#213#214#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="206">
+              <caret line="125" selection-start-line="125" selection-end-line="125" />
             </state>
           </provider>
         </entry>
@@ -147,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Monkey.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-end-line="16" />
+            <state relative-caret-position="-1239">
+              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding>
                 <element signature="e#1903#1904#0" expanded="true" />
                 <element signature="e#1928#1929#0" expanded="true" />
@@ -172,8 +155,8 @@
     <findStrings>
       <find>distance</find>
       <find>PATH</find>
-      <find>images</find>
       <find>get</find>
+      <find>images</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,17 +181,18 @@
         <option value="$PROJECT_DIR$/src/TesterClass.java" />
         <option value="$PROJECT_DIR$/src/MonkeyApprentice.java" />
         <option value="$PROJECT_DIR$/src/TackShooter.java" />
-        <option value="$PROJECT_DIR$/src/BTDGameRunner.java" />
         <option value="$PROJECT_DIR$/src/NinjaMonkey.java" />
-        <option value="$PROJECT_DIR$/src/Monkey.java" />
         <option value="$PROJECT_DIR$/src/Projectile.java" />
+        <option value="$PROJECT_DIR$/src/Monkey.java" />
+        <option value="$PROJECT_DIR$/src/Spikes.java" />
+        <option value="$PROJECT_DIR$/src/BTDGameRunner.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1026" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="894" />
     <option name="y" value="55" />
-    <option name="width" value="735" />
+    <option name="width" value="867" />
     <option name="height" value="905" />
   </component>
   <component name="ProjectView">
@@ -239,7 +223,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557262460402" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557348219595" />
     <property name="last_opened_file_path" value="$USER_HOME$/IntelliJIDEAProjects/CSFinal" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
@@ -278,8 +262,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
+    <frame x="596" y="37" width="578" height="603" extended-state="0" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -294,8 +277,8 @@
       <window_info anchor="bottom" id="Messages" weight="0.3291815" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291815" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28113878" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.2846975" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23487544" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.44893616" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -350,10 +333,10 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Projectile.java</url>
-          <line>126</line>
+          <url>file://$PROJECT_DIR$/src/Spikes.java</url>
+          <line>50</line>
           <properties />
-          <option name="timeStamp" value="35" />
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -425,34 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Bloon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
-          <folding>
-            <element signature="e#2365#2372#0" expanded="true" />
-            <element signature="e#4815#4816#0" expanded="true" />
-            <element signature="e#4842#4843#0" expanded="true" />
-            <element signature="e#4879#4880#0" expanded="true" />
-            <element signature="e#4906#4907#0" expanded="true" />
-            <element signature="e#4933#4934#0" expanded="true" />
-            <element signature="e#4957#4958#0" expanded="true" />
-            <element signature="e#4985#4986#0" expanded="true" />
-            <element signature="e#5009#5010#0" expanded="true" />
-            <element signature="e#5039#5040#0" expanded="true" />
-            <element signature="e#5068#5069#0" expanded="true" />
-            <element signature="e#5116#5117#0" expanded="true" />
-            <element signature="e#5150#5151#0" expanded="true" />
-            <element signature="e#5185#5186#0" expanded="true" />
-            <element signature="e#5216#5217#0" expanded="true" />
-            <element signature="e#5248#5249#0" expanded="true" />
-            <element signature="e#5276#5277#0" expanded="true" />
-            <element signature="e#5318#5319#0" expanded="true" />
-            <element signature="e#5352#5353#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DartMonkey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -474,13 +429,6 @@
             <element signature="e#190#191#0" expanded="true" />
             <element signature="e#213#214#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shuriken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -508,13 +456,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SuperMonkey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SniperMonkey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -529,22 +470,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BTDGameRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/Shuriken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#916#1360#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
-          </folding>
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SuperMonkey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Monkey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-end-line="16" />
+        <state relative-caret-position="-1239">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="e#1903#1904#0" expanded="true" />
             <element signature="e#1928#1929#0" expanded="true" />
@@ -554,10 +497,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BananaFarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bloon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="185" selection-start-line="185" selection-end-line="185" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Projectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+        <state relative-caret-position="206">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BTDGameRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#633#641#0" expanded="true" />
+            <element signature="e#916#1360#0" expanded="true" />
+            <element signature="e#1359#1360#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Spikes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#966#967#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
