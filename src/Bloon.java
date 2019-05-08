@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 
@@ -19,8 +20,8 @@ public class Bloon {
     int[] sep = {6,7,8,9,10,5,5,10,10,10,10,10,15,20};
     private Rectangle rect;
     private boolean isRegrow = false, isCamo = false;
-
-    public Bloon(int r, double x, double y, double angle) {
+    private HashSet<Integer> darthit;
+    public Bloon(int r, double x, double y, double angle, HashSet<Integer> hm) {
         rank = r;
         this.x = x;
         this.y = y;
@@ -30,9 +31,10 @@ public class Bloon {
         radius = (width[rank-1]+height[rank-1])/4;
         health = healthArr[rank-1];
         rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
+        darthit = hm;
     }
 
-    public Bloon(int r, double x, double y, double angle, double distance) {
+    public Bloon(int r, double x, double y, double angle, double distance, HashSet<Integer> hm) {
         rank = r;
         this.x = x;
         this.y = y;
@@ -43,9 +45,10 @@ public class Bloon {
         radius = (width[rank-1]+height[rank-1])/4;
         health = healthArr[rank-1];
         rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
+        darthit = hm;
     }
     
-    public Bloon(int r, double x, double y, double angle, double distance, int health) {
+    public Bloon(int r, double x, double y, double angle, double distance, int health, HashSet<Integer> hm) {
         rank = r;
         this.x = x;
         this.y = y;
@@ -56,9 +59,10 @@ public class Bloon {
         radius = (width[rank-1]+height[rank-1])/4;
         this.health = health;
         rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
+        darthit = hm;
     }
 
-    public Bloon(int r, double x, double y, double angle, boolean regrow, boolean camo) {
+    public Bloon(int r, double x, double y, double angle, boolean regrow, boolean camo, HashSet<Integer> hm) {
         rank = r;
         this.x = x;
         this.y = y;
@@ -99,28 +103,28 @@ public class Bloon {
 		int numBloons = count[startrank-1]/count[rank-1];
 		double theta = angle * Math.PI/180;
 		if (numBloons == 1) {
-			bloons.add(new Bloon(rank, x, y, angle, distance, health));
+			bloons.add(new Bloon(rank, x, y, angle, distance, health,(HashSet<Integer>) darthit.clone()));
 		}
 		else {
 			if (rank != 6 || (rank == 6 && startrank == 9)) {
 				for (int i = numBloons/2-1; i >= 0; i--) {
-					bloons.add(new Bloon(rank, (int) (x-(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y+(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance-(1-2*i)*sep[rank-1], health));
+					bloons.add(new Bloon(rank, (int) (x-(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y+(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance-(1-2*i)*sep[rank-1], health,(HashSet<Integer>) darthit.clone()));
 				}
 				for (int i = 0; i < numBloons/2; i++) {
-					bloons.add(new Bloon(rank, (int) (x+(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y-(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance+(1+2*i)*sep[rank-1], health));
+					bloons.add(new Bloon(rank, (int) (x+(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y-(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance+(1+2*i)*sep[rank-1], health,(HashSet<Integer>) darthit.clone()));
 				}
 			}
 			else {
 				if (numBloons == 2) {
-					bloons.add(new Bloon(rank+1, (int) (x-sep[rank-1]*Math.cos(theta)), (int) (y+sep[rank-1]*Math.sin(theta)), angle, distance-sep[rank-1], health));
-					bloons.add(new Bloon(rank, (int) (x+sep[rank-1]*Math.cos(theta)), (int) (y-sep[rank-1]*Math.sin(theta)), angle, distance+sep[rank-1], health));
+					bloons.add(new Bloon(rank+1, (int) (x-sep[rank-1]*Math.cos(theta)), (int) (y+sep[rank-1]*Math.sin(theta)), angle, distance-sep[rank-1], health,(HashSet<Integer>) darthit.clone()));
+					bloons.add(new Bloon(rank, (int) (x+sep[rank-1]*Math.cos(theta)), (int) (y-sep[rank-1]*Math.sin(theta)), angle, distance+sep[rank-1], health,(HashSet<Integer>) darthit.clone()));
 				}
 				else {
 					for (int i = numBloons/2-1; i >= 0; i--) {
-						bloons.add(new Bloon(rank+(i%2), (int) (x-(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y+(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance-(1-2*i)*sep[rank-1], health));
+						bloons.add(new Bloon(rank+(i%2), (int) (x-(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y+(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance-(1-2*i)*sep[rank-1], health,(HashSet<Integer>) darthit.clone()));
 					}
 					for (int i = 0; i < numBloons/2; i++) {
-						bloons.add(new Bloon(rank+1-(i%2), (int) (x+(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y-(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance+(1+2*i)*sep[rank-1], health));
+						bloons.add(new Bloon(rank+1-(i%2), (int) (x+(1+2*i)*sep[rank-1]*Math.cos(theta)), (int) (y-(1+2*i)*sep[rank-1]*Math.sin(theta)), angle, distance+(1+2*i)*sep[rank-1], health,(HashSet<Integer>) darthit.clone()));
 					}
 				}
 			}
@@ -189,6 +193,20 @@ public class Bloon {
         y -= v*time*Math.sin(theta);
         distance += v*time;
         rect.translate((int) (x-rect.x), (int) (y-rect.y));
+    }
+    public void addDart(int a){
+        darthit.add(a);
+    }
+    public void removeDart(int a){
+        if (darthit.contains(a)){
+            darthit.remove(a);
+        }
+    }
+    public boolean checkDart(int a){
+        if (darthit.contains(a)){
+            return true;
+        }
+        return false;
     }
 
 }

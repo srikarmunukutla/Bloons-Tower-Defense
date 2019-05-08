@@ -119,11 +119,18 @@ public abstract class Projectile {
                 }
                 for (int j = bloons.size()-1; j >= 0; j--){
                     if (bloons.get(j).getRect().intersects(r)){
+                        if (bloons.get(j).checkDart(random)){
+                            continue;
+                        }
+                        bloons.get(j).addDart(random);
                         bloons.addAll(bloons.get(j).hit((int)bx,(int)by,dmg));
                         bloons.remove(j);
                         pierce--;
                         if (pierce == 0) {
                             hm.remove(random);
+                            for (int i = bloons.size()-1; i >= 0; i--){
+                                bloons.get(i).removeDart(random);
+                            }
                             timer.stop();
                             return;
                         }

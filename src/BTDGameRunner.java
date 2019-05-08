@@ -3,11 +3,9 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 public class BTDGameRunner {
 	private JPanel panel;
@@ -29,9 +27,8 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(10,30,200,0));
-		spikeal.add(new Spikes(200,200));
-		monkeyal.add(new DartMonkey(100,100));
+		bloonal.add(new Bloon(10,30,200,0,new HashSet<Integer>()));
+		monkeyal.add(new NinjaMonkey(100,100));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
