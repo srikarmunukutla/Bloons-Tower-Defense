@@ -8,17 +8,17 @@ import javax.imageio.ImageIO;
 public class BananaFarm {
 	int bananaOutput, numBananas, x, y, secsbeforereload;
     private final static String PATH_PREFIX = "images/";
-	Image img;
+    String str = PATH_PREFIX + "Banana_Farm.png";
+	Image img = getImage(str);
 	Rectangle rect;
 	private final static int CONSTANT = 7800;
 	private final static int SQUARESIZE = 100;
-	public BananaFarm(int a, int b, String imgString) {
+	public BananaFarm(int a, int b) {
 		bananaOutput = 20;
 		numBananas = 4;
 		x = a;
 		y = b;
 		secsbeforereload = CONSTANT/numBananas;
-		img = getImage(PATH_PREFIX + imgString);
 		rect = new Rectangle(a-SQUARESIZE/2, b-SQUARESIZE/2, SQUARESIZE, SQUARESIZE);
 	}
 	
