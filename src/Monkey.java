@@ -36,7 +36,7 @@ public abstract class Monkey {
     public void draw(Graphics g, JPanel panel){
         Graphics2D g2d = (Graphics2D) g.create();
         AffineTransform at = new AffineTransform();
-        at.setToRotation(Math.toRadians(angle), x+SQUARESIZE/2, y+SQUARESIZE/2 );
+        at.setToRotation(Math.toRadians(angle), x, y);
         at.translate(x, y);
         g2d.setTransform(at);
         g2d.drawImage(img, -SQUARESIZE/2, -SQUARESIZE/2,SQUARESIZE,SQUARESIZE, panel);
