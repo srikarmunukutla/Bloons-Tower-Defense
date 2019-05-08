@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public abstract class BTDMap {
-	protected boolean[][] grid;
+	protected Pixel[][] grid;
 	protected ArrayList<Bloon> bloonsList;
 	protected Image img = null;
 	protected int height, width;
@@ -17,7 +17,7 @@ public abstract class BTDMap {
 	public BTDMap(int r, int c) {
 		height = r;
 		width = c;
-		grid = new boolean[height][width];
+		grid = new Pixel[height][width];
 		Hratio = (height/origH);
 		Wratio = (width/origW);
 		bloonsList = new ArrayList<Bloon>();
@@ -49,7 +49,7 @@ public abstract class BTDMap {
 		return Wratio;
 	}
 	
-	public boolean[][] getGrid() {
+	public Pixel[][] getGrid() {
 		return grid;
 	}
 	

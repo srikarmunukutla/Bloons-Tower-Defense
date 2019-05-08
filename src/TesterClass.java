@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class TesterClass {
 	private JPanel panel;
 	private JFrame frame = new JFrame("Bloons Tower Defense");
-	private static boolean[][] grid;
+	private static Pixel[][] grid;
 	private int ticks = 0;
 	private Timer timer;
 	private static int height = 676, width = 910;

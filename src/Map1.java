@@ -15,7 +15,7 @@ public class Map1 extends BTDMap {
 		// first portion
 		for(int c = 0; c < (int) (154 * Wratio); c++) {
 			for(int r = (int) (53 * Hratio); r < (int) (90 * Hratio); r++) {
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 			}
 		}
 		
@@ -26,7 +26,7 @@ public class Map1 extends BTDMap {
 				r = (int) (140 * Hratio);
 			}
 			while(r < (int) (177 * Hratio)) {
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 				r++;
 			}
 		}
@@ -39,14 +39,14 @@ public class Map1 extends BTDMap {
 			}
 			while(r > (int) (53 * Hratio)) {
 				r--;
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 			}
 		}
 		
 		// fourth portion
 		for(int c = (int) (389 * Wratio); c < (int) (426 * Wratio); c++) {
 			for(int r = (int) (53 * Hratio); r < (int) (276 * Hratio); r++) {
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 			}
 		}
 		
@@ -58,7 +58,7 @@ public class Map1 extends BTDMap {
 			}
 			while(r > (int) (239 * Hratio)) {
 				r--;
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 			}
 		}
 		
@@ -69,7 +69,7 @@ public class Map1 extends BTDMap {
 				r = (int) (338 * Hratio);
 			}
 			while(r < (int) (461 * Hratio)) {
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 				r++;
 			}
 		}
@@ -82,14 +82,14 @@ public class Map1 extends BTDMap {
 			}
 			while(r > (int) (338 * Hratio)) {
 				r--;
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 			}
 		}
 		
 		// eight portion
 		for(int c = (int) (544 * Wratio); c < (int) (700 * Wratio); c++) {
 			for(int r = (int) (424 * Hratio); r < (int) (461 * Hratio); r++) {
-				grid[r][c] = true;
+				grid[r][c].setTrack(true);
 			}
 		}
 
