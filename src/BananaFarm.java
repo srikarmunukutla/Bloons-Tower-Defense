@@ -56,11 +56,14 @@ public class BananaFarm {
     	return rect;
     }
     
-    public void makeBananas() {
+    public Banana makeBananas() {
     	if (secsbeforereload > 0) {
     		secsbeforereload--;
-    		return;
+    		return null;
     	}
-    	Banana b = new Banana(bananaOutput);
+    	double randomAngle = 360 * Math.random();
+    	double random = (int) 200 * Math.random();
+    	Banana b = new Banana(bananaOutput, randomAngle, random, x, y);
+    	return b;
     }
 }
