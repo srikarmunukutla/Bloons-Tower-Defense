@@ -220,7 +220,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557441024017" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557441042464" />
     <property name="last_opened_file_path" value="$USER_HOME$/IntelliJIDEAProjects/CSFinal" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
