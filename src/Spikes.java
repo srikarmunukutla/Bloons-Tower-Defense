@@ -41,7 +41,7 @@ public class Spikes implements GameObject{
 	public int getHealth(){
 		return health;
 	}
-	public void draw(Graphics g) {
+	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(spikes, x, y, width,height, null);
 	}
 	public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
