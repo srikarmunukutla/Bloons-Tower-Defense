@@ -47,7 +47,7 @@ public class BTDGameRunner {
 					b.draw(g);
 				}
 				for (Spikes sp : spikeal){
-					sp.draw(g,this);
+					sp.draw(g);
 				}
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();

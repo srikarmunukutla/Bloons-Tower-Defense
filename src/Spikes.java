@@ -39,7 +39,7 @@ public class Spikes {
 	public int getHealth(){
 		return health;
 	}
-	public void draw(Graphics g, JPanel panel) {
+	public void draw(Graphics g) {
 		g.drawImage(spikes, x, y, width,height, null);
 	}
 	public void collided(ArrayList<Bloon> al, ArrayList<Spikes> spikeal) {

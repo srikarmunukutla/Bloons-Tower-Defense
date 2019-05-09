@@ -29,6 +29,7 @@ public class TesterClass {
 		BTDMap m1 = new Map1(height, width);
 		m1.initializeTrack();
 		grid = m1.getGrid();
+		Spikes spike = new Spikes(100, 100);
 //		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
 //		m1.addBloon(new Bloon(10,0,93,0, new HashSet<Integer>()));
 		panel = new JPanel() {
@@ -52,6 +53,7 @@ public class TesterClass {
 				for(Bloon b: m1.getBloonList()) {
 					b.draw(g);
 				}
+				spike.draw(g);
 			}
 		};
 		panel.setBackground(Color.WHITE);
