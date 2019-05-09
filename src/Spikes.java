@@ -14,9 +14,9 @@ import java.util.HashMap;
 public class Spikes implements GameObject{
 	private int x;
 	private int y;
-	private int width = 70;
-	private int height = 70;
-	private int health = 10;
+	private int width = (int) (37 * 1.3);
+	private int height = 25;
+	private int health = 6;
 	private String PATH_PREFIX = "images/";
 	private Rectangle rect;
 	private Image spikes = null;
@@ -41,7 +41,7 @@ public class Spikes implements GameObject{
 	public int getHealth(){
 		return health;
 	}
-	public void draw(Graphics g, JPanel panel) {
+	public void draw(Graphics g) {
 		g.drawImage(spikes, x, y, width,height, null);
 	}
 	public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
@@ -54,6 +54,7 @@ public class Spikes implements GameObject{
 				bloonal.addAll(bloonal.get(i).hit((int)bloonal.get(i).getX(),(int)bloonal.get(i).getY(),1));
 				bloonal.remove(i);
 				if(health==0) {
+					spikeal.remove(this);
 					return;
 				}
 			}
