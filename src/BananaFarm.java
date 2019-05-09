@@ -4,8 +4,9 @@ import java.awt.Rectangle;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
-public class BananaFarm {
+public class BananaFarm{
 	int bananaOutput, numBananas, x, y, secsbeforereload;
     private final static String PATH_PREFIX = "images/";
     String str = PATH_PREFIX + "Banana_Farm.png";

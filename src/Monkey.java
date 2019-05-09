@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-public abstract class Monkey {
+public abstract class Monkey implements GameObject{
     Rectangle r;
     private int x;
     private int y;
@@ -91,16 +91,16 @@ public abstract class Monkey {
     public Projectile getProj(){
         return null;
     }
-    public void target(ArrayList<Bloon> al, JPanel panel, HashMap<Integer, Projectile> gameprojectiles){
+    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
         //If no balloons, no code to run
-        if (al.size() == 0){
+        if (bloonal.size() == 0){
             return;
         }
         if (secsbefreload > 0){
             secsbefreload--;
             return;
         }
-        PriorityQueue<Bloon> pq = this.getTargets(al);
+        PriorityQueue<Bloon> pq = this.getTargets(bloonal);
         for (int i = 0; i < numtarget; i++) {
             if (pq.isEmpty()){
                 break;
@@ -120,11 +120,12 @@ public abstract class Monkey {
             }
             Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
-            gameprojectiles.put(random, pr);
-            gameprojectiles.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectiles,random,damage,al,pierce,r);
-
-
+            gameprojectile.put(random, pr);
+            gameprojectile.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectile,random,damage,bloonal,pierce,r);
         }
+    }
+    public void clickedAt(){
+
     }
 
 }

@@ -60,7 +60,7 @@ public class TesterClass {
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
-		
+
 		timer = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -79,9 +79,9 @@ public class TesterClass {
 //				}
 			}
 		});
-		
+
 		timer.start();
-		
+
 	}
 
 }

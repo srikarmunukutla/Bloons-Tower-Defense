@@ -11,14 +11,13 @@ public class BTDGameRunner {
 	private JPanel panel;
 	private JFrame frame = new JFrame("Bloons Tower Defense");
 	private static final String PATH_PREFIX = "images/";
-	HashMap<Integer,Projectile> gameprojectiles = new HashMap<Integer, Projectile>();
+	private ArrayList<GameObject> gameobjects = new ArrayList<>();
+	private HashMap<Integer,Projectile> gameprojectiles = new HashMap<Integer, Projectile>();
 	private ArrayList<Bloon> bloonal = new ArrayList<Bloon>();
-	ArrayList<Monkey> monkeyal = new ArrayList<Monkey>();
+	private ArrayList<Monkey> monkeyal = new ArrayList<Monkey>();
 	private ArrayList<Spikes> spikeal = new ArrayList<Spikes>();
-
 	private boolean startedGame = false;
 //	private int width = 18, height = 10;
-	private Spikes spik;
 	public static void main(String[] args) {
 		new BTDGameRunner().start();
 	}
@@ -37,14 +36,14 @@ public class BTDGameRunner {
 				Iterator it = gameprojectiles.entrySet().iterator();
 				for (Bloon bl : bloonal) {
 					if (bl.getHealth() > 0) {
-						bl.draw(g);
+						bl.draw(g,panel);
 					}
 				}bf.draw(g);
 				for (Monkey mo : monkeyal){
 					mo.draw(g,this);
 				}
 				for (Banana b : alb){
-					b.draw(g);
+					b.draw(g,panel);
 				}
 				for (Spikes sp : spikeal){
 					sp.draw(g,this);
@@ -75,14 +74,13 @@ public class BTDGameRunner {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (Monkey mo : monkeyal) {
-					mo.target(bloonal, panel, gameprojectiles);
+					mo.update(bloonal,spikeal,0.05,panel,gameprojectiles);
 				}
 				for (Bloon bl : bloonal) {
-					bl.update(0.05);
-					System.out.println(bl.getHealth());
+					bl.update(bloonal,spikeal,0.05,panel,gameprojectiles);
 				}
 				for (int i = 0; i < spikeal.size(); i++){
-					spikeal.get(i).collided(bloonal,spikeal);
+					spikeal.get(i).update(bloonal,spikeal,0.05,panel,gameprojectiles);;
 					if (spikeal.get(i).getHealth() == 0){
 						spikeal.remove(i);
 						i--;
@@ -93,7 +91,7 @@ public class BTDGameRunner {
 					alb.add(bnan);
 				}
 				for (Banana b: alb) {
-					b.update(0.05);
+					b.update(bloonal,spikeal,0.05,panel,gameprojectiles);;
 				}
 				panel.repaint();
 				ticks++;

@@ -9,7 +9,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.io.*;
-public class Spikes {
+import java.util.HashMap;
+
+public class Spikes implements GameObject{
 	private int x;
 	private int y;
 	private int width = 70;
@@ -42,15 +44,15 @@ public class Spikes {
 	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(spikes, x, y, width,height, null);
 	}
-	public void collided(ArrayList<Bloon> al, ArrayList<Spikes> spikeal) {
-		if(al.size()==0) {
+	public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+		if(bloonal.size()==0) {
 			return;
 		}
-		for(int i= al.size()-1;i >= 0;i--) {
-			if(al.get(i).getRect().intersects(rect)) {
+		for(int i= bloonal.size()-1;i >= 0;i--) {
+			if(bloonal.get(i).getRect().intersects(rect)) {
 				health--;
-				al.addAll(al.get(i).hit((int)al.get(i).getX(),(int)al.get(i).getY(),1));
-				al.remove(i);
+				bloonal.addAll(bloonal.get(i).hit((int)bloonal.get(i).getX(),(int)bloonal.get(i).getY(),1));
+				bloonal.remove(i);
 				if(health==0) {
 					return;
 				}
@@ -58,6 +60,8 @@ public class Spikes {
 		}
 
 	}
-	
+	public void clickedAt(){
+
+	}
 	
 }
