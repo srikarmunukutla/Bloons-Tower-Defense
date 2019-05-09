@@ -13,7 +13,7 @@ public class Spikes {
 	private int x;
 	private int y;
 	private int width = (int) (37 * 1.3);
-	private int height = 20;
+	private int height = 25;
 	private int health = 6;
 	private String PATH_PREFIX = "images/";
 	private Rectangle rect;
