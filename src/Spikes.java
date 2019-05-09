@@ -12,8 +12,8 @@ import java.io.*;
 public class Spikes {
 	private int x;
 	private int y;
-	private int width = 70;
-	private int height = 70;
+	private int width = 37;
+	private int height = 37;
 	private int health = 10;
 	private String PATH_PREFIX = "images/";
 	private Rectangle rect;
