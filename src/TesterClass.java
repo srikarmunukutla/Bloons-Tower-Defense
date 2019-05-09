@@ -29,7 +29,8 @@ public class TesterClass {
 		BTDMap m1 = new Map1(height, width);
 		m1.initializeTrack();
 		grid = m1.getGrid();
-		Spikes spike = new Spikes(100, 100);
+		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
+		spikes.add(new Spikes((int) (268 * m1.getWratio()), 100));
 //		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
 //		m1.addBloon(new Bloon(10,0,93,0, new HashSet<Integer>()));
 		panel = new JPanel() {
@@ -53,7 +54,9 @@ public class TesterClass {
 				for(Bloon b: m1.getBloonList()) {
 					b.draw(g);
 				}
-				spike.draw(g);
+				for(Spikes s: spikes) {
+					s.draw(g);
+				}
 			}
 		};
 		panel.setBackground(Color.WHITE);
@@ -80,10 +83,17 @@ public class TesterClass {
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
 				ArrayList<Bloon> bloons = m1.getBloonList();
+				for(int i = 0; i < spikes.size(); i++) {
+					spikes.get(i).collided(bloons, spikes);
+				}
 				for(int i = 0; i < bloons.size(); i++) {
 					bloons.get(i).update(0.5);
 					if((int) bloons.get(i).getX() >= grid[0].length || (int) bloons.get(i).getY() >= grid.length) {
 						m1.removeBloon(i);
+						if(m1.getBloonList().size() == 0) {
+							timer.stop();
+							System.out.println("Done");
+						}
 						continue;
 					}
 					if(grid[(int) bloons.get(i).getY()][(int) bloons.get(i).getX()].getAngle() != bloons.get(i).getAngle()) {

@@ -12,9 +12,9 @@ import java.io.*;
 public class Spikes {
 	private int x;
 	private int y;
-	private int width = 37;
-	private int height = 37;
-	private int health = 10;
+	private int width = (int) (37 * 1.3);
+	private int height = 25;
+	private int health = 6;
 	private String PATH_PREFIX = "images/";
 	private Rectangle rect;
 	private Image spikes = null;
@@ -52,6 +52,7 @@ public class Spikes {
 				al.addAll(al.get(i).hit((int)al.get(i).getX(),(int)al.get(i).getY(),1));
 				al.remove(i);
 				if(health==0) {
+					spikeal.remove(this);
 					return;
 				}
 			}
