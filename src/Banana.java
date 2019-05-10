@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Banana implements GameObject{
-	int money, radius = 50, width = 39, height = 35;
+	int money, radius = 20, width = 39, height = 35;
 	double angle, distance, x, y, srcx, srcy, time = 0;
     private final static String PATH_PREFIX = "images/";
 	Image img = getImage(PATH_PREFIX + "Banana.png");
@@ -33,7 +33,7 @@ public class Banana implements GameObject{
     }
     
     public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timePassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
-		if (getDistance() > radius){
+		if (getDistance() > distance){
 			return;
 		}
     	time += timePassed;

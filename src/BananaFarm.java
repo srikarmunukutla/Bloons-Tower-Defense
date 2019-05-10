@@ -16,7 +16,7 @@ public class BananaFarm{
 	private final static int SQUARESIZE = 100;
 	public BananaFarm(int a, int b) {
 		bananaOutput = 20;
-		numBananas = 4;
+		numBananas = 25;
 		x = a;
 		y = b;
 		secsbeforereload = CONSTANT/numBananas;

@@ -17,18 +17,19 @@ public class BTDGameRunner {
 	private ArrayList<Monkey> monkeyal = new ArrayList<Monkey>();
 	private ArrayList<Spikes> spikeal = new ArrayList<Spikes>();
 	private boolean startedGame = false;
-	private Monkey userselection;
+	private Image userselection;
+	private int userx,usery = 0;
 	private boolean clicked = false;
 //	private int width = 18, height = 10;
 	public static void main(String[] args) {
 		new BTDGameRunner().start();
 	}
-
+	private final int SQUARESIZE = 50;
 	Timer monkey;
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(13,30,200,0,new HashSet<Integer>()));
+		//bloonal.add(new Bloon(13,30,200,0,new HashSet<Integer>()));
 		BananaFarm bf = new BananaFarm(200,200);
 		ArrayList<Banana> alb = new ArrayList<Banana>();
 		panel = new JPanel() {
@@ -36,6 +37,9 @@ public class BTDGameRunner {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Iterator it = gameprojectiles.entrySet().iterator();
+				if (clicked){
+					g.drawImage(userselection,userx,usery,SQUARESIZE,SQUARESIZE,null);
+				}
 				for (Bloon bl : bloonal) {
 					if (bl.getHealth() > 0) {
 						bl.draw(g,panel);
@@ -66,8 +70,10 @@ public class BTDGameRunner {
 		panel.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseMoved(MouseEvent me){
 				if (clicked) {
+					userx = me.getX()-SQUARESIZE/2;
+					usery = me.getY()-SQUARESIZE/2;
 					panel.repaint();
-					
+
 				}
 			}
 		});
@@ -124,8 +130,14 @@ public class BTDGameRunner {
 		return img;
 	}
 	private void clickedAt(MouseEvent me){
+		if (!clicked){
+			userselection = new SuperMonkey(me.getX(),me.getY()).getImg();
+			userx = me.getX()-SQUARESIZE/2;
+			usery = me.getY()-SQUARESIZE/2;
+		}else{
+			monkeyal.add(new SuperMonkey(me.getX(),me.getY()));
+		}
 		clicked = !clicked;
-		userselection = new SuperMonkey(me.getX(),me.getY());
 	}
 
 }
