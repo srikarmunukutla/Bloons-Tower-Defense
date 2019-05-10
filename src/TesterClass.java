@@ -3,10 +3,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -52,10 +49,10 @@ public class TesterClass {
 //					}
 //				}
 				for(Bloon b: m1.getBloonList()) {
-					b.draw(g);
+					b.draw(g,panel);
 				}
 				for(Spikes s: spikes) {
-					s.draw(g);
+					s.draw(g,panel);
 				}
 			}
 		};
@@ -84,10 +81,10 @@ public class TesterClass {
 				ticks++;
 				ArrayList<Bloon> bloons = m1.getBloonList();
 				for(int i = 0; i < spikes.size(); i++) {
-					spikes.get(i).collided(bloons, spikes);
+					spikes.get(i).update(bloons, spikes,0,panel,new HashMap<>());
 				}
 				for(int i = 0; i < bloons.size(); i++) {
-					bloons.get(i).update(0.5);
+					bloons.get(i).update(bloons, spikes,0.5,panel,new HashMap<>());
 					if((int) bloons.get(i).getX() >= grid[0].length || (int) bloons.get(i).getY() >= grid.length) {
 						m1.removeBloon(i);
 						if(m1.getBloonList().size() == 0) {

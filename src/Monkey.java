@@ -127,5 +127,8 @@ public abstract class Monkey implements GameObject{
     public void clickedAt(){
 
     }
+    public Image getImg(){
+        return img;
+    }
 
 }
