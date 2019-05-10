@@ -3,11 +3,13 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
-public class Bloon {
+public class Bloon implements GameObject{
     private int rank, radius, health;
     private Image img;
     public final static String PATH_PREFIX = "images/";
@@ -143,7 +145,7 @@ public class Bloon {
         return img;
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g, JPanel panel) {
         g.drawImage(img, (int) (x-width[rank-1]/2), (int) (y-height[rank-1]/2), width[rank-1], height[rank-1], null);
     }
 
@@ -186,7 +188,7 @@ public class Bloon {
         this.angle = angle;
     }
 
-    public void update(double time) {
+    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         double v = speed[rank-1];
         double theta = angle*Math.PI/180;
         x += v*time*Math.cos(theta);
@@ -207,6 +209,9 @@ public class Bloon {
             return true;
         }
         return false;
+    }
+    public void clickedAt(){
+
     }
 
 }

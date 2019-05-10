@@ -1,10 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
-public class Banana {
+public class Banana implements GameObject{
 	int money, radius = 50, width = 39, height = 35;
 	double angle, distance, x, y, srcx, srcy, time = 0;
     private final static String PATH_PREFIX = "images/";
@@ -29,7 +32,7 @@ public class Banana {
         return img;
     }
     
-    public void update(double timePassed) {
+    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timePassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		if (getDistance() > radius){
 			return;
 		}
@@ -43,8 +46,11 @@ public class Banana {
     private double getDistance(){
 		return Math.sqrt(Math.pow(srcx-x,2)+Math.pow(srcy-y,2));
 	}
-    public void draw(Graphics g) {
+    public void draw(Graphics g, JPanel panel) {
     	g.drawImage(img, (int) (x-width/2), (int) (y-height/2), width, height, null);
     }
+    public void clickedAt(){
+
+	}
 
 }

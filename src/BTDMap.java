@@ -32,8 +32,13 @@ public abstract class BTDMap {
 			}
 		}
 	}
+	
 	public void addBloon(Bloon b) {
 		bloonsList.add(b);
+	}
+	
+	public void removeBloon(int i) {
+		bloonsList.remove(i);
 	}
 	
 	public ArrayList<Bloon> getBloonList() {
