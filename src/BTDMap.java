@@ -25,6 +25,10 @@ public abstract class BTDMap {
 	
 	protected abstract void initializeTrack();
 	
+	protected void createLevel() {
+		
+	}
+	
 	protected void initializeGrid() {
 		for(int r = 0; r < height; r++) {
 			for(int c = 0; c < width; c++) {
