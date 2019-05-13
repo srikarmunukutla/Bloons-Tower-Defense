@@ -61,8 +61,13 @@ public class Spikes implements GameObject{
 		}
 
 	}
+	
 	public void clickedAt(){
 
+	}
+	
+	public void move(int dx, int dy) {
+		
 	}
 	
 }
