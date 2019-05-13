@@ -68,7 +68,7 @@ public class TesterClass {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				numBloons++;
-				m1.addBloon(new Bloon(1, 0, 93, 0, new HashSet<Integer>()));
+				m1.addBloon(new Bloon(12, 0, 93, 0, new HashSet<Integer>()));
 				if(numBloons == 25) {
 					bloonsTimer.stop();
 				}

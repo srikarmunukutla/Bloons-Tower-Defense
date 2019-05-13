@@ -1,6 +1,8 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,6 +149,13 @@ public class Bloon implements GameObject{
 
     public void draw(Graphics g, JPanel panel) {
         g.drawImage(img, (int) (x-width[rank-1]/2), (int) (y-height[rank-1]/2), width[rank-1], height[rank-1], null);
+//        Graphics2D g2d = (Graphics2D) g.create();
+//        AffineTransform at = new AffineTransform();
+//        at.setToRotation(Math.toRadians(angle), x, y);
+//        at.translate(x, y);
+//        g2d.setTransform(at);
+//        g2d.drawImage(img, (int) (x-width[rank-1]/2), (int) (y-height[rank-1]/2), width[rank-1], height[rank-1], null);
+//        g2d.dispose();
     }
 
     public double distance(double x1, double y1, double x2, double y2) {
