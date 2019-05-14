@@ -25,6 +25,7 @@ public class SniperMonkey extends Monkey {
         	}
         }
         bloonal.get(index).hit((int) bloonal.get(index).getX(), (int) bloonal.get(index).getY(), getDamage());
+        secsbefreload = getReloadRate();
     }
 	
     @Override
