@@ -27,7 +27,7 @@ public class TesterClass {
 		TowerPanel tp = new TowerPanel(height, 145);
 		m1.initializeTrack();
 		grid = m1.getGrid();
-//		ArrayList<GameObject> gameobjects = new ArrayList<>();
+		ArrayList<GameObject> gameobjects = new ArrayList<>();
 		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
 		spikes.add(new Spikes((int) (268 * m1.getWratio()), 100));
 //		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
@@ -84,10 +84,10 @@ public class TesterClass {
 				ticks++;
 				ArrayList<Bloon> bloons = m1.getBloonList();
 				for(int i = 0; i < spikes.size(); i++) {
-					spikes.get(i).update(bloons, spikes,0,panel,new HashMap<>());
+					spikes.get(i).update(gameobjects,0,panel,new HashMap<>());
 				}
 				for(int i = 0; i < bloons.size(); i++) {
-					bloons.get(i).update(bloons, spikes,0.5,panel,new HashMap<>());
+					bloons.get(i).update(gameobjects, 0.5,panel,new HashMap<>());
 					if((int) bloons.get(i).getX() >= grid[0].length || (int) bloons.get(i).getY() >= grid.length) {
 						m1.removeBloon(i);
 						if(m1.getBloonList().size() == 0) {
