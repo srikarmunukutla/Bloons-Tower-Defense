@@ -13,6 +13,7 @@ public abstract class BTDMap {
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
 	public static double origH = 520, origW = 700;
+	protected int level;
 	
 	public BTDMap(int r, int c) {
 		height = r;
@@ -21,12 +22,14 @@ public abstract class BTDMap {
 		Hratio = (height/origH);
 		Wratio = (width/origW);
 		bloonsList = new ArrayList<Bloon>();
+		level = 1;
 	}
 	
 	protected abstract void initializeTrack();
 	
 	protected void createLevel() {
-		
+		int bursts = (int) (Math.random() * Math.ceil(level/5)) + 1;
+//		int totalBloons = (int) (Math.random() * Math.ceil(level/5));
 	}
 	
 	protected void initializeGrid() {
