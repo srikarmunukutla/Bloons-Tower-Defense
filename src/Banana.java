@@ -32,7 +32,7 @@ public class Banana implements GameObject{
         return img;
     }
     
-    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timePassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+    public void update(ArrayList<GameObject> al, double timePassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		if (getDistance() > distance){
 			return;
 		}
