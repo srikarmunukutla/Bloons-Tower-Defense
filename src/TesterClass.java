@@ -24,9 +24,10 @@ public class TesterClass {
 
 	private void start() {
 		BTDMap m1 = new Map1(height, width);
-		TowerPanel tp = new TowerPanel(145, height);
+		TowerPanel tp = new TowerPanel(height, 145);
 		m1.initializeTrack();
 		grid = m1.getGrid();
+//		ArrayList<GameObject> gameobjects = new ArrayList<>();
 		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
 		spikes.add(new Spikes((int) (268 * m1.getWratio()), 100));
 //		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
@@ -36,7 +37,6 @@ public class TesterClass {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.setColor(Color.BLACK);
-				tp.draw(g, m1);
 				m1.draw(g);
 //				for(int r = 0; r < grid.length; r++) {
 //					for(int c = 0; c < grid[0].length; c++) {
@@ -56,11 +56,12 @@ public class TesterClass {
 				for(Spikes s: spikes) {
 					s.draw(g,panel);
 				}
+				tp.draw(g, m1);
 			}
 		};
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(width + 200, height));
+		panel.setPreferredSize(new Dimension(width + 145, height));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();

@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 
 public class TowerPanel {
 	private int height, width;
-	private Image img = null;
+	private Image img;
 	private String PATH_PREFIX = "images/";
 	
 	public TowerPanel(int h, int w) {
