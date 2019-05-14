@@ -29,7 +29,7 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		//bloonal.add(new Bloon(13,30,200,0,new HashSet<Integer>()));
+		bloonal.add(new Bloon(13,30,200,0,new HashSet<Integer>()));
 		BananaFarm bf = new BananaFarm(200,200);
 		ArrayList<Banana> alb = new ArrayList<Banana>();
 		panel = new JPanel() {
