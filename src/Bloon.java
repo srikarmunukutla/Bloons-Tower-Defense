@@ -197,7 +197,7 @@ public class Bloon implements GameObject{
         this.angle = angle;
     }
 
-    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+    public void update(ArrayList<GameObject> al, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         double v = speed[rank-1];
         double theta = angle*Math.PI/180;
         x += v*time*Math.cos(theta);

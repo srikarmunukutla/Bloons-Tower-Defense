@@ -9,9 +9,11 @@ public class TackShooter extends Monkey{
 		super(a,b,150,"Tack_Shooter.png",8,1,150,1);
 	}
 	@Override
-    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
         //If no bloons, no code to run
-		
+        ArrayList<Bloon> bloonal = getBloons(al);
+        ArrayList<Spikes> spikeal = getSpikes(al);
+
         if (bloonal.size() == 0){
             return;
         }
@@ -30,7 +32,7 @@ public class TackShooter extends Monkey{
                     gameprojectile.put(random, pr);
                     double x = this.getX()+17*Math.cos(j*Math.PI/4);
                     double y = this.getY()-17*Math.sin(j*Math.PI/4);
-                    gameprojectile.get(random).launch((int) x,(int) y, panel,gameprojectile,random, this.getDamage(), bloonal, pierce, r);
+                    gameprojectile.get(random).launch((int) x,(int) y, panel,gameprojectile,random, this.getDamage(), al, pierce, r);
         		}
         		break;
         	}

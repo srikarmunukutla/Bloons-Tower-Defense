@@ -13,9 +13,6 @@ public class BTDGameRunner {
 	private static final String PATH_PREFIX = "images/";
 	private ArrayList<GameObject> gameobjects = new ArrayList<>();
 	private HashMap<Integer,Projectile> gameprojectiles = new HashMap<Integer, Projectile>();
-	private ArrayList<Bloon> bloonal = new ArrayList<Bloon>();
-	private ArrayList<Monkey> monkeyal = new ArrayList<Monkey>();
-	private ArrayList<Spikes> spikeal = new ArrayList<Spikes>();
 	private boolean startedGame = false;
 	private Image userselection;
 	private int userx,usery = 0;
@@ -29,7 +26,7 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		bloonal.add(new Bloon(13,30,200,0,new HashSet<Integer>()));
+		gameobjects.add(new Bloon(10,30,200,0,new HashSet<Integer>()));
 		BananaFarm bf = new BananaFarm(200,200);
 		ArrayList<Banana> alb = new ArrayList<Banana>();
 		panel = new JPanel() {
@@ -40,19 +37,8 @@ public class BTDGameRunner {
 				if (clicked){
 					g.drawImage(userselection,userx,usery,SQUARESIZE,SQUARESIZE,null);
 				}
-				for (Bloon bl : bloonal) {
-					if (bl.getHealth() > 0) {
-						bl.draw(g,panel);
-					}
-				}bf.draw(g);
-				for (Monkey mo : monkeyal){
-					mo.draw(g,this);
-				}
-				for (Banana b : alb){
-					b.draw(g,panel);
-				}
-				for (Spikes sp : spikeal){
-					sp.draw(g,panel);
+				for (GameObject go : gameobjects){
+					go.draw(g,this);
 				}
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
@@ -89,25 +75,14 @@ public class BTDGameRunner {
 		monkey = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (Monkey mo : monkeyal) {
-					mo.update(bloonal,spikeal,0.05,panel,gameprojectiles);
-				}
-				for (Bloon bl : bloonal) {
-					bl.update(bloonal,spikeal,0.05,panel,gameprojectiles);
-				}
-				for (int i = 0; i < spikeal.size(); i++){
-					spikeal.get(i).update(bloonal,spikeal,0.05,panel,gameprojectiles);;
-					if (spikeal.get(i).getHealth() == 0){
-						spikeal.remove(i);
-						i--;
+				for (int i = 0; i < gameobjects.size(); i++){
+					gameobjects.get(i).update(gameobjects,0.05,panel,gameprojectiles);
+					if(gameobjects.get(i) instanceof Spikes){
+						if (((Spikes)gameobjects.get(i)).getHealth() == 0){
+							gameobjects.remove(i);
+							i--;
+						}
 					}
-				}
-				Banana bnan = bf.makeBananas();
-				if (bnan != null) {
-					alb.add(bnan);
-				}
-				for (Banana b: alb) {
-					b.update(bloonal,spikeal,0.05,panel,gameprojectiles);;
 				}
 				panel.repaint();
 				ticks++;
@@ -135,7 +110,7 @@ public class BTDGameRunner {
 			userx = me.getX()-SQUARESIZE/2;
 			usery = me.getY()-SQUARESIZE/2;
 		}else{
-			monkeyal.add(new SuperMonkey(me.getX(),me.getY()));
+			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}

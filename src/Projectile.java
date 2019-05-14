@@ -73,7 +73,7 @@ public abstract class Projectile {
     private double slopey;
     private int multiplier;
     private int pierce;
-    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<Bloon> bloons, int p, Rectangle re) {
+    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<GameObject> al, int p, Rectangle re) {
         pierce = p;
         if (Math.abs(by-y) < Math.abs(bx-x)){
             slopex = 1.0 * (by - y) / (bx - x);
@@ -117,22 +117,27 @@ public abstract class Projectile {
                     hm.remove(random);
                     timer.stop();
                 }
-                for (int j = bloons.size()-1; j >= 0; j--){
-                    if (bloons.get(j).getRect().intersects(r)){
-                        if (bloons.get(j).checkDart(random)){
-                            continue;
-                        }
-                        bloons.get(j).addDart(random);
-                        bloons.addAll(bloons.get(j).hit((int)bx,(int)by,dmg));
-                        bloons.remove(j);
-                        pierce--;
-                        if (pierce == 0) {
-                            hm.remove(random);
-                            for (int i = bloons.size()-1; i >= 0; i--){
-                                bloons.get(i).removeDart(random);
+                for (int j = al.size()-1; j >= 0; j--){
+                    if (al.get(j) instanceof Bloon) {
+                        Bloon bloon = (Bloon) al.get(j);
+                        if (bloon.getRect().intersects(r)) {
+                            if (bloon.checkDart(random)) {
+                                continue;
                             }
-                            timer.stop();
-                            return;
+                            bloon.addDart(random);
+                            al.addAll(bloon.hit((int) bx, (int) by, dmg));
+                            al.remove(j);
+                            pierce--;
+                            if (pierce == 0) {
+                                hm.remove(random);
+                                for (int i = al.size() - 1; i >= 0; i--) {
+                                    if (al.get(i) instanceof Bloon) {
+                                        ((Bloon) al.get(i)).removeDart(random);
+                                    }
+                                }
+                                timer.stop();
+                                return;
+                            }
                         }
                     }
                 }

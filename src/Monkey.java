@@ -42,6 +42,25 @@ public abstract class Monkey implements GameObject{
         g2d.drawImage(img, -SQUARESIZE/2, -SQUARESIZE/2,SQUARESIZE,SQUARESIZE, panel);
         g2d.dispose();
     }
+    public ArrayList<Bloon> getBloons(ArrayList<GameObject> al){
+        ArrayList<Bloon> ret = new ArrayList<Bloon>();
+        for(int i = 0; i < al.size(); i++){
+            if(al.get(i) instanceof Bloon){
+                ret.add((Bloon)al.get(i));
+            }
+        }
+        return ret;
+    }
+    public ArrayList<Spikes> getSpikes(ArrayList<GameObject> al){
+        ArrayList<Spikes> ret = new ArrayList<Spikes>();
+        for(int i = 0; i < al.size(); i++){
+            if(al.get(i) instanceof Spikes){
+                ret.add((Spikes) al.get(i));
+            }
+        }
+        return ret;
+    }
+
     public Rectangle getRect(){
         return r;
     }
@@ -91,8 +110,10 @@ public abstract class Monkey implements GameObject{
     public Projectile getProj(){
         return null;
     }
-    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
         //If no balloons, no code to run
+        ArrayList<Bloon> bloonal = getBloons(al);
+        ArrayList<Spikes> spikeal = getSpikes(al);
         if (bloonal.size() == 0){
             return;
         }
@@ -121,7 +142,7 @@ public abstract class Monkey implements GameObject{
             Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectile.put(random, pr);
-            gameprojectile.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectile,random,damage,bloonal,pierce,r);
+            gameprojectile.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectile,random,damage,al,pierce,r);
         }
     }
     public void clickedAt(){

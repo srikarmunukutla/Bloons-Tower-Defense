@@ -8,9 +8,10 @@ public class SniperMonkey extends Monkey {
 		super(a,b,200,"Sniper_Monkey.png",1,2,300,1);
 	}
 	@Override
-    public void update(ArrayList<Bloon> bloonal, ArrayList<Spikes> spikeal, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
         //If no bloons, no code to run
-		
+        ArrayList<Bloon> bloonal = getBloons(al);
+        ArrayList<Spikes> spikeal = getSpikes(al);
         if (bloonal.size() == 0){
             return;
         }
@@ -18,13 +19,19 @@ public class SniperMonkey extends Monkey {
             secsbefreload--;
             return;
         }
-        int index = 0;
-        for (int i = 0; i < bloonal.size(); i++) {
-        	if (bloonal.get(i).getDistance() > bloonal.get(index).getDistance()) {
-        		index = i;
-        	}
+        int index = -1;
+        for (int i = 0; i < al.size(); i++) {
+            if (al.get(i) instanceof Bloon) {
+                if(index == -1){
+                    index = i;
+                }
+                if (((Bloon)al.get(i)).getDistance() > ((Bloon)al.get(index)).getDistance()) {
+                    index = i;
+                }
+            }
         }
-        bloonal.get(index).hit((int) bloonal.get(index).getX(), (int) bloonal.get(index).getY(), getDamage());
+        al.addAll(((Bloon)al.get(index)).hit((int) ((Bloon)al.get(index)).getX(), (int) ((Bloon)al.get(index)).getY(), getDamage()));
+        al.remove(index);
         secsbefreload = getReloadRate();
     }
 	
