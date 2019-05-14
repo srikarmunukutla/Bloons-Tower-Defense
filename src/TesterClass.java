@@ -24,6 +24,7 @@ public class TesterClass {
 
 	private void start() {
 		BTDMap m1 = new Map1(height, width);
+		TowerPanel tp = new TowerPanel(145, height);
 		m1.initializeTrack();
 		grid = m1.getGrid();
 		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -35,6 +36,7 @@ public class TesterClass {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.setColor(Color.BLACK);
+				tp.draw(g, m1);
 				m1.draw(g);
 //				for(int r = 0; r < grid.length; r++) {
 //					for(int c = 0; c < grid[0].length; c++) {
@@ -58,7 +60,7 @@ public class TesterClass {
 		};
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(width, height));
+		panel.setPreferredSize(new Dimension(width + 200, height));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
