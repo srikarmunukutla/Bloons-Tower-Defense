@@ -14,9 +14,6 @@ public class BTDGameRunner {
 	private JFrame frame = new JFrame("Bloons Tower Defense");
 	private static final String PATH_PREFIX = "images/";
 	private BTDMap m1;
-	private Image userselection;
-	private int userx,usery = 0;
-	private boolean clicked = false;
 	Integer money = 650;
 //	private int width = 18, height = 10;
 	public static void main(String[] args) {
@@ -34,8 +31,8 @@ public class BTDGameRunner {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
-				if (clicked){
-					g.drawImage(userselection,userx,usery,SQUARESIZE,SQUARESIZE,null);
+				if (m1.isClicked()){
+					g.drawImage(m1.getUserSelection(),m1.getUserX(),m1.getUserY(),SQUARESIZE,SQUARESIZE,null);
 				}
 				for (GameObject go : m1.getGameObjectsList()){
 					go.draw(g,this);
@@ -49,18 +46,14 @@ public class BTDGameRunner {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent me) {
-				clickedAt(me);
+				m1.clickedAt(me);
 				panel.repaint();
 			}
 		});
 		panel.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseMoved(MouseEvent me){
-				if (clicked) {
-					userx = me.getX()-SQUARESIZE/2;
-					usery = me.getY()-SQUARESIZE/2;
-					panel.repaint();
-
-				}
+				m1.mouseMoved(me);
+				panel.repaint();
 			}
 		});
 		panel.setBackground(Color.WHITE);
@@ -103,9 +96,6 @@ public class BTDGameRunner {
 			e.printStackTrace();
 		}
 		return img;
-	}
-	private void clickedAt(MouseEvent me){
-		m1.clickedAt(me);
 	}
 
 }
