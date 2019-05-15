@@ -27,8 +27,6 @@ public class BTDGameRunner {
 	private void start() {
 		//Testing balloon and Monkey
 		gameobjects.add(new Bloon(10,30,200,0,new HashSet<Integer>()));
-		BananaFarm bf = new BananaFarm(200,200);
-		ArrayList<Banana> alb = new ArrayList<Banana>();
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -106,11 +104,11 @@ public class BTDGameRunner {
 	}
 	private void clickedAt(MouseEvent me){
 		if (!clicked){
-			userselection = new SuperMonkey(me.getX(),me.getY()).getImg();
+			userselection = new SniperMonkey(me.getX(),me.getY()).getImg();
 			userx = me.getX()-SQUARESIZE/2;
 			usery = me.getY()-SQUARESIZE/2;
 		}else{
-			gameobjects.add(new SuperMonkey(me.getX(),me.getY()));
+			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}
