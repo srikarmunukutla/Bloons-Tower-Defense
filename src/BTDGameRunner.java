@@ -15,28 +15,31 @@ public class BTDGameRunner {
 	private static final String PATH_PREFIX = "images/";
 	private BTDMap m1;
 	Integer money = 650;
-//	private int width = 18, height = 10;
-	public static void main(String[] args) {
-		new BTDGameRunner().start();
-	}
 	private final int SQUARESIZE = 50;
 	Timer monkey;
 	long ticks = 0;
+	private static Pixel[][] grid;
+
+	public static void main(String[] args) {
+		new BTDGameRunner().start();
+	}
+
 	private void start() {
 		//Testing balloon and Monkey
-		m1 = new Map1(panelwidth,panelheight);
-		m1.getGameObjectsList().add(new Bloon(10,30,200,0,new HashSet<Integer>()));
+		m1 = new Map1(panelheight,panelwidth);
+		m1.addBloon(new Bloon(10,300,500,0,new HashSet<Integer>()));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
+				m1.draw(g);
 				if (m1.isClicked()){
 					g.drawImage(m1.getUserSelection(),m1.getUserX(),m1.getUserY(),SQUARESIZE,SQUARESIZE,null);
 				}
 				for (GameObject go : m1.getGameObjectsList()){
 					go.draw(g,this);
 				}
+				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
 					((Projectile)pair.getValue()).draw(g,this);
@@ -69,7 +72,7 @@ public class BTDGameRunner {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			for (int i = 0; i < m1.getGameObjectsList().size(); i++){
-					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), 0.05, panel, m1.getGameProjectilesList());
+					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), grid,m1,0.05, panel, m1.getGameProjectilesList());
 //					if (m1.getGameObjectsList().get(i) instanceof Spikes) {
 //						if (((Spikes) m1.getGameObjectsList().get(i)).getHealth() == 0) {
 //							m1.getGameObjectsList().remove(i);
