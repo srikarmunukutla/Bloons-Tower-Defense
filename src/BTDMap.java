@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,10 @@ public abstract class BTDMap {
 	protected ArrayList<GameObject> gameobjects;
 	protected HashMap<Integer, Projectile> gameprojectiles;
 	protected Image img = null;
+	protected Image userselection;
+	protected int userx, usery;
+	protected TowerPanel tp;
+	protected boolean clicked;
 	protected int height, width;
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
@@ -26,6 +31,7 @@ public abstract class BTDMap {
 		gameobjects = new ArrayList<GameObject>();
 		gameprojectiles = new HashMap<Integer, Projectile>();
 		level = 1;
+		clicked = false;
 	}
 	
 	protected abstract void initializeTrack();
@@ -164,5 +170,17 @@ public abstract class BTDMap {
 			e.printStackTrace();
 		}
 		return img;
+	}
+	
+	protected void clickedAt(MouseEvent me) {
+		if(!clicked) {
+			userselection = new SniperMonkey(me.getX(), me.getY()).getImg();
+			userx = me.getX() - 50/2;
+			usery = me.getY() - 50/2;
+		}
+		else {
+			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
+		}
+		clicked = !clicked;
 	}
 }
