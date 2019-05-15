@@ -8,12 +8,12 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 public class BTDGameRunner {
+	private int panelheight = 676;
+	private int panelwidth = 910;
 	private JPanel panel;
 	private JFrame frame = new JFrame("Bloons Tower Defense");
 	private static final String PATH_PREFIX = "images/";
-	private ArrayList<GameObject> gameobjects = new ArrayList<>();
-	private HashMap<Integer,Projectile> gameprojectiles = new HashMap<Integer, Projectile>();
-	private boolean startedGame = false;
+	private BTDMap m1;
 	private Image userselection;
 	private int userx,usery = 0;
 	private boolean clicked = false;
@@ -27,16 +27,17 @@ public class BTDGameRunner {
 	long ticks = 0;
 	private void start() {
 		//Testing balloon and Monkey
-		gameobjects.add(new Bloon(10,30,200,0,new HashSet<Integer>()));
+		m1 = new Map1(panelwidth,panelheight);
+		m1.getGameObjectsList().add(new Bloon(10,30,200,0,new HashSet<Integer>()));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				Iterator it = gameprojectiles.entrySet().iterator();
+				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
 				if (clicked){
 					g.drawImage(userselection,userx,usery,SQUARESIZE,SQUARESIZE,null);
 				}
-				for (GameObject go : gameobjects){
+				for (GameObject go : m1.getGameObjectsList()){
 					go.draw(g,this);
 				}
 				while (it.hasNext()){
@@ -64,7 +65,7 @@ public class BTDGameRunner {
 		});
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(910, 676));
+		panel.setPreferredSize(new Dimension(panelwidth, panelheight));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
@@ -74,11 +75,11 @@ public class BTDGameRunner {
 		monkey = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			for (int i = 0; i < gameobjects.size(); i++){
-					gameobjects.get(i).update(gameobjects, 0.05, panel, gameprojectiles);
-//					if (gameobjects.get(i) instanceof Spikes) {
-//						if (((Spikes) gameobjects.get(i)).getHealth() == 0) {
-//							gameobjects.remove(i);
+			for (int i = 0; i < m1.getGameObjectsList().size(); i++){
+					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), 0.05, panel, m1.getGameProjectilesList());
+//					if (m1.getGameObjectsList().get(i) instanceof Spikes) {
+//						if (((Spikes) m1.getGameObjectsList().get(i)).getHealth() == 0) {
+//							m1.getGameObjectsList().remove(i);
 //							i--;
 //						}
 //					}
@@ -104,14 +105,7 @@ public class BTDGameRunner {
 		return img;
 	}
 	private void clickedAt(MouseEvent me){
-		if (!clicked){
-			userselection = new SniperMonkey(me.getX(),me.getY()).getImg();
-			userx = me.getX()-SQUARESIZE/2;
-			usery = me.getY()-SQUARESIZE/2;
-		}else{
-			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
-		}
-		clicked = !clicked;
+		m1.clickedAt(me);
 	}
 
 }
