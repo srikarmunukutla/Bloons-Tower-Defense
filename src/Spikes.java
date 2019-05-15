@@ -67,7 +67,7 @@ public class Spikes implements GameObject{
 		g.drawImage(spikes, x, y, width, height, null);
 	}
 	
-	public void update(ArrayList<GameObject> al, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+	public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		ArrayList<Bloon> bloonal = getBloons(al);
 		ArrayList<Spikes> spikeal = getSpikes(al);
 		if(bloonal.size()==0) {

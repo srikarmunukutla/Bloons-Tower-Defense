@@ -110,7 +110,7 @@ public abstract class Monkey implements GameObject{
     public Projectile getProj(){
         return null;
     }
-    public void update(ArrayList<GameObject> al, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         //If no balloons, no code to run
         ArrayList<Bloon> bloonal = getBloons(al);
         ArrayList<Spikes> spikeal = getSpikes(al);

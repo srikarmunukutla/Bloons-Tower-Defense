@@ -32,11 +32,11 @@ public class Banana implements GameObject{
         return img;
     }
     
-    public void update(ArrayList<GameObject> al, double timePassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		if (getDistance() > distance){
 			return;
 		}
-    	time += timePassed;
+    	time += time;
     	double theta = Math.PI*angle/180;
     	double a = x + distance*(1-Math.exp(time)) * Math.cos(theta);
     	double b = x - distance*(1-Math.exp(time)) * Math.sin(theta);

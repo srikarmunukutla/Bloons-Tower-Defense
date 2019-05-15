@@ -9,7 +9,7 @@ public class TackShooter extends Monkey{
 		super(a,b,150,"Tack_Shooter.png",8,1,150,1);
 	}
 	@Override
-    public void update(ArrayList<GameObject> al, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         //If no bloons, no code to run
         ArrayList<Bloon> bloonal = getBloons(al);
         ArrayList<Spikes> spikeal = getSpikes(al);

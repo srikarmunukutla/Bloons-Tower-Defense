@@ -197,13 +197,23 @@ public class Bloon implements GameObject{
         this.angle = angle;
     }
 
-    public void update(ArrayList<GameObject> al, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         double v = speed[rank-1];
         double theta = angle*Math.PI/180;
         x += v*time*Math.cos(theta);
         y -= v*time*Math.sin(theta);
         distance += v*time;
         rect.translate((int) (x-rect.x), (int) (y-rect.y));
+//		if(x >= grid[0].length || y >= grid.length) {
+//			if(m.getBloonsList().size() == 0) {
+//				timer.stop();
+//				System.out.println("Done");
+//			}
+//			continue;
+//		}
+		if(grid[(int) y][(int) x].getAngle() != getAngle()) {
+			setAngle(grid[(int) y][(int) x].getAngle());
+		}
     }
     public void addDart(int a){
         darthit.add(a);

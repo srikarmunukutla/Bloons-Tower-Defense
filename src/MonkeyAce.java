@@ -12,9 +12,9 @@ public class MonkeyAce extends Monkey {
 		y = b;
 	}
 	@Override
-    public void update(ArrayList<GameObject> al, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		//runs regardless if there are bloons
-		angle += omega * timepassed;
+		angle += omega * time;
 		setAngle(angle);
 		x = getX()+radius*Math.cos(angle*Math.PI/180);
 		y = getY()-radius*Math.sin(angle*Math.PI/180);

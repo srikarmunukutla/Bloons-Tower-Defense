@@ -8,7 +8,7 @@ public class SniperMonkey extends Monkey {
 		super(a,b,200,"Sniper_Monkey.png",1,2,300,1);
 	}
 	@Override
-    public void update(ArrayList<GameObject> al, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile){
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         //If no bloons, no code to run
         ArrayList<Bloon> bloonal = getBloons(al);
         ArrayList<Spikes> spikeal = getSpikes(al);
