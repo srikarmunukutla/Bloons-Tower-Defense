@@ -30,7 +30,7 @@ public class TesterClass {
 		TowerPanel tp = new TowerPanel(height, 145);
 		m1.initializeTrack();
 		grid = m1.getGrid();
-		m1.addSpikes(new Spikes((int) (268 * m1.getWratio()), 100));
+//		m1.addSpikes(new Spikes((int) (268 * m1.getWratio()), 100));
 //		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
 //		m1.addBloon(new Bloon(10,0,93,0, new HashSet<Integer>()));
 		panel = new JPanel() {
@@ -88,7 +88,7 @@ public class TesterClass {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				numBloons++;
-				m1.addBloon(new Bloon(12, 0, 93, 0, new HashSet<Integer>()));
+				m1.addBloon(new Bloon(1, 0, 93, 0, new HashSet<Integer>()));
 				if(numBloons == 25) {
 					bloonsTimer.stop();
 				}
@@ -99,15 +99,15 @@ public class TesterClass {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
-				ArrayList<GameObject> gameObjects = m1.getGameObjectsList();
-				for(int i = 0; i < gameObjects.size(); i++) {
-					if(gameObjects.get(i) instanceof Spikes) {
-						gameObjects.get(i).update(gameObjects, 0, panel, new HashMap<>());
+				ArrayList<GameObject> gameobjects = m1.getGameObjectsList();
+				for(int i = 0; i < gameobjects.size(); i++) {
+					if(gameobjects.get(i) instanceof Spikes) {
+						gameobjects.get(i).update(gameobjects, 0, panel, new HashMap<>());
 					}
-					if(gameObjects.get(i) instanceof Bloon) {
-						gameObjects.get(i).update(gameObjects, 0.5, panel, new HashMap<>());
-						int x = (int) ((Bloon) gameObjects.get(i)).getX();
-						int y = (int) ((Bloon) gameObjects.get(i)).getY();
+					if(gameobjects.get(i) instanceof Bloon) {
+						gameobjects.get(i).update(gameobjects, 0.5, panel, new HashMap<>());
+						int x = (int) ((Bloon) gameobjects.get(i)).getX();
+						int y = (int) ((Bloon) gameobjects.get(i)).getY();
 						if(x >= grid[0].length || y >= grid.length) {
 							m1.removeBloon(i);
 							if(m1.getBloonsList().size() == 0) {
@@ -116,8 +116,8 @@ public class TesterClass {
 							}
 							continue;
 						}
-						if(grid[y][x].getAngle() != ((Bloon) gameObjects.get(i)).getAngle()) {
-							((Bloon) gameObjects.get(i)).setAngle(grid[y][x].getAngle());
+						if(grid[y][x].getAngle() != ((Bloon) gameobjects.get(i)).getAngle()) {
+							((Bloon) gameobjects.get(i)).setAngle(grid[y][x].getAngle());
 						}
 					}
 					
@@ -141,7 +141,7 @@ public class TesterClass {
 			userx = me.getX()-SQUARESIZE/2;
 			usery = me.getY()-SQUARESIZE/2;
 		}else{
-			m1.gameObjects.add(new SniperMonkey(me.getX(),me.getY()));
+			m1.gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}
