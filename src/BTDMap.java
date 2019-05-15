@@ -49,6 +49,18 @@ public abstract class BTDMap {
 		}
 	}
 	
+	public boolean isClicked() {
+		return clicked;
+	}
+	
+	public int getUserX() {
+		return userx;
+	}
+	
+	public int getUserY() {
+		return usery;
+	}
+	
 	public void addBloon(Bloon b) {
 		gameobjects.add(b);
 	}
@@ -172,7 +184,7 @@ public abstract class BTDMap {
 		return img;
 	}
 	
-	protected void clickedAt(MouseEvent me) {
+	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
 			userselection = new SniperMonkey(me.getX(), me.getY()).getImg();
 			userx = me.getX() - 50/2;

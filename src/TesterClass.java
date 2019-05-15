@@ -24,8 +24,6 @@ public class TesterClass {
 	private final int SQUARESIZE = 50;
 	BTDMap m1 = new Map1(height, width);
 
-
-
 	private void start() {
 		TowerPanel tp = new TowerPanel(height, 145);
 		m1.initializeTrack();
