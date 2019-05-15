@@ -77,23 +77,28 @@ public class TesterClass {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ticks++;
-				ArrayList<Bloon> bloons = m1.getBloonList();
-				for(int i = 0; i < spikes.size(); i++) {
-					spikes.get(i).update(gameobjects,0,panel,new HashMap<>());
-				}
-				for(int i = 0; i < bloons.size(); i++) {
-					bloons.get(i).update(gameobjects, 0.5,panel,new HashMap<>());
-					if((int) bloons.get(i).getX() >= grid[0].length || (int) bloons.get(i).getY() >= grid.length) {
-						m1.removeBloon(i);
-						if(m1.getBloonList().size() == 0) {
-							timer.stop();
-							System.out.println("Done");
+				ArrayList<GameObject> gameObjects = m1.getGameObjectsList();
+				for(int i = 0; i < gameObjects.size(); i++) {
+					if(gameObjects.get(i) instanceof Spikes) {
+						gameObjects.get(i).update(gameObjects, 0, panel, new HashMap<>());
+					}
+					if(gameObjects.get(i) instanceof Bloon) {
+						gameObjects.get(i).update(gameObjects, 0.5, panel, new HashMap<>());
+						int x = (int) ((Bloon) gameObjects.get(i)).getX();
+						int y = (int) ((Bloon) gameObjects.get(i)).getY();
+						if(x >= grid[0].length || y >= grid.length) {
+							m1.removeBloon(i);
+							if(m1.getBloonsList().size() == 0) {
+								timer.stop();
+								System.out.println("Done");
+							}
+							continue;
 						}
-						continue;
+						if(grid[y][x].getAngle() != ((Bloon) gameObjects.get(i)).getAngle()) {
+							((Bloon) gameObjects.get(i)).setAngle(grid[y][x].getAngle());
+						}
 					}
-					if(grid[(int) bloons.get(i).getY()][(int) bloons.get(i).getX()].getAngle() != bloons.get(i).getAngle()) {
-						bloons.get(i).setAngle(grid[(int) bloons.get(i).getY()][(int) bloons.get(i).getX()].getAngle());
-					}
+					
 				}
 				panel.repaint();
 //				if(ticks == 5) {

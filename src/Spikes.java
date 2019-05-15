@@ -43,7 +43,7 @@ public class Spikes implements GameObject{
 		ArrayList<Bloon> ret = new ArrayList<Bloon>();
 		for(int i = 0; i < al.size(); i++){
 			if(al.get(i) instanceof Bloon){
-				ret.add((Bloon)al.get(i));
+				ret.add((Bloon) al.get(i));
 			}
 		}
 		return ret;
@@ -64,7 +64,7 @@ public class Spikes implements GameObject{
 	}
 	
 	public void draw(Graphics g, JPanel panel) {
-		g.drawImage(spikes, x, y, width,height, null);
+		g.drawImage(spikes, x, y, width, height, null);
 	}
 	
 	public void update(ArrayList<GameObject> al, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
@@ -73,7 +73,7 @@ public class Spikes implements GameObject{
 		if(bloonal.size()==0) {
 			return;
 		}
-		for(int i= bloonal.size()-1;i >= 0;i--) {
+		for(int i = bloonal.size()-1; i >= 0; i--) {
 			if(bloonal.get(i).getRect().intersects(rect)) {
 				health--;
 				bloonal.addAll(bloonal.get(i).hit((int)bloonal.get(i).getX(),(int)bloonal.get(i).getY(),1));
