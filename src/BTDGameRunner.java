@@ -17,6 +17,7 @@ public class BTDGameRunner {
 	private Image userselection;
 	private int userx,usery = 0;
 	private boolean clicked = false;
+	Integer money = 650;
 //	private int width = 18, height = 10;
 	public static void main(String[] args) {
 		new BTDGameRunner().start();
