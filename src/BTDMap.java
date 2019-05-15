@@ -205,8 +205,6 @@ public abstract class BTDMap {
 		if (clicked) {
 			userx = me.getX()-SQUARESIZE/2;
 			usery = me.getY()-SQUARESIZE/2;
-			panel.repaint();
-
 		}
 	}
 }
