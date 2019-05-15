@@ -49,6 +49,10 @@ public abstract class BTDMap {
 		}
 	}
 	
+	public Image getUserSelection() {
+		return userselection;
+	}
+	
 	public boolean isClicked() {
 		return clicked;
 	}
