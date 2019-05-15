@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public abstract class BTDMap {
 	protected Pixel[][] grid;
-	protected ArrayList<Bloon> bloonsList;
+	protected ArrayList<GameObject> gameObjects;
 	protected Image img = null;
 	protected int height, width;
 	protected double Hratio, Wratio;
@@ -21,7 +21,7 @@ public abstract class BTDMap {
 		grid = new Pixel[height][width];
 		Hratio = (height/origH);
 		Wratio = (width/origW);
-		bloonsList = new ArrayList<Bloon>();
+		gameObjects = new ArrayList<GameObject>();
 		level = 1;
 	}
 	
@@ -41,15 +41,87 @@ public abstract class BTDMap {
 	}
 	
 	public void addBloon(Bloon b) {
-		bloonsList.add(b);
+		gameObjects.add(b);
 	}
 	
 	public void removeBloon(int i) {
-		bloonsList.remove(i);
+		if(gameObjects.get(i) instanceof Bloon) {
+			gameObjects.remove(i);
+		}
 	}
 	
-	public ArrayList<Bloon> getBloonList() {
-		return bloonsList;
+	public void addSpikes(Spikes s) {
+		gameObjects.add(s);
+	}
+	
+	public void removeSpikes(int i) {
+		if(gameObjects.get(i) instanceof Spikes) {
+			gameObjects.remove(i);
+		}
+	}
+	
+	public void addBanana(Banana b) {
+		gameObjects.add(b);
+	}
+	
+	public void removeBanana(int i) {
+		if(gameObjects.get(i) instanceof Banana) {
+			gameObjects.remove(i);
+		}
+	}
+	
+	public void addMonkey(Monkey m) {
+		gameObjects.add(m);
+	}
+	
+	public void removeMonkey(int i) {
+		if(gameObjects.get(i) instanceof Monkey) {
+			gameObjects.remove(i);
+		}
+	}
+	
+	public ArrayList<GameObject> getGameObjectsList() {
+		return gameObjects;
+	}
+	
+	public ArrayList<Bloon> getBloonsList() {
+		ArrayList<Bloon> bloons = new ArrayList<Bloon>();
+		for(int i = 0; i < gameObjects.size(); i++) {
+			if(gameObjects.get(i) instanceof Bloon) {
+				bloons.add((Bloon) gameObjects.get(i));
+			}
+		}
+		return bloons;
+	}
+	
+	public ArrayList<Monkey> getMonkeyList() {
+		ArrayList<Monkey> monkeys = new ArrayList<Monkey>();
+		for(int i = 0; i < gameObjects.size(); i++) {
+			if(gameObjects.get(i) instanceof Monkey) {
+				monkeys.add((Monkey) gameObjects.get(i));
+			}
+		}
+		return monkeys;
+	}
+	
+	public ArrayList<Spikes> getSpikesList() {
+		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
+		for(int i = 0; i < gameObjects.size(); i++) {
+			if(gameObjects.get(i) instanceof Spikes) {
+				spikes.add((Spikes) gameObjects.get(i));
+			}
+		}
+		return spikes;
+	}
+	
+	public ArrayList<Banana> getBananaList() {
+		ArrayList<Banana> bananas = new ArrayList<Banana>();
+		for(int i = 0; i < gameObjects.size(); i++) {
+			if(gameObjects.get(i) instanceof Banana) {
+				bananas.add((Banana) gameObjects.get(i));
+			}
+		}
+		return bananas;
 	}
 	
 	public int getHeight() {

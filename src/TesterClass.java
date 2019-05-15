@@ -27,9 +27,7 @@ public class TesterClass {
 		TowerPanel tp = new TowerPanel(height, 145);
 		m1.initializeTrack();
 		grid = m1.getGrid();
-		ArrayList<GameObject> gameobjects = new ArrayList<>();
-		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-		spikes.add(new Spikes((int) (268 * m1.getWratio()), 100));
+		m1.addSpikes(new Spikes((int) (268 * m1.getWratio()), 100));
 //		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
 //		m1.addBloon(new Bloon(10,0,93,0, new HashSet<Integer>()));
 		panel = new JPanel() {
@@ -50,11 +48,8 @@ public class TesterClass {
 //						}
 //					}
 //				}
-				for(Bloon b: m1.getBloonList()) {
-					b.draw(g,panel);
-				}
-				for(Spikes s: spikes) {
-					s.draw(g,panel);
+				for(GameObject go: m1.getGameObjectsList()) {
+					go.draw(g, panel);
 				}
 				tp.draw(g, m1);
 			}
