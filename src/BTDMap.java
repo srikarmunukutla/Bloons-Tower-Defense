@@ -21,6 +21,7 @@ public abstract class BTDMap {
 	private String PATH_PREFIX = "images/";
 	public static double origH = 520, origW = 700;
 	protected int level;
+	protected int SQUARESIZE = 50;
 	
 	public BTDMap(int r, int c) {
 		height = r;
@@ -191,12 +192,21 @@ public abstract class BTDMap {
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
 			userselection = new SniperMonkey(me.getX(), me.getY()).getImg();
-			userx = me.getX() - 50/2;
-			usery = me.getY() - 50/2;
+			userx = me.getX() - SQUARESIZE/2;
+			usery = me.getY() - SQUARESIZE/2;
 		}
 		else {
 			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
+	}
+	
+	public void mouseMoved(MouseEvent me){
+		if (clicked) {
+			userx = me.getX()-SQUARESIZE/2;
+			usery = me.getY()-SQUARESIZE/2;
+			panel.repaint();
+
+		}
 	}
 }
