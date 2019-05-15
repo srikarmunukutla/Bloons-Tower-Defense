@@ -38,6 +38,7 @@ public class Spikes implements GameObject{
         }
         return img;
     }
+	
 	public ArrayList<Bloon> getBloons(ArrayList<GameObject> al){
 		ArrayList<Bloon> ret = new ArrayList<Bloon>();
 		for(int i = 0; i < al.size(); i++){
@@ -47,6 +48,7 @@ public class Spikes implements GameObject{
 		}
 		return ret;
 	}
+	
 	public ArrayList<Spikes> getSpikes(ArrayList<GameObject> al){
 		ArrayList<Spikes> ret = new ArrayList<Spikes>();
 		for(int i = 0; i < al.size(); i++){
@@ -56,12 +58,15 @@ public class Spikes implements GameObject{
 		}
 		return ret;
 	}
+	
 	public int getHealth(){
 		return health;
 	}
+	
 	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(spikes, x, y, width,height, null);
 	}
+	
 	public void update(ArrayList<GameObject> al, double timepassed, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		ArrayList<Bloon> bloonal = getBloons(al);
 		ArrayList<Spikes> spikeal = getSpikes(al);
