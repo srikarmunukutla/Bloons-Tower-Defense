@@ -75,14 +75,14 @@ public class BTDGameRunner {
 		monkey = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < gameobjects.size(); i++){
-					gameobjects.get(i).update(gameobjects,0.05,panel,gameprojectiles);
-					if(gameobjects.get(i) instanceof Spikes){
-						if (((Spikes)gameobjects.get(i)).getHealth() == 0){
-							gameobjects.remove(i);
-							i--;
-						}
-					}
+			for (int i = 0; i < gameobjects.size(); i++){
+					gameobjects.get(i).update(gameobjects, 0.05, panel, gameprojectiles);
+//					if (gameobjects.get(i) instanceof Spikes) {
+//						if (((Spikes) gameobjects.get(i)).getHealth() == 0) {
+//							gameobjects.remove(i);
+//							i--;
+//						}
+//					}
 				}
 				panel.repaint();
 				ticks++;
@@ -110,7 +110,7 @@ public class BTDGameRunner {
 			userx = me.getX()-SQUARESIZE/2;
 			usery = me.getY()-SQUARESIZE/2;
 		}else{
-			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
+			gameobjects.add(new SuperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}

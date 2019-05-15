@@ -30,6 +30,15 @@ public class SniperMonkey extends Monkey {
                 }
             }
         }
+        if (index >= al.size() || !(al.get(index) instanceof Bloon)){
+            return;
+        }
+        Bloon b = (Bloon)al.get(index);
+        if (b.getX() < getX()) {
+            setAngle(180*Math.atan(1.0*(b.getY() - getY()) / (b.getX() - getX()))/Math.PI-90);
+        } else {
+            setAngle(180*Math.atan(1.0*(b.getY() - getY()) / (b.getX() - getX()))/Math.PI+90);
+        }
         al.addAll(((Bloon)al.get(index)).hit((int) ((Bloon)al.get(index)).getX(), (int) ((Bloon)al.get(index)).getY(), getDamage()));
         al.remove(index);
         secsbefreload = getReloadRate();
