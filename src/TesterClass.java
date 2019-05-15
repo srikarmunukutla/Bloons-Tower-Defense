@@ -1,8 +1,5 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.JButton;
@@ -21,9 +18,15 @@ public class TesterClass {
 	public static void main(String[] args) {
 		new TesterClass().start();
 	}
+	private Image userselection;
+	private int userx,usery = 0;
+	private boolean clicked = false;
+	private final int SQUARESIZE = 50;
+	BTDMap m1 = new Map1(height, width);
+
+
 
 	private void start() {
-		BTDMap m1 = new Map1(height, width);
 		TowerPanel tp = new TowerPanel(height, 145);
 		m1.initializeTrack();
 		grid = m1.getGrid();
@@ -51,11 +54,30 @@ public class TesterClass {
 				for(GameObject go: m1.getGameObjectsList()) {
 					go.draw(g, panel);
 				}
+				if (clicked){
+					g.drawImage(userselection,userx,usery,SQUARESIZE,SQUARESIZE,null);
+				}
 				tp.draw(g, m1);
 			}
 		};
 		panel.setBackground(Color.WHITE);
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent me) {
+				clickedAt(me);
+				panel.repaint();
+			}
+		});
+		panel.addMouseMotionListener(new MouseMotionAdapter(){
+			public void mouseMoved(MouseEvent me){
+				if (clicked) {
+					userx = me.getX()-SQUARESIZE/2;
+					usery = me.getY()-SQUARESIZE/2;
+					panel.repaint();
 
+				}
+			}
+		});
 		panel.setPreferredSize(new Dimension(width + 145, height));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
@@ -112,6 +134,16 @@ public class TesterClass {
 		timer.start();
 		bloonsTimer.start();
 
+	}
+	private void clickedAt(MouseEvent me){
+		if (!clicked){
+			userselection = new SniperMonkey(me.getX(),me.getY()).getImg();
+			userx = me.getX()-SQUARESIZE/2;
+			usery = me.getY()-SQUARESIZE/2;
+		}else{
+			m1.gameObjects.add(new SniperMonkey(me.getX(),me.getY()));
+		}
+		clicked = !clicked;
 	}
 
 }
