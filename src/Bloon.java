@@ -89,6 +89,7 @@ public class Bloon implements GameObject{
 
     public ArrayList<Bloon> hit(int a, int b, int damage) {
         ArrayList<Bloon> bloons = new ArrayList<Bloon>();
+        int addmoney = 0;
     	int startrank = rank;
 		health -= damage;
 		while (rank > 0 && health <= 0) {
