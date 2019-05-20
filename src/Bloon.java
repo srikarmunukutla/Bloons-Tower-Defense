@@ -209,7 +209,7 @@ public class Bloon implements GameObject{
         if(x >= grid[0].length || y >= grid.length) {
             for (int i = al.size()-1; i >= 0; i--){
                 if (this.equals(al.get(i))){
-
+                    m.reduceHealth(this);
                     al.remove(i);
                     return;
                 }
