@@ -22,6 +22,7 @@ public abstract class BTDMap {
 	public static double origH = 520, origW = 700;
 	protected int level;
 	protected int SQUARESIZE = 50;
+	protected int health;
 	
 	public BTDMap(int r, int c) {
 		height = r;
@@ -33,6 +34,7 @@ public abstract class BTDMap {
 		gameprojectiles = new HashMap<Integer, Projectile>();
 		level = 1;
 		clicked = false;
+		health = 200;
 	}
 	
 	protected abstract void initializeTrack();
@@ -48,6 +50,10 @@ public abstract class BTDMap {
 				grid[r][c] = new Pixel(0, false);
 			}
 		}
+	}
+	
+	public void reduceHealth(Bloon b) {
+		
 	}
 	
 	public Image getUserSelection() {
