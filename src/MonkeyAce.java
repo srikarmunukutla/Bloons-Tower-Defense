@@ -1,11 +1,16 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
 
 public class MonkeyAce extends Monkey {
-	int radius = 100;
+	int radius = 100, width = 60, height = 60;
 	double angle = 0, omega = 36, x, y;
+	Image img;
 	public MonkeyAce(int a, int b) {
 		super(a,b,100,"Monkey_Ace.png",8,1,200,1);
 		x = a+radius;
@@ -36,5 +41,16 @@ public class MonkeyAce extends Monkey {
     @Override
     public Projectile getProj(){
         return new Dart(this.getX(),this.getY());
+    }
+    @Override
+    public void draw(Graphics g, JPanel panel){
+        Graphics2D g2d = (Graphics2D) g.create();
+        AffineTransform at = new AffineTransform();
+        at.setToRotation(Math.toRadians(angle), x, y);
+        at.translate(x, y);
+        g2d.setTransform(at);
+        g2d.drawImage(img, -width/2, -height/2, width, height, panel);
+        g2d.dispose();
+        g.drawImage(getImg(), getX(), getY(), 60, 30, null);
     }
 }
