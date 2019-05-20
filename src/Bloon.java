@@ -205,13 +205,14 @@ public class Bloon implements GameObject{
         y -= v*time*Math.sin(theta);
         distance += v*time;
         rect.translate((int) (x-rect.x), (int) (y-rect.y));
-//		if(x >= grid[0].length || y >= grid.length) {
-//			if(m.getBloonsList().size() == 0) {
-//				timer.stop();
-//				System.out.println("Done");
-//			}
-//			continue;
-//		}
+		if(x >= grid[0].length || y >= grid.length) {
+			for (int i = al.size()-1; i >= 0; i--){
+			    if (this.equals(al.get(i))){
+			        al.remove(i);
+			        return;
+                }
+            }
+		}
 		if(grid[(int) y][(int) x].getAngle() != getAngle()) {
 			setAngle(grid[(int) y][(int) x].getAngle());
 		}
