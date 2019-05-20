@@ -94,6 +94,7 @@ public class Bloon implements GameObject{
     	int startrank = rank;
 		health -= damage;
 		while (rank > 0 && health <= 0) {
+			int temprank = rank;
 			if (rank == 10|| rank == 7 || rank == 8) {
 				rank--;
 			}
@@ -104,6 +105,7 @@ public class Bloon implements GameObject{
 			if (rank == 0) {
 				return bloons;
 			}
+			addmoney += count[startrank-1]/count[temprank-1];
 			health+=healthArr[rank-1];
 		}
 		int numBloons = count[startrank-1]/count[rank-1];
