@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 
@@ -23,8 +24,10 @@ public abstract class BTDMap {
 	protected int level;
 	protected int SQUARESIZE = 50;
 	protected int health;
+	private int spawnx;
+	private int spawny;
 	
-	public BTDMap(int r, int c) {
+	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
 		grid = new Pixel[height][width];
@@ -35,6 +38,8 @@ public abstract class BTDMap {
 		level = 1;
 		clicked = false;
 		health = 200;
+		spawnx = spx;
+		spawny = spy;
 	}
 	
 	protected abstract void initializeTrack();
@@ -213,5 +218,8 @@ public abstract class BTDMap {
 			userx = me.getX()-SQUARESIZE/2;
 			usery = me.getY()-SQUARESIZE/2;
 		}
+	}
+	public Bloon createBloon(){
+		return new Bloon(10,spawnx,spawny,0,new HashSet<Integer>());
 	}
 }
