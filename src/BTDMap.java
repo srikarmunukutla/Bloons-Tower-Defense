@@ -53,7 +53,8 @@ public abstract class BTDMap {
 	}
 	
 	public void reduceHealth(Bloon b) {
-		
+		health -= b.liveslost[b.getRank()-1];
+		System.out.println(health);
 	}
 	
 	public Image getUserSelection() {

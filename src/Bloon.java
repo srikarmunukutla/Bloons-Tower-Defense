@@ -22,6 +22,7 @@ public class Bloon implements GameObject{
     double[] speed = {3,4,5,10,11,5,6,5,3,7,8,3,1,0.5};
     int[] count = {1,1,1,1,1,2,2,4,4,8,16,64,256,1024};
     int[] sep = {6,7,8,9,10,5,5,10,10,10,10,10,15,20};
+    int[] liveslost = {1,2,3,4,5,11,11,23,23,47,104,616,3164,16656};
     private Rectangle rect;
     private boolean isRegrow = false, isCamo = false;
     private HashSet<Integer> darthit;
