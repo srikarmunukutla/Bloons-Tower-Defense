@@ -8,8 +8,8 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 public class MonkeyAce extends Monkey {
-	int radius = 100, width = 60, height = 60;
-	double angle = 0, omega = 36, x, y;
+	int radius = 200, width = 100, height = 100;
+	double angle = 0, omega = 10, x, y;
 	Image img;
     private final static String PATH_PREFIX = "images/";
 	public MonkeyAce(int a, int b) {
@@ -54,6 +54,6 @@ public class MonkeyAce extends Monkey {
         g2d.setTransform(at);
         g2d.drawImage(img, -width/2, -height/2, width, height, panel);
         g2d.dispose();
-        g.drawImage(getImg(), getX(), getY(), 60, 30, null);
+        g.drawImage(getImg(), getX(), getY(), 80, 40, null);
     }
 }
