@@ -43,6 +43,7 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
+		startLevel();
 	}
 	private BTDMap getMap(){
 		return this;
@@ -50,11 +51,15 @@ public abstract class BTDMap {
 	Timer tim;
 	long ticks = 0;
 	private void startLevel(){
-		tim = new Timer(20, new ActionListener() {
+		tim = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				level.spawn(gameobjects,getMap());
+				level.spawn(gameobjects,getMap(), ticks);
 				ticks++;
+				if (level.getWave() == 20){
+					ticks = 0;
+					level.changeSpawn();
+				}
 			}
 
 		});
@@ -218,12 +223,12 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
-			userselection = new MonkeyAce(me.getX(), me.getY()).getImg();
+			userselection = new SuperMonkey(me.getX(), me.getY()).getImg();
 			userx = me.getX() - SQUARESIZE/2;
 			usery = me.getY() - SQUARESIZE/2;
 		}
 		else {
-			gameobjects.add(new MonkeyAce(me.getX(),me.getY()));
+			gameobjects.add(new SuperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}
@@ -234,7 +239,7 @@ public abstract class BTDMap {
 			usery = me.getY()-SQUARESIZE/2;
 		}
 	}
-	public Bloon createBloon(int num){
-		return new Bloon(num,spawnx,spawny,0,new HashSet<Integer>());
+	public Bloon createBloon(int num, int offset){
+		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
 	}
 }

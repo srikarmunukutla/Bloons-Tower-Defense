@@ -26,7 +26,6 @@ public class BTDGameRunner {
 	private void start() {
 		//Testing balloon and Monkey
 		m1 = new Map1(panelheight,panelwidth);
-		m1.addBloon(m1.createBloon(4));
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
