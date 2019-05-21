@@ -42,6 +42,7 @@ public class MonkeyAce extends Monkey {
     public Projectile getProj(){
         return new Dart(this.getX(),this.getY());
     }
+    
     @Override
     public void draw(Graphics g, JPanel panel){
         Graphics2D g2d = (Graphics2D) g.create();
