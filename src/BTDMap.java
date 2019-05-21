@@ -30,6 +30,7 @@ public abstract class BTDMap {
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
+		tp = new TowerPanel(height, TowerPanel.truewidth);
 		grid = new Pixel[height][width];
 		Hratio = (height/origH);
 		Wratio = (width/origW);
@@ -188,6 +189,7 @@ public abstract class BTDMap {
 	
 	public void draw(Graphics g) {
 		g.drawImage(img, 0, 0, width, height, null);
+		tp.draw(g, this);
 	}
 	
 	protected Image getImage(String fn) {

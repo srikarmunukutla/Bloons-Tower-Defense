@@ -1,10 +1,12 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Color;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class TowerPanel {
+	public final static int truewidth = 200;
 	private int height, width;
 	private Image img;
 	private String PATH_PREFIX = "images/";
@@ -16,7 +18,9 @@ public class TowerPanel {
 	}
 	
 	public void draw(Graphics g, BTDMap m) {
-		g.drawImage(img, m.getWidth(), 0, width, height, null);
+		g.setColor(Color.BLUE);
+		g.fillRect(m.getWidth(), 0, width, height);
+//		g.drawImage(img, m.getWidth(), 0, width, height, null);
 	}
 	
 	protected Image getImage(String fn) {

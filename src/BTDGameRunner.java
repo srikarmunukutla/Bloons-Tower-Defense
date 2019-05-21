@@ -60,7 +60,7 @@ public class BTDGameRunner {
 		});
 		panel.setBackground(Color.WHITE);
 
-		panel.setPreferredSize(new Dimension(panelwidth, panelheight));
+		panel.setPreferredSize(new Dimension(panelwidth + TowerPanel.truewidth, panelheight));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
