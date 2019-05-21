@@ -2,11 +2,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class BananaFarm{
+public class BananaFarm implements GameObject {
 	int bananaOutput, numBananas, x, y, secsbeforereload;
     private final static String PATH_PREFIX = "images/";
     String str = PATH_PREFIX + "Banana_Farm.png";
@@ -49,24 +51,27 @@ public class BananaFarm{
     	return numBananas;
     }
     
-    public void draw(Graphics g) {
+    public void draw(Graphics g, JPanel panel) {
     	g.drawImage(img, x-SQUARESIZE/2, y-SQUARESIZE/2, SQUARESIZE, SQUARESIZE, null);
+    }
+    
+    public void clickedAt() {
+    	
     }
     
     public Rectangle getRect() {
     	return rect;
     }
     
-    public Banana makeBananas() {
+    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
     	if (secsbeforereload > 0) {
     		secsbeforereload--;
-    		return null;
+    		return;
     	}
     	double randomAngle = 360 * Math.random();
     	double random = (int) 200 * Math.random();
     	Banana b = new Banana(bananaOutput, randomAngle, random, x, y,x,y);
     	secsbeforereload = CONSTANT/numBananas;
-    	return b;
-    	
+    	al.add(b);
     }
 }
