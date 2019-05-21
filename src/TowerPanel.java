@@ -8,13 +8,13 @@ import javax.imageio.ImageIO;
 public class TowerPanel {
 	public final static int truewidth = 200;
 	private int height, width;
-	private Image img;
+	private Image moneylivesimg;
 	private String PATH_PREFIX = "images/";
 	
 	public TowerPanel(int h, int w) {
 		height = h;
 		width = w;
-		img = getImage("Panel.png");
+		moneylivesimg = getImage("Money_and_Lives.png");
 	}
 	
 	public void draw(Graphics g, BTDMap m) {
