@@ -200,12 +200,12 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
-			userselection = new SniperMonkey(me.getX(), me.getY()).getImg();
+			userselection = new MonkeyAce(me.getX(), me.getY()).getImg();
 			userx = me.getX() - SQUARESIZE/2;
 			usery = me.getY() - SQUARESIZE/2;
 		}
 		else {
-			gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
+			gameobjects.add(new MonkeyAce(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}
