@@ -52,7 +52,7 @@ public class Bloon implements GameObject{
         rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
         darthit = hm;
     }
-    
+
     public Bloon(int r, double x, double y, double angle, double distance, int health, HashSet<Integer> hm) {
         rank = r;
         this.x = x;
@@ -169,7 +169,7 @@ public class Bloon implements GameObject{
     public int getRank() {
         return rank;
     }
-    
+
     public Rectangle getRect(){
         return rect;
     }
@@ -208,18 +208,18 @@ public class Bloon implements GameObject{
         y -= v*time*Math.sin(theta);
         distance += v*time;
         rect.translate((int) (x-rect.x), (int) (y-rect.y));
-		if(x >= grid[0].length || y >= grid.length) {
-			for (int i = al.size()-1; i >= 0; i--){
-			    if (this.equals(al.get(i))){
-			        
-			        al.remove(i);
-			        return;
+        if(x >= grid[0].length || y >= grid.length) {
+            for (int i = al.size()-1; i >= 0; i--){
+                if (this.equals(al.get(i))){
+                    m.reduceHealth(this);
+                    al.remove(i);
+                    return;
                 }
             }
-		}
-		if(grid[(int) y][(int) x].getAngle() != getAngle()) {
-			setAngle(grid[(int) y][(int) x].getAngle());
-		}
+        }
+        if(grid[(int) y][(int) x].getAngle() != getAngle()) {
+            setAngle(grid[(int) y][(int) x].getAngle());
+        }
     }
     public void addDart(int a){
         darthit.add(a);
