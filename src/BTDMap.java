@@ -1,5 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public abstract class BTDMap {
 	protected Pixel[][] grid;
@@ -41,7 +44,22 @@ public abstract class BTDMap {
 		spawnx = spx;
 		spawny = spy;
 	}
-	
+	private BTDMap getMap(){
+		return this;
+	}
+	Timer tim;
+	long ticks = 0;
+	private void startLevel(){
+		tim = new Timer(20, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				level.spawn(gameobjects,getMap());
+				ticks++;
+			}
+
+		});
+		tim.start();
+	}
 	protected abstract void initializeTrack();
 
 	
