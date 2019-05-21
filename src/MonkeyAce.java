@@ -42,7 +42,7 @@ public class MonkeyAce extends Monkey {
     }
     @Override
     public Projectile getProj(){
-        return new Dart(this.getX(),this.getY());
+        return new Dart((int) x, (int) y);
     }
     
     @Override
