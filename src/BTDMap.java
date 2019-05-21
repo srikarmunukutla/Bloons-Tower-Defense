@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 public abstract class BTDMap {
 	protected Pixel[][] grid;
@@ -20,7 +21,7 @@ public abstract class BTDMap {
 	protected int height, width;
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
-	Level level = new Level();
+//	Level level = new Level();
 	public static double origH = 520, origW = 700;
 	protected int SQUARESIZE = 50;
 	protected int health;
@@ -30,7 +31,7 @@ public abstract class BTDMap {
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
-		tp = new TowerPanel(height, TowerPanel.truewidth);
+		tp = new TowerPanel(height, TowerPanel.truewidth, this);
 		grid = new Pixel[height][width];
 		Hratio = (height/origH);
 		Wratio = (width/origW);
@@ -182,9 +183,9 @@ public abstract class BTDMap {
 		return grid;
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(img, 0, 0, width, height, null);
-		tp.draw(g, this);
+		tp.draw(g, this, panel);
 	}
 	
 	protected Image getImage(String fn) {
