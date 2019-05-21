@@ -11,10 +11,12 @@ public class MonkeyAce extends Monkey {
 	int radius = 100, width = 60, height = 60;
 	double angle = 0, omega = 36, x, y;
 	Image img;
+    private final static String PATH_PREFIX = "images/";
 	public MonkeyAce(int a, int b) {
 		super(a,b,100,"Monkey_Ace.png",8,1,200,1);
 		x = a+radius;
 		y = b;
+		img = getImage(PATH_PREFIX + "Plane");
 	}
 	@Override
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
