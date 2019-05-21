@@ -20,8 +20,8 @@ public abstract class BTDMap {
 	protected int height, width;
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
+	Level level = new Level();
 	public static double origH = 520, origW = 700;
-	protected int level;
 	protected int SQUARESIZE = 50;
 	protected int health;
 	private int spawnx;
@@ -36,7 +36,6 @@ public abstract class BTDMap {
 		Wratio = (width/origW);
 		gameobjects = new ArrayList<GameObject>();
 		gameprojectiles = new HashMap<Integer, Projectile>();
-		level = 1;
 		clicked = false;
 		health = 200;
 		spawnx = spx;
@@ -44,11 +43,7 @@ public abstract class BTDMap {
 	}
 	
 	protected abstract void initializeTrack();
-	
-	protected void createLevel() {
-		int bursts = (int) (Math.random() * Math.ceil(level/5)) + 1;
-//		int totalBloons = (int) (Math.random() * Math.ceil(level/5));
-	}
+
 	
 	protected void initializeGrid() {
 		for(int r = 0; r < height; r++) {
@@ -221,7 +216,7 @@ public abstract class BTDMap {
 			usery = me.getY()-SQUARESIZE/2;
 		}
 	}
-	public Bloon createBloon(){
-		return new Bloon(10,spawnx,spawny,0,new HashSet<Integer>());
+	public Bloon createBloon(int num){
+		return new Bloon(num,spawnx,spawny,0,new HashSet<Integer>());
 	}
 }

@@ -152,8 +152,7 @@ public class Bloon implements GameObject{
     }
 
     public void draw(Graphics g, JPanel panel) {
-        g.drawImage(img, (int) (x-width[rank-1]/2), (int) (y-height[rank-1]/2), width[rank-1], height[rank-1], null);
-//        Graphics2D g2d = (Graphics2D) g.create();
+          g.drawImage(img, (int) (x-width[rank-1]/2), (int) (y-height[rank-1]/2), width[rank-1], height[rank-1], null);
 //        AffineTransform at = new AffineTransform();
 //        at.setToRotation(Math.toRadians(angle), x, y);
 //        at.translate(x, y);
