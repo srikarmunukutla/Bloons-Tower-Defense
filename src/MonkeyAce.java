@@ -35,21 +35,21 @@ public class MonkeyAce extends Monkey {
         	int random = (int) ((Math.random()) * Integer.MAX_VALUE);
         	gameprojectile.put(random, pr);
         	int BIGINT = 3780;
-        	double x = this.x+BIGINT*Math.cos(i*Math.PI/4+angle);
-            double y = this.y-BIGINT*Math.sin(i*Math.PI/4+angle);
-            gameprojectile.get(random).launch((int) x,(int) y, panel,gameprojectile,random, this.getDamage(), al, pierce, r);
+        	double a = x+BIGINT*Math.cos(i*Math.PI/4+angle);
+            double b = y-BIGINT*Math.sin(i*Math.PI/4+angle);
+            gameprojectile.get(random).launch((int) a,(int) b, panel,gameprojectile,random, this.getDamage(), al, pierce, r);
         }
     }
     @Override
     public Projectile getProj(){
-        return new Dart(this.getX(),this.getY());
+        return new Dart((int) x, (int) y);
     }
     
     @Override
     public void draw(Graphics g, JPanel panel){
         Graphics2D g2d = (Graphics2D) g.create();
         AffineTransform at = new AffineTransform();
-        at.setToRotation(Math.toRadians(angle), x, y);
+        at.setToRotation(-Math.toRadians(angle), x, y);
         at.translate(x, y);
         g2d.setTransform(at);
         g2d.drawImage(img, -width/2, -height/2, width, height, panel);

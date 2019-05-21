@@ -1,5 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.*;
 
 public abstract class BTDMap {
 	protected Pixel[][] grid;
@@ -41,8 +44,28 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
+		startLevel();
 	}
-	
+	private BTDMap getMap(){
+		return this;
+	}
+	Timer tim;
+	long ticks = 0;
+	private void startLevel(){
+		tim = new Timer(1, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				level.spawn(gameobjects,getMap(), ticks);
+				ticks++;
+				if (level.getWave() == 20){
+					ticks = 0;
+					level.changeSpawn();
+				}
+			}
+
+		});
+		tim.start();
+	}
 	protected abstract void initializeTrack();
 
 	
@@ -201,12 +224,12 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
-			userselection = new MonkeyAce(me.getX(), me.getY()).getImg();
+			userselection = new SuperMonkey(me.getX(), me.getY()).getImg();
 			userx = me.getX() - SQUARESIZE/2;
 			usery = me.getY() - SQUARESIZE/2;
 		}
 		else {
-			gameobjects.add(new MonkeyAce(me.getX(),me.getY()));
+			gameobjects.add(new SuperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}
@@ -217,7 +240,7 @@ public abstract class BTDMap {
 			usery = me.getY()-SQUARESIZE/2;
 		}
 	}
-	public Bloon createBloon(int num){
-		return new Bloon(num,spawnx,spawny,0,new HashSet<Integer>());
+	public Bloon createBloon(int num, int offset){
+		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
 	}
 }
