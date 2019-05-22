@@ -34,6 +34,7 @@ public abstract class Monkey implements GameObject{
         pierce = p;
     }
     public void draw(Graphics g, JPanel panel){
+//    	g.drawImage(img, x, y, SQUARESIZE, SQUARESIZE, null);
         Graphics2D g2d = (Graphics2D) g.create();
         AffineTransform at = new AffineTransform();
         at.setToRotation(Math.toRadians(angle), x, y);

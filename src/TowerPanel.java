@@ -28,7 +28,7 @@ public class TowerPanel {
 		g.drawImage(towerstitle, m.getWidth(), 0, width, 143, null);
 		g.drawImage(moneylivesimg, m.getWidth(), 143, width, 76, null);
 		monkeyarr[0].draw(g, panel);
-		System.out.println(monkeyarr[0].getX() + " " + monkeyarr[0].getY());
+//		System.out.println(monkeyarr[0].getX() + " " + monkeyarr[0].getY());
 //		for(Monkey monkey: monkeyarr) {
 //			monkey.draw(g, panel);
 //		}
