@@ -39,7 +39,7 @@ public class Banana implements GameObject{
     	time += time;
     	double theta = Math.PI*angle/180;
     	double a = x + distance*(1-Math.exp(time/20)) * Math.cos(theta);
-    	double b = x - distance*(1-Math.exp(time/20)) * Math.sin(theta);
+    	double b = y - distance*(1-Math.exp(time/20)) * Math.sin(theta);
     	x = a;
     	y = b;
     }
