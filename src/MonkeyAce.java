@@ -46,15 +46,17 @@ public class MonkeyAce extends Monkey {
         return new Dart((int) x, (int) y);
     }
     
-    @Override
-    public void draw(Graphics g, JPanel panel){
-        Graphics2D g2d = (Graphics2D) g.create();
-        AffineTransform at = new AffineTransform();
-        at.setToRotation(-Math.toRadians(angle), x, y);
-        at.translate(x, y);
-        g2d.setTransform(at);
-        g2d.drawImage(img, -width/2, -height/2, width, height, panel);
-        g2d.dispose();
-        g.drawImage(getImg(), getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
+    public void draw(Graphics g, JPanel panel, boolean tp) {
+    	Graphics2D g2 = (Graphics2D) g.create();// get a copy
+        g2.translate(x, y);// translate this card's (x,y)
+        g2.rotate(Math.toRadians(angle));// rotate around this card
+        if(tp) {
+        	g2.drawImage(img, -SQUARESIZE/2,-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);
+        }
+        else {
+        	g2.drawImage(img, -width/2, -height/2, width, height, panel);
+        	g2.drawImage(getImg(), getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
+        }
+        g2.dispose();
     }
 }

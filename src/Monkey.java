@@ -13,7 +13,7 @@ public abstract class Monkey implements GameObject{
     Rectangle r;
     private int x;
     private int y;
-    private final int SQUARESIZE = 50;
+    protected final int SQUARESIZE = 50;
     private Image img;
     private int range;
     private double angle = 0;

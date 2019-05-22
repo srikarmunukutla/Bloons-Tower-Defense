@@ -15,7 +15,6 @@ public class BananaFarm extends Monkey {
 	Image img = getImage(str);
 	Rectangle rect;
 	private final static int CONSTANT = 7800;
-	private final static int SQUARESIZE = 100;
 	public BananaFarm(int a, int b) {
 		super(a,b,1000,"Banana_Farm.png",1,1,1,1,1000);
 		bananaOutput = 20;
@@ -50,10 +49,6 @@ public class BananaFarm extends Monkey {
     
     public int getNumBananas() {
     	return numBananas;
-    }
-    
-    public void draw(Graphics g, JPanel panel) {
-    	g.drawImage(img, x-SQUARESIZE/2, y-SQUARESIZE/2, SQUARESIZE, SQUARESIZE, null);
     }
     
     public void clickedAt() {

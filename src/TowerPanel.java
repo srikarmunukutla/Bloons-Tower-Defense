@@ -25,26 +25,26 @@ public class TowerPanel {
 	public void draw(Graphics g, BTDMap m, JPanel panel) {
 		g.setColor(Color.BLUE);
 		g.fillRect(m.getWidth(), 0, width, height);
-		g.drawImage(towerstitle, m.getWidth(), 0, width, 143, null);
-		g.drawImage(moneylivesimg, m.getWidth(), 143, width, 76, null);
-		monkeyarr[0].draw(g, panel);
+		g.drawImage(towerstitle, m.getWidth(), 0, width, 114, null);
+		g.drawImage(moneylivesimg, m.getWidth(), 114, width, 61, null);
+//		monkeyarr[0].draw(g, panel);
 //		System.out.println(monkeyarr[0].getX() + " " + monkeyarr[0].getY());
-//		for(Monkey monkey: monkeyarr) {
-//			monkey.draw(g, panel);
-//		}
+		for(Monkey monkey: monkeyarr) {
+			monkey.draw(g, panel);
+		}
 	}
 	
 	public void initializeMonkeys(BTDMap m) {
-		monkeyarr[0] = new DartMonkey(m.getWidth() + 30, 205);
-		monkeyarr[1] = new TackShooter(m.getWidth() + 90, 205);
-		monkeyarr[2] = new MonkeyApprentice(m.getWidth() + 30, 265);
-		monkeyarr[3] = new MonkeyAce(m.getWidth() + 90, 265);
-		monkeyarr[4] = new BananaFarm(m.getWidth() + 30, 325);
-		monkeyarr[5] = new SuperMonkey(m.getWidth() + 90, 325);
-		monkeyarr[6] = new NinjaMonkey(m.getWidth() + 30, 390);
-		monkeyarr[7] = new RichardHanson(m.getWidth() + 90, 390);
-		monkeyarr[8] = new GlueGunner(m.getWidth() + 30, 470);
-		monkeyarr[9] = new SniperMonkey(m.getWidth() + 90, 470);
+		monkeyarr[0] = new DartMonkey(m.getWidth() + 30, 210);
+		monkeyarr[1] = new TackShooter(m.getWidth() + 90, 210);
+		monkeyarr[2] = new MonkeyApprentice(m.getWidth() + 30, 280);
+		monkeyarr[3] = new MonkeyAce(m.getWidth() + 90, 280);
+		monkeyarr[4] = new BananaFarm(m.getWidth() + 30, 350);
+		monkeyarr[5] = new SuperMonkey(m.getWidth() + 90, 350);
+		monkeyarr[6] = new NinjaMonkey(m.getWidth() + 30, 420);
+		monkeyarr[7] = new RichardHanson(m.getWidth() + 90, 420);
+		monkeyarr[8] = new GlueGunner(m.getWidth() + 30, 510);
+		monkeyarr[9] = new SniperMonkey(m.getWidth() + 90, 510);
 	}
 	
 	protected Image getImage(String fn) {
