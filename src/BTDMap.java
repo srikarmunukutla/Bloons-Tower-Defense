@@ -44,28 +44,28 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
-		startLevel();
+//		startLevel();
 	}
 	private BTDMap getMap(){
 		return this;
 	}
 	Timer tim;
 	long ticks = 0;
-	private void startLevel(){
-		tim = new Timer(1, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				level.spawn(gameobjects,getMap(), ticks);
-				ticks++;
-				if (level.getWave() == 20){
-					ticks = 0;
-					level.changeSpawn();
-				}
-			}
-
-		});
-		tim.start();
-	}
+//	private void startLevel(){
+//		tim = new Timer(1, new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				level.spawn(gameobjects,getMap(), ticks);
+//				ticks++;
+//				if (level.getWave() == 20){
+//					ticks = 0;
+//					level.changeSpawn();
+//				}
+//			}
+//
+//		});
+//		tim.start();
+//	}
 	protected abstract void initializeTrack();
 
 	
