@@ -63,8 +63,11 @@ public class BananaFarm implements GameObject {
     public Rectangle getRect() {
     	return rect;
     }
-    
-    public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
+	public Image getImg(){
+		return img;
+	}
+
+	public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
     	if (secsbeforereload > 0) {
     		secsbeforereload--;
     		return;
