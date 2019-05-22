@@ -18,6 +18,9 @@ public class Level {
             }
         }
         int bloon = (int)(Math.random()*numchoice+1);
+        if (bloon == 9){
+            bloon--;
+        }
         for (int i = 0; i < Math.ceil((Math.log(level+1)/Math.log(whenspawn[bloon]+1))); i++) {
             al.add(bm.createBloon(bloon, 8 * i));
         }
