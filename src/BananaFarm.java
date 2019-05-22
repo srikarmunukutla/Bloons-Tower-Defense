@@ -8,7 +8,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class BananaFarm implements GameObject {
+public class BananaFarm extends Monkey {
 	int bananaOutput, numBananas, x, y, secsbeforereload;
     private final static String PATH_PREFIX = "images/";
     String str = PATH_PREFIX + "Banana_Farm.png";
@@ -16,8 +16,8 @@ public class BananaFarm implements GameObject {
 	Rectangle rect;
 	private final static int CONSTANT = 7800;
 	private final static int SQUARESIZE = 100;
-	private int cost = 1000;
 	public BananaFarm(int a, int b) {
+		super(a,b,1000,"Banana_Farm.png",1,1,1,1,1000);
 		bananaOutput = 20;
 		numBananas = 25;
 		x = a;
