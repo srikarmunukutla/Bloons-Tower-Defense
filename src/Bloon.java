@@ -216,7 +216,7 @@ public class Bloon implements GameObject{
                 }
             }
         }
-        if(grid[(int) y][(int) x].getAngle() != getAngle()) {
+        if(x > 0 && y > 0) {
             setAngle(grid[(int) y][(int) x].getAngle());
         }
     }

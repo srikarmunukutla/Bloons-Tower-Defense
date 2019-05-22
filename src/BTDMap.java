@@ -24,7 +24,7 @@ public abstract class BTDMap {
 	protected int height, width;
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
-//	Level level = new Level();
+	Level level = new Level();
 	public static double origH = 520, origW = 700;
 	protected int SQUARESIZE = 50;
 	protected int health;
@@ -44,28 +44,28 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
-//		startLevel();
+		startLevel();
 	}
 	private BTDMap getMap(){
 		return this;
 	}
 	Timer tim;
 	long ticks = 0;
-//	private void startLevel(){
-//		tim = new Timer(1, new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				level.spawn(gameobjects,getMap(), ticks);
-//				ticks++;
-//				if (level.getWave() == 20){
-//					ticks = 0;
-//					level.changeSpawn();
-//				}
-//			}
-//
-//		});
-//		tim.start();
-//	}
+	private void startLevel(){
+		tim = new Timer(1, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				level.spawn(gameobjects,getMap(), ticks);
+				ticks++;
+				if (level.getWave() == 20){
+					ticks = 0;
+					level.changeSpawn();
+				}
+			}
+
+		});
+		tim.start();
+	}
 	protected abstract void initializeTrack();
 
 	
