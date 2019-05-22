@@ -18,6 +18,7 @@ public class MonkeyAce extends Monkey {
 		y = b;
 		img = getImage(PATH_PREFIX + "Plane.png");
 	}
+	
 	@Override
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		//runs regardless if there are bloons
