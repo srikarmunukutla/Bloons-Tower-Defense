@@ -16,7 +16,7 @@ public class BananaFarm implements GameObject {
 	Rectangle rect;
 	private final static int CONSTANT = 7800;
 	private final static int SQUARESIZE = 100;
-	
+	private int cost = 1000;
 	public BananaFarm(int a, int b) {
 		bananaOutput = 20;
 		numBananas = 25;

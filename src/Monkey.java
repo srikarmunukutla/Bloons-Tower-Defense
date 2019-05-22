@@ -22,7 +22,8 @@ public abstract class Monkey implements GameObject{
     private int reloadrate;
     int pierce;
     int secsbefreload = 0;
-    public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload, int p){
+    private int cost;
+    public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload, int p, int co){
         x = a;
         y = b;
         img = getImage(PATH_PREFIX + str);
@@ -32,6 +33,7 @@ public abstract class Monkey implements GameObject{
         damage = dmg;
         reloadrate = reload;
         pierce = p;
+        cost = co;
     }
     public void draw(Graphics g, JPanel panel){
 //    	g.drawImage(img, x, y, SQUARESIZE, SQUARESIZE, null);
@@ -47,6 +49,10 @@ public abstract class Monkey implements GameObject{
         g2.rotate(Math.toRadians(angle));// rotate around this card
         g2.drawImage(img, -SQUARESIZE/2,-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);// draw my image on the rotated Graphics
         g2.dispose();// dispose so the other cards are not affected.
+    }
+
+    public int getCost(){
+        return cost;
     }
     public ArrayList<Bloon> getBloons(ArrayList<GameObject> al){
         ArrayList<Bloon> ret = new ArrayList<Bloon>();
