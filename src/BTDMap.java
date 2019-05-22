@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 import javax.swing.*;
 
 public abstract class BTDMap {
@@ -33,7 +34,7 @@ public abstract class BTDMap {
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
-		tp = new TowerPanel(height, TowerPanel.truewidth);
+		tp = new TowerPanel(height, TowerPanel.truewidth, this);
 		grid = new Pixel[height][width];
 		Hratio = (height/origH);
 		Wratio = (width/origW);
@@ -43,6 +44,7 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
+		startLevel();
 	}
 	private BTDMap getMap(){
 		return this;
@@ -50,11 +52,15 @@ public abstract class BTDMap {
 	Timer tim;
 	long ticks = 0;
 	private void startLevel(){
-		tim = new Timer(20, new ActionListener() {
+		tim = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				level.spawn(gameobjects,getMap());
+				level.spawn(gameobjects,getMap(), ticks);
 				ticks++;
+				if (level.getWave() == 20){
+					ticks = 0;
+					level.changeSpawn();
+				}
 			}
 
 		});
@@ -200,9 +206,9 @@ public abstract class BTDMap {
 		return grid;
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(img, 0, 0, width, height, null);
-		tp.draw(g, this);
+		tp.draw(g, this, panel);
 	}
 	
 	protected Image getImage(String fn) {
@@ -218,12 +224,12 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
-			userselection = new MonkeyAce(me.getX(), me.getY()).getImg();
+			userselection = new SuperMonkey(me.getX(), me.getY()).getImg();
 			userx = me.getX() - SQUARESIZE/2;
 			usery = me.getY() - SQUARESIZE/2;
 		}
 		else {
-			gameobjects.add(new MonkeyAce(me.getX(),me.getY()));
+			gameobjects.add(new SuperMonkey(me.getX(),me.getY()));
 		}
 		clicked = !clicked;
 	}
@@ -234,7 +240,7 @@ public abstract class BTDMap {
 			usery = me.getY()-SQUARESIZE/2;
 		}
 	}
-	public Bloon createBloon(int num){
-		return new Bloon(num,spawnx,spawny,0,new HashSet<Integer>());
+	public Bloon createBloon(int num, int offset){
+		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
 	}
 }

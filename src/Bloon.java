@@ -80,6 +80,22 @@ public class Bloon implements GameObject{
         health = healthArr[rank-1];
         rect = new Rectangle((int) (x-radius), (int) (y-radius), 2*radius, 2*radius);
     }
+    
+    public int getSpeed() {
+        return (int) speed[rank-1];
+    }
+    
+    public void setSpeed(double x) {
+        speed[rank-1]=x;
+    }
+    
+    public Image getImage() {
+    	return img;
+    }
+    
+    public void setImage(String x) {
+    	img = getImage(x);
+    }
 
     public boolean checkHit(double x, double y) {
         if (distance(this.x,this.y,x,y) <= radius) {
@@ -216,7 +232,7 @@ public class Bloon implements GameObject{
                 }
             }
         }
-        if(grid[(int) y][(int) x].getAngle() != getAngle()) {
+        if(x > 0 && y > 0) {
             setAngle(grid[(int) y][(int) x].getAngle());
         }
     }

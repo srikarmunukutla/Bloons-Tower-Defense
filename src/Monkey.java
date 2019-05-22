@@ -34,6 +34,7 @@ public abstract class Monkey implements GameObject{
         pierce = p;
     }
     public void draw(Graphics g, JPanel panel){
+//    	g.drawImage(img, x, y, SQUARESIZE, SQUARESIZE, null);
         Graphics2D g2d = (Graphics2D) g.create();
         AffineTransform at = new AffineTransform();
         at.setToRotation(Math.toRadians(angle), x, y);
@@ -41,6 +42,11 @@ public abstract class Monkey implements GameObject{
         g2d.setTransform(at);
         g2d.drawImage(img, -SQUARESIZE/2, -SQUARESIZE/2,SQUARESIZE,SQUARESIZE, panel);
         g2d.dispose();
+//        Graphics2D g2 = (Graphics2D) g.create();// get a copy
+//        g2.translate(x, y);// translate this card's (x,y)
+//        g2.rotate(angle);// rotate around this card
+//        g2.drawImage(i, 0,0,null);// draw my image on the rotated Graphics
+//        g2.dispose();// dispose so the other cards are not affected.
     }
     public ArrayList<Bloon> getBloons(ArrayList<GameObject> al){
         ArrayList<Bloon> ret = new ArrayList<Bloon>();
