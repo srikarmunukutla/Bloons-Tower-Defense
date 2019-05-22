@@ -29,13 +29,18 @@ public abstract class Projectile {
     }
 
     public void draw(Graphics g, JPanel panel) {
-        Graphics2D g2d = (Graphics2D) g.create();
-        AffineTransform at = new AffineTransform();
-        at.setToRotation(Math.toRadians(angle), x, y);
-        at.translate(x, y);
-        g2d.setTransform(at);
-        g2d.drawImage(img, 0, 0, WIDTH, HEIGHT, panel);
-        g2d.dispose();
+//        Graphics2D g2d = (Graphics2D) g.create();
+//        AffineTransform at = new AffineTransform();
+//        at.setToRotation(Math.toRadians(angle), x, y);
+//        at.translate(x, y);
+//        g2d.setTransform(at);
+//        g2d.drawImage(img, 0, 0, WIDTH, HEIGHT, panel);
+//        g2d.dispose();
+        Graphics2D g2 = (Graphics2D) g.create();// get a copy
+        g2.translate(x, y);// translate this card's (x,y)
+        g2.rotate(Math.toRadians(angle));// rotate around this card
+        g2.drawImage(img, 0,0, WIDTH,HEIGHT,null);// draw my image on the rotated Graphics
+        g2.dispose();// dispose so the other cards are not affected.
     }
 
     public Rectangle getRect() {
