@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class TackShooter extends Monkey{
 	private int secbeforereload = 0;
 	public TackShooter(int a, int b) {
-		super(a,b,150,"Tack_Shooter.png",8,1,150,1);
+		super(a,b,150,"Tack_Shooter.png",8,1,150,1,360);
 	}
 	@Override
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {

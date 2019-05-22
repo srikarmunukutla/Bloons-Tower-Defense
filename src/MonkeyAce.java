@@ -13,7 +13,7 @@ public class MonkeyAce extends Monkey {
 	Image img;
     private final static String PATH_PREFIX = "images/";
 	public MonkeyAce(int a, int b) {
-		super(a,b,100,"Monkey_Ace.png",8,1,200,1);
+		super(a,b,100,"Monkey_Ace.png",8,1,200,1,900);
 		x = a+radius;
 		y = b;
 		img = getImage(PATH_PREFIX + "Plane.png");
