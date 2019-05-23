@@ -57,9 +57,18 @@ public class MonkeyAce extends Monkey {
     	Graphics2D g2 = (Graphics2D) g.create();// get a copy
         g2.translate(x, y);// translate this card's (x,y)
         g2.rotate(Math.toRadians(angle));// rotate around this card
+<<<<<<< HEAD
+        if(tp) {
+        	g2.drawImage(getImg(), getX()-SQUARESIZE/2, getY()-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);
+        }
+        else {
+        	g2.drawImage(img, -width/2, -height/2, width, height, panel);
+        	g2.drawImage(getImg(), getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
+=======
         g2.drawImage(getImg(), -width/2, -height/2, width, height, null);
         if(!tp) {
         	g2.drawImage(platform, getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
+>>>>>>> f65744a21e1bb3f99d844f3f83ada52e6adeeef0
         }
         g2.dispose();
     }

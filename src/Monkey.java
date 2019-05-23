@@ -40,14 +40,14 @@ public abstract class Monkey implements GameObject{
     	rangerect = new Rectangle(x-range, y-range, range*2, range*2);
     }
     
-    protected void drawRangeRect(Graphics g, boolean isValid) {
+    protected void fillRangeRect(Graphics g, boolean isValid) {
     	if(isValid) {
     		g.setColor(Color.LIGHT_GRAY);
     	}
     	else {
     		g.setColor(Color.RED);
     	}
-    	g.drawRect(rangerect.x, rangerect.y, range*2, range*2);
+    	g.fillRect(rangerect.x, rangerect.y, range*2, range*2);
     }
     
     protected void setImgRect() {

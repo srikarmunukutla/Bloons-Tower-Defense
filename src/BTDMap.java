@@ -30,6 +30,7 @@ public abstract class BTDMap {
 	protected int health;
 	private int spawnx;
 	private int spawny;
+	private boolean isselectionvalid;
 	
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
@@ -44,6 +45,7 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
+		isselectionvalid = false;
 		startLevel();
 	}
 	
@@ -227,6 +229,12 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
+			userselection = (new DartMonkey(me.getX(), me.getY()).getImg();
+			userx = me.getX() - SQUARESIZE/2;
+			usery = me.getY() - SQUARESIZE/2;
+		}
+		else {
+			gameobjects.add(new DartMonkey(me.getX(),me.getY()));
 			int ind = -1;
 			for(int i = 0; i < 10; i++) {
 				if(tp.monkeyarr[i].imgrect.contains(me.getX(), me.getY())) {
@@ -271,11 +279,13 @@ public abstract class BTDMap {
 			}
 			userx = me.getX() - userselection.width/2;
 			usery = me.getY() - userselection.height/2;
+			isselectionvalid = true;
 		}
 		else {
 			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
 				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
 					if(grid[r][c].coveredUp()) {
+						isselectionvalid = false;
 						return;
 					}
 				}
@@ -285,6 +295,10 @@ public abstract class BTDMap {
 			coverUp(userselection);
 		}
 		clicked = !clicked;
+	}
+	
+	public boolean isValid() {
+		return isselectionvalid;
 	}
 	
 	public void mouseMoved(MouseEvent me) {

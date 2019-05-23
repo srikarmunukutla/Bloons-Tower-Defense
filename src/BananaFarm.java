@@ -12,7 +12,7 @@ public class BananaFarm extends Monkey {
 	int bananaOutput, numBananas, secsbeforereload;
 	private final static int CONSTANT = 7800;
 	public BananaFarm(int a, int b) {
-		super(a,b,1000,"Banana_Farm.png",1,1,1,1,1000);
+		super(a, b, 0, "Banana_Farm.png", 1, 1, 1, 1, 1000);
 		bananaOutput = 20;
 		numBananas = 25;
 		secsbeforereload = CONSTANT/numBananas;
