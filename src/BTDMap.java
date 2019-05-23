@@ -276,21 +276,29 @@ public abstract class BTDMap {
 		}
 		else {
 			if(me.getX() >= width) {
-				
+				clicked = !clicked;
+				return;
 			}
 			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
 				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
-					if(grid[r][c].coveredUp()) {
+					if(r < height && c < width && grid[r][c].coveredUp()) {
 						isselectionvalid = false;
 						return;
 					}
 				}
+			}
+			if(!onTheMap(userselection, me.getX(), me.getY())) {
+				return;
 			}
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
 			coverUp(userselection);
 		}
 		clicked = !clicked;
+	}
+	
+	private boolean onTheMap(Monkey m, int x, int y) {
+		return (x + m.width/2 < width) && (x - m.width/2 >= 0) && (y - m.height/2 >= 0) && (y + m.height/2 < height);
 	}
 
 	public boolean isValid() {
@@ -311,7 +319,9 @@ public abstract class BTDMap {
 	protected void coverUp(Monkey m) {
 		for(int r = m.getImgRect().y; r < m.getImgRect().y + m.height; r++) {
 			for(int c = m.getImgRect().x; c < m.getImgRect().x + m.width; c++) {
-				grid[r][c].coverUp();
+				if(r < height && c < width) {
+					grid[r][c].coverUp();
+				}
 			}
 		}
 	}
