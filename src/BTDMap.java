@@ -24,14 +24,14 @@ public abstract class BTDMap {
 	protected int height, width;
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
-	Level level = new Level();
+	private Level level = new Level();
 	public static double origH = 520, origW = 700;
 	protected int SQUARESIZE = 50;
 	protected int health;
 	private int spawnx;
 	private int spawny;
 	private boolean isselectionvalid;
-	
+
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
@@ -48,14 +48,14 @@ public abstract class BTDMap {
 		isselectionvalid = false;
 		startLevel();
 	}
-	
+
 	private BTDMap getMap(){
 		return this;
 	}
-	
+
 	Timer tim;
 	long ticks = 0;
-	
+
 	private void startLevel(){
 		tim = new Timer(1, new ActionListener() {
 			@Override
@@ -71,9 +71,9 @@ public abstract class BTDMap {
 		});
 		tim.start();
 	}
-	
+
 	protected abstract void initializeTrack();
-	
+
 	protected void initializeGrid() {
 		for(int r = 0; r < height; r++) {
 			for(int c = 0; c < width; c++) {
@@ -81,76 +81,76 @@ public abstract class BTDMap {
 			}
 		}
 	}
-	
+
 	public void reduceHealth(Bloon b) {
 		health -= b.liveslost[b.getRank()-1];
 		System.out.println(health);
 	}
-	
+
 	public Monkey getUserSelection() {
 		return userselection;
 	}
-	
+
 	public boolean isClicked() {
 		return clicked;
 	}
-	
+
 	public int getUserX() {
 		return userx;
 	}
-	
+
 	public int getUserY() {
 		return usery;
 	}
-	
+
 	public void addBloon(Bloon b) {
 		gameobjects.add(b);
 	}
-	
+
 	public void removeBloon(int i) {
 		if(gameobjects.get(i) instanceof Bloon) {
 			gameobjects.remove(i);
 		}
 	}
-	
+
 	public void addSpikes(Spikes s) {
 		gameobjects.add(s);
 	}
-	
+
 	public void removeSpikes(int i) {
 		if(gameobjects.get(i) instanceof Spikes) {
 			gameobjects.remove(i);
 		}
 	}
-	
+
 	public void addBanana(Banana b) {
 		gameobjects.add(b);
 	}
-	
+
 	public void removeBanana(int i) {
 		if(gameobjects.get(i) instanceof Banana) {
 			gameobjects.remove(i);
 		}
 	}
-	
+
 	public void addMonkey(Monkey m) {
 		gameobjects.add(m);
 	}
-	
+
 	public void removeMonkey(int i) {
 		if(gameobjects.get(i) instanceof Monkey) {
 			gameobjects.remove(i);
 		}
 	}
-	
+
 	public ArrayList<GameObject> getGameObjectsList() {
 		return gameobjects;
 	}
-	
+
 	public HashMap<Integer, Projectile> getGameProjectilesList() {
 		return gameprojectiles;
 	}
-	
+
 	public ArrayList<Bloon> getBloonsList() {
 		ArrayList<Bloon> bloons = new ArrayList<Bloon>();
 		for(int i = 0; i < gameobjects.size(); i++) {
@@ -160,7 +160,7 @@ public abstract class BTDMap {
 		}
 		return bloons;
 	}
-	
+
 	public ArrayList<Monkey> getMonkeyList() {
 		ArrayList<Monkey> monkeys = new ArrayList<Monkey>();
 		for(int i = 0; i < gameobjects.size(); i++) {
@@ -170,7 +170,7 @@ public abstract class BTDMap {
 		}
 		return monkeys;
 	}
-	
+
 	public ArrayList<Spikes> getSpikesList() {
 		ArrayList<Spikes> spikes = new ArrayList<Spikes>();
 		for(int i = 0; i < gameobjects.size(); i++) {
@@ -180,7 +180,7 @@ public abstract class BTDMap {
 		}
 		return spikes;
 	}
-	
+
 	public ArrayList<Banana> getBananaList() {
 		ArrayList<Banana> bananas = new ArrayList<Banana>();
 		for(int i = 0; i < gameobjects.size(); i++) {
@@ -190,32 +190,32 @@ public abstract class BTDMap {
 		}
 		return bananas;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public double getHratio() {
 		return Hratio;
 	}
-	
+
 	public double getWratio() {
 		return Wratio;
 	}
-	
+
 	public Pixel[][] getGrid() {
 		return grid;
 	}
-	
+
 	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(img, 0, 0, width, height, null);
 		tp.draw(g, this, panel);
 	}
-	
+
 	protected Image getImage(String fn) {
 		Image img = null;
 		fn = PATH_PREFIX + fn;
@@ -226,7 +226,7 @@ public abstract class BTDMap {
 		}
 		return img;
 	}
-	
+
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
 			userselection = (new DartMonkey(me.getX(), me.getY()).getImg();
@@ -242,7 +242,7 @@ public abstract class BTDMap {
 					break;
 				}
 			}
-			
+
 			switch(ind) {
 				case 0:
 					userselection = new DartMonkey(me.getX(), me.getY());
@@ -282,36 +282,37 @@ public abstract class BTDMap {
 			isselectionvalid = true;
 		}
 		else {
-			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
-				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
-					if(grid[r][c].coveredUp()) {
-						isselectionvalid = false;
-						return;
+			if(me.getX() >= )
+				for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
+					for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
+						if(grid[r][c].coveredUp()) {
+							isselectionvalid = false;
+							return;
+						}
 					}
 				}
-			}
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
 			coverUp(userselection);
 		}
 		clicked = !clicked;
 	}
-	
+
 	public boolean isValid() {
 		return isselectionvalid;
 	}
-	
+
 	public void mouseMoved(MouseEvent me) {
 		if (clicked) {
 			userx = me.getX()-userselection.width/2;
 			usery = me.getY()-userselection.height/2;
 		}
 	}
-	
+
 	public Bloon createBloon(int num, int offset) {
 		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
 	}
-	
+
 	protected void coverUp(Monkey m) {
 		for(int r = m.getImgRect().y; r < m.getImgRect().y + m.height; r++) {
 			for(int c = m.getImgRect().x; c < m.getImgRect().x + m.width; c++) {
