@@ -17,7 +17,7 @@ public abstract class BTDMap {
 	protected ArrayList<GameObject> gameobjects;
 	protected HashMap<Integer, Projectile> gameprojectiles;
 	protected Image img = null;
-	protected Image userselection;
+	protected Monkey userselection;
 	protected int userx, usery;
 	protected TowerPanel tp;
 	protected boolean clicked;
@@ -30,6 +30,7 @@ public abstract class BTDMap {
 	protected int health;
 	private int spawnx;
 	private int spawny;
+	private boolean isselectionvalid;
 	
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
@@ -44,18 +45,22 @@ public abstract class BTDMap {
 		health = 200;
 		spawnx = spx;
 		spawny = spy;
+		isselectionvalid = false;
 		startLevel();
 	}
+	
 	private BTDMap getMap(){
 		return this;
 	}
+	
 	Timer tim;
 	long ticks = 0;
+	
 	private void startLevel(){
 		tim = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				level.spawn(gameobjects,getMap(), ticks);
+				level.spawn(gameobjects, getMap(), ticks);
 				ticks++;
 				if (level.getWave() > 20){
 					ticks = 0;
@@ -66,8 +71,8 @@ public abstract class BTDMap {
 		});
 		tim.start();
 	}
+	
 	protected abstract void initializeTrack();
-
 	
 	protected void initializeGrid() {
 		for(int r = 0; r < height; r++) {
@@ -82,7 +87,7 @@ public abstract class BTDMap {
 		System.out.println(health);
 	}
 	
-	public Image getUserSelection() {
+	public Monkey getUserSelection() {
 		return userselection;
 	}
 	
@@ -224,23 +229,97 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
+<<<<<<< HEAD
 			userselection = new DartMonkey(me.getX(), me.getY()).getImg();
 			userx = me.getX() - SQUARESIZE/2;
 			usery = me.getY() - SQUARESIZE/2;
 		}
 		else {
 			gameobjects.add(new DartMonkey(me.getX(),me.getY()));
+=======
+			int ind = -1;
+			for(int i = 0; i < 10; i++) {
+				if(tp.monkeyarr[i].imgrect.contains(me.getX(), me.getY())) {
+					ind = i;
+					break;
+				}
+			}
+			
+			switch(ind) {
+				case 0:
+					userselection = new DartMonkey(me.getX(), me.getY());
+					break;
+				case 1:
+					userselection = new TackShooter(me.getX(), me.getY());
+					break;
+				case 2:
+					userselection = new MonkeyApprentice(me.getX(), me.getY());
+					break;
+				case 3:
+					userselection = new MonkeyAce(me.getX(), me.getY());
+					break;
+				case 4:
+					userselection = new BananaFarm(me.getX(), me.getY());
+					break;
+				case 5:
+					userselection = new SuperMonkey(me.getX(), me.getY());
+					break;
+				case 6:
+					userselection = new NinjaMonkey(me.getX(), me.getY());
+					break;
+				case 7:
+					userselection = new RichardHanson(me.getX(), me.getY());
+					break;
+				case 8:
+					userselection = new GlueGunner(me.getX(), me.getY());
+					break;
+				case 9:
+					userselection = new SniperMonkey(me.getX(), me.getY());
+					break;
+				default:
+					return;
+			}
+			userx = me.getX() - userselection.width/2;
+			usery = me.getY() - userselection.height/2;
+			isselectionvalid = true;
+		}
+		else {
+			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
+				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
+					if(grid[r][c].coveredUp()) {
+						isselectionvalid = false;
+						return;
+					}
+				}
+			}
+			userselection.setLoc(me.getX(), me.getY());
+			gameobjects.add(userselection);
+			coverUp(userselection);
+>>>>>>> f65744a21e1bb3f99d844f3f83ada52e6adeeef0
 		}
 		clicked = !clicked;
 	}
 	
-	public void mouseMoved(MouseEvent me){
+	public boolean isValid() {
+		return isselectionvalid;
+	}
+	
+	public void mouseMoved(MouseEvent me) {
 		if (clicked) {
-			userx = me.getX()-SQUARESIZE/2;
-			usery = me.getY()-SQUARESIZE/2;
+			userx = me.getX()-userselection.width/2;
+			usery = me.getY()-userselection.height/2;
 		}
 	}
-	public Bloon createBloon(int num, int offset){
+	
+	public Bloon createBloon(int num, int offset) {
 		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
+	}
+	
+	protected void coverUp(Monkey m) {
+		for(int r = m.getImgRect().y; r < m.getImgRect().y + m.height; r++) {
+			for(int c = m.getImgRect().x; c < m.getImgRect().x + m.width; c++) {
+				grid[r][c].coverUp();
+			}
+		}
 	}
 }

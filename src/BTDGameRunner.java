@@ -12,7 +12,6 @@ public class BTDGameRunner {
 	private int panelwidth = 910;
 	private JPanel panel;
 	private JFrame frame = new JFrame("Bloons Tower Defense");
-	private static final String PATH_PREFIX = "images/";
 	private BTDMap m1;
 	Integer money = 650;
 	private final int SQUARESIZE = 50;
@@ -32,19 +31,29 @@ public class BTDGameRunner {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				m1.draw(g, panel);
-				if (m1.isClicked()){
-					g.drawImage(m1.getUserSelection(),m1.getUserX(),m1.getUserY(),SQUARESIZE,SQUARESIZE,null);
-				}
 				for (GameObject go : m1.getGameObjectsList()){
-					go.draw(g,this);
+					go.draw(g, this);
 				}
 				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
 					((Projectile)pair.getValue()).draw(g,this);
 				}
+				if (m1.isClicked()){
+					m1.getUserSelection().fillRangeRect(g, m1.isValid());
+					if(m1.isValid()) {
+						g.setColor(new Color(211, 211, 211, 100));
+					}
+					else {
+						g.setColor(Color.RED);
+					}
+					g.fillRect(m1.getUserSelection().rangerect.x, m1.getUserSelection().rangerect.y, m1.getUserSelection().rangerect.width, m1.getUserSelection().rangerect.height);
+					g.drawImage(m1.getUserSelection().getImg(), m1.getUserX(), m1.getUserY(), m1.getUserSelection().width, m1.getUserSelection().height, null);
+
+				}
 			}
 		};
+		
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent me) {
@@ -52,12 +61,14 @@ public class BTDGameRunner {
 				panel.repaint();
 			}
 		});
+		
 		panel.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseMoved(MouseEvent me){
 				m1.mouseMoved(me);
 				panel.repaint();
 			}
 		});
+		
 		panel.setBackground(Color.WHITE);
 
 		panel.setPreferredSize(new Dimension(panelwidth + TowerPanel.truewidth, panelheight));
@@ -87,17 +98,4 @@ public class BTDGameRunner {
 		monkey.start();
 
 	}
-
-	protected Image getImage(String fn) {
-		Image img = null;
-		fn = PATH_PREFIX+fn;
-		try {
-			img = ImageIO.read(this.getClass().getResource(fn));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return img;
-	}
-
 }
