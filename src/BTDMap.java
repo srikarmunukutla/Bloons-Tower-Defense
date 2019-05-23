@@ -275,15 +275,6 @@ public abstract class BTDMap {
 			isselectionvalid = true;
 		}
 		else {
-<<<<<<< HEAD
-			if(me.getX() >= )
-				for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
-					for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
-						if(grid[r][c].coveredUp()) {
-							isselectionvalid = false;
-							return;
-						}
-=======
 			if(me.getX() >= width) {
 				
 			}
@@ -292,9 +283,9 @@ public abstract class BTDMap {
 					if(grid[r][c].coveredUp()) {
 						isselectionvalid = false;
 						return;
->>>>>>> b8f9978b7a802bf97e7d6b5984016e281b1b28ad
 					}
 				}
+			}
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
 			coverUp(userselection);
