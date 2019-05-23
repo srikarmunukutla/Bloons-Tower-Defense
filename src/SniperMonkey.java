@@ -6,7 +6,11 @@ import javax.swing.JPanel;
 public class SniperMonkey extends Monkey {
 	public SniperMonkey(int a, int b) {
 		super(a,b,200,"Sniper_Monkey.png",1,2,300,1,350);
+		width = 50;
+		height = 84;
+		setImgRect();
 	}
+	
 	@Override
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         //If no bloons, no code to run

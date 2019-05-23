@@ -8,15 +8,21 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 public class MonkeyAce extends Monkey {
-	int radius = 200, width = 100, height = 100, platwidth = 100, platheight = 50;
-	double angle = 0, omega = 10, x, y;
-	Image img;
-    private final static String PATH_PREFIX = "images/";
+	private int radius, platwidth, platheight;
+	private double angle = 0, omega = 10, x, y;
+	private Image platform;
+    
 	public MonkeyAce(int a, int b) {
-		super(a,b,100,"Monkey_Ace.png",8,1,200,1,900);
+		super(a,b,100,"Plane.png",8,1,200,1,900);
 		x = a+radius;
 		y = b;
-		img = getImage(PATH_PREFIX + "Plane.png");
+		platform = getImage("Monkey_Ace.png");
+		width = 50;
+		height = 50;
+		platheight = 50;
+		platwidth = 100;
+		radius = 200;
+		setImgRect();
 	}
 	
 	@Override
@@ -38,9 +44,10 @@ public class MonkeyAce extends Monkey {
         	int BIGINT = 3780;
         	double a = x+BIGINT*Math.cos(i*Math.PI/4+angle);
             double b = y-BIGINT*Math.sin(i*Math.PI/4+angle);
-            gameprojectile.get(random).launch((int) a,(int) b, panel,gameprojectile,random, this.getDamage(), al, pierce, r);
+            gameprojectile.get(random).launch((int) a,(int) b, panel, gameprojectile, random, this.getDamage(), al, pierce, rangerect);
         }
     }
+	
     @Override
     public Projectile getProj(){
         return new Dart((int) x, (int) y);
@@ -50,12 +57,9 @@ public class MonkeyAce extends Monkey {
     	Graphics2D g2 = (Graphics2D) g.create();// get a copy
         g2.translate(x, y);// translate this card's (x,y)
         g2.rotate(Math.toRadians(angle));// rotate around this card
-        if(tp) {
-        	g2.drawImage(getImg(), getX()-SQUARESIZE/2, getY()-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);
-        }
-        else {
-        	g2.drawImage(img, -width/2, -height/2, width, height, panel);
-        	g2.drawImage(getImg(), getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
+        g2.drawImage(getImg(), -width/2, -height/2, width, height, null);
+        if(!tp) {
+        	g2.drawImage(platform, getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
         }
         g2.dispose();
     }

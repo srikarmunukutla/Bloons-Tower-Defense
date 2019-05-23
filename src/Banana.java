@@ -7,11 +7,11 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Banana implements GameObject{
+public class Banana implements GameObject {
 	int money, radius = 20, width = 39, height = 35;
 	double angle, distance, x, y, srcx, srcy, time = 0;
     private final static String PATH_PREFIX = "images/";
-	Image img = getImage(PATH_PREFIX + "Banana.png");
+	Image img;
 	public Banana(int value, double angle, double distance, int a, int b, int c, int d) {
 		money = value;
 		this.angle = angle;
@@ -20,10 +20,12 @@ public class Banana implements GameObject{
 		y = b;
 		srcx = c;
 		srcy = d;
+		img = getImage("Banana.png");
 	}
 	
     protected Image getImage(String fn) {
         Image img = null;
+        fn = PATH_PREFIX + fn;
         try {
             img = ImageIO.read(this.getClass().getResource(fn));
         } catch (IOException e) {
@@ -44,7 +46,7 @@ public class Banana implements GameObject{
     	y = b;
     }
     private double getDistance(){
-		return Math.sqrt(Math.pow(srcx-x,2)+Math.pow(srcy-y,2));
+		return Math.sqrt(Math.pow(srcx-x,2) + Math.pow(srcy-y,2));
 	}
     public void draw(Graphics g, JPanel panel) {
     	g.drawImage(img, (int) (x-width/2), (int) (y-height/2), width, height, null);

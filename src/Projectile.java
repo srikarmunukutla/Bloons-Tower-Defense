@@ -19,11 +19,13 @@ public abstract class Projectile {
     boolean finish;
     private final int PROJSPEED = 20;
     private int ticks;
+    private final static String PATH_PREFIX = "images/";
+    
     public Projectile(int a, int b, String str) {
         x = a;
         y = b;
         r = new Rectangle(x, y, WIDTH, HEIGHT);
-        img = getImage(PATH_PREFIX + str);
+        img = getImage(str);
         finish =false;
         ticks = 0;
     }
@@ -58,12 +60,10 @@ public abstract class Projectile {
         y = b;
     }
 
-    private final static String PATH_PREFIX = "images/";
-
     protected Image getImage(String fn) {
         Image img = null;
+        fn = PATH_PREFIX + fn;
         try {
-
             img = ImageIO.read(this.getClass().getResource(fn));
 
         } catch (IOException e) {

@@ -1,4 +1,3 @@
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +9,9 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public abstract class Monkey implements GameObject{
-    Rectangle r;
-    private int x;
-    private int y;
-    protected final int SQUARESIZE = 50;
+    protected Rectangle rangerect, imgrect;
+    private int x, y;
+    protected int width, height;
     private Image img;
     private int range;
     private double angle = 0;
@@ -23,18 +21,39 @@ public abstract class Monkey implements GameObject{
     int pierce;
     int secsbefreload = 0;
     private int cost;
+    private final static String PATH_PREFIX = "images/";
+    
     public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload, int p, int co){
         x = a;
         y = b;
-        img = getImage(PATH_PREFIX + str);
+        img = getImage(str);
         range = ra;
-        r = new Rectangle(a-range,b-range,range*2,range*2);
+        rangerect = new Rectangle(x-range, y-range, range*2, range*2);
         numtarget = target;
         damage = dmg;
         reloadrate = reload;
         pierce = p;
         cost = co;
     }
+    
+    protected void setRangeRect() {
+    	rangerect = new Rectangle(x-range, y-range, range*2, range*2);
+    }
+    
+    protected void drawRangeRect(Graphics g, boolean isValid) {
+    	if(isValid) {
+    		g.setColor(Color.LIGHT_GRAY);
+    	}
+    	else {
+    		g.setColor(Color.RED);
+    	}
+    	g.drawRect(rangerect.x, rangerect.y, range*2, range*2);
+    }
+    
+    protected void setImgRect() {
+    	imgrect = new Rectangle(x-(width/2), y-(height/2), width, height);
+    }
+    
     public void draw(Graphics g, JPanel panel){
 //    	g.drawImage(img, x, y, SQUARESIZE, SQUARESIZE, null);
 //        Graphics2D g2d = (Graphics2D) g.create();
@@ -47,13 +66,21 @@ public abstract class Monkey implements GameObject{
         Graphics2D g2 = (Graphics2D) g.create();// get a copy
         g2.translate(x, y);// translate this card's (x,y)
         g2.rotate(Math.toRadians(angle));// rotate around this card
-        g2.drawImage(img, -SQUARESIZE/2,-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);// draw my image on the rotated Graphics
+        g2.drawImage(img, -width/2, -height/2, width, height, null);// draw my image on the rotated Graphics
         g2.dispose();// dispose so the other cards are not affected.
+    }
+    
+    public void setLoc(int x, int y) {
+    	this.x = x;
+    	this.y = y;
+    	setRangeRect();
+    	setImgRect();
     }
 
     public int getCost(){
         return cost;
     }
+    
     public ArrayList<Bloon> getBloons(ArrayList<GameObject> al){
         ArrayList<Bloon> ret = new ArrayList<Bloon>();
         for(int i = 0; i < al.size(); i++){
@@ -63,6 +90,7 @@ public abstract class Monkey implements GameObject{
         }
         return ret;
     }
+    
     public ArrayList<Spikes> getSpikes(ArrayList<GameObject> al){
         ArrayList<Spikes> ret = new ArrayList<Spikes>();
         for(int i = 0; i < al.size(); i++){
@@ -73,17 +101,22 @@ public abstract class Monkey implements GameObject{
         return ret;
     }
 
-    public Rectangle getRect(){
-        return r;
+    public Rectangle getRangeRect(){
+        return rangerect;
     }
+    
+    public Rectangle getImgRect() {
+    	return imgrect;
+    }
+    
     public void setAngle(double deg){
         angle = deg;
     }
-    private final static String PATH_PREFIX = "images/";
+    
     protected Image getImage(String fn) {
         Image img = null;
+        fn = PATH_PREFIX + fn;
         try {
-
             img = ImageIO.read(this.getClass().getResource(fn));
 
         } catch (IOException e) {
@@ -91,18 +124,23 @@ public abstract class Monkey implements GameObject{
         }
         return img;
     }
+    
     public int getX(){
         return x;
     }
+    
     public int getY(){
         return y;
     }
+    
     public int getReloadRate(){
         return reloadrate;
     }
+    
     public int getDamage(){
         return damage;
     }
+    
     public PriorityQueue<Bloon> getTargets(ArrayList<Bloon> al){
         PriorityQueue<Bloon> pq = new PriorityQueue<>(new Comparator<Bloon>() {
             @Override
@@ -119,9 +157,11 @@ public abstract class Monkey implements GameObject{
         pq.addAll(al);
         return pq;
     }
+    
     public Projectile getProj(){
         return null;
     }
+    
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
         //If no balloons, no code to run
         ArrayList<Bloon> bloonal = getBloons(al);
@@ -139,7 +179,7 @@ public abstract class Monkey implements GameObject{
                 break;
             }
             Bloon b = pq.remove();
-            if (!b.getRect().intersects(r)){
+            if (!b.getRect().intersects(rangerect)){
                 i--;
                 continue;
             }
@@ -154,14 +194,15 @@ public abstract class Monkey implements GameObject{
             Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectile.put(random, pr);
-            gameprojectile.get(random).launch((int)b.getX(),(int)b.getY(), panel,gameprojectile,random,damage,al,pierce,r);
+            gameprojectile.get(random).launch((int)b.getX(), (int)b.getY(), panel, gameprojectile, random, damage, al, pierce, rangerect);
         }
     }
+    
     public void clickedAt(){
 
     }
+    
     public Image getImg(){
         return img;
     }
-
 }

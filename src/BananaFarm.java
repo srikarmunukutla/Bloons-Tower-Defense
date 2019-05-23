@@ -9,39 +9,17 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class BananaFarm extends Monkey {
-	int bananaOutput, numBananas, x, y, secsbeforereload;
-    private final static String PATH_PREFIX = "images/";
-    String str = PATH_PREFIX + "Banana_Farm.png";
-	Image img = getImage(str);
-	Rectangle rect;
+	int bananaOutput, numBananas, secsbeforereload;
 	private final static int CONSTANT = 7800;
 	public BananaFarm(int a, int b) {
 		super(a,b,1000,"Banana_Farm.png",1,1,1,1,1000);
 		bananaOutput = 20;
 		numBananas = 25;
-		x = a;
-		y = b;
 		secsbeforereload = CONSTANT/numBananas;
-		rect = new Rectangle(a-SQUARESIZE/2, b-SQUARESIZE/2, SQUARESIZE, SQUARESIZE);
+		width = 50;
+		height = 50;
+		setImgRect();
 	}
-	
-    protected Image getImage(String fn) {
-        Image img = null;
-        try {
-            img = ImageIO.read(this.getClass().getResource(fn));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return img;
-    }
-    
-    public int getX() {
-    	return x;
-    }
-    
-    public int getY() {
-    	return y;
-    }
     
     public int getBananaValue() {
     	return bananaOutput;
@@ -50,17 +28,6 @@ public class BananaFarm extends Monkey {
     public int getNumBananas() {
     	return numBananas;
     }
-    
-    public void clickedAt() {
-    	
-    }
-    
-    public Rectangle getRect() {
-    	return rect;
-    }
-	public Image getImg(){
-		return img;
-	}
 
 	public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
     	if (secsbeforereload > 0) {
@@ -69,7 +36,7 @@ public class BananaFarm extends Monkey {
     	}
     	double randomAngle = 360 * Math.random();
     	double random = (int) 200 * Math.random();
-    	Banana b = new Banana(bananaOutput, randomAngle, random, x, y,x,y);
+    	Banana b = new Banana(bananaOutput, randomAngle, random, getX(), getY(), getX(), getY());
     	secsbeforereload = CONSTANT/numBananas;
     	al.add(b);
     }
