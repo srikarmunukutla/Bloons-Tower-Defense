@@ -55,7 +55,6 @@ public abstract class BTDMap {
 
 	Timer tim;
 	long ticks = 0;
-
 	private void startLevel(){
 		tim = new Timer(1, new ActionListener() {
 			@Override
@@ -229,12 +228,6 @@ public abstract class BTDMap {
 
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
-			userselection = (new DartMonkey(me.getX(), me.getY()).getImg();
-			userx = me.getX() - SQUARESIZE/2;
-			usery = me.getY() - SQUARESIZE/2;
-		}
-		else {
-			gameobjects.add(new DartMonkey(me.getX(),me.getY()));
 			int ind = -1;
 			for(int i = 0; i < 10; i++) {
 				if(tp.monkeyarr[i].imgrect.contains(me.getX(), me.getY())) {
@@ -282,6 +275,7 @@ public abstract class BTDMap {
 			isselectionvalid = true;
 		}
 		else {
+<<<<<<< HEAD
 			if(me.getX() >= )
 				for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
 					for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
@@ -289,6 +283,16 @@ public abstract class BTDMap {
 							isselectionvalid = false;
 							return;
 						}
+=======
+			if(me.getX() >= width) {
+				
+			}
+			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
+				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
+					if(grid[r][c].coveredUp()) {
+						isselectionvalid = false;
+						return;
+>>>>>>> b8f9978b7a802bf97e7d6b5984016e281b1b28ad
 					}
 				}
 			userselection.setLoc(me.getX(), me.getY());
