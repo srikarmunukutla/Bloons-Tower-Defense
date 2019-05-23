@@ -51,7 +51,7 @@ public class MonkeyAce extends Monkey {
         g2.translate(x, y);// translate this card's (x,y)
         g2.rotate(Math.toRadians(angle));// rotate around this card
         if(tp) {
-        	g2.drawImage(img, -SQUARESIZE/2,-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);
+        	g2.drawImage(getImg(), getX()-SQUARESIZE/2, getY()-SQUARESIZE/2, SQUARESIZE,SQUARESIZE,null);
         }
         else {
         	g2.drawImage(img, -width/2, -height/2, width, height, panel);

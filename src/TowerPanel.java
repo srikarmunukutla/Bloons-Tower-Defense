@@ -30,7 +30,12 @@ public class TowerPanel {
 //		monkeyarr[0].draw(g, panel);
 //		System.out.println(monkeyarr[0].getX() + " " + monkeyarr[0].getY());
 		for(Monkey monkey: monkeyarr) {
-			monkey.draw(g, panel);
+			if(monkey instanceof MonkeyAce) {
+				((MonkeyAce) monkey).draw(g, panel, true);
+			}
+			else {
+				monkey.draw(g, panel);
+			}
 		}
 	}
 	
