@@ -24,7 +24,7 @@ public abstract class BTDMap {
 	protected int height, width;
 	protected double Hratio, Wratio;
 	private String PATH_PREFIX = "images/";
-	Level level = new Level();
+	private Level level = new Level();
 	public static double origH = 520, origW = 700;
 	protected int SQUARESIZE = 50;
 	protected int health;
@@ -276,6 +276,7 @@ public abstract class BTDMap {
 			isselectionvalid = true;
 		}
 		else {
+			if(me.getX() >= )
 			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
 				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
 					if(grid[r][c].coveredUp()) {

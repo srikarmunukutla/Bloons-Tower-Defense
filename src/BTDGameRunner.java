@@ -41,15 +41,7 @@ public class BTDGameRunner {
 				}
 				if (m1.isClicked()){
 					m1.getUserSelection().fillRangeRect(g, m1.isValid());
-					if(m1.isValid()) {
-						g.setColor(new Color(211, 211, 211, 100));
-					}
-					else {
-						g.setColor(Color.RED);
-					}
-					g.fillRect(m1.getUserSelection().rangerect.x, m1.getUserSelection().rangerect.y, m1.getUserSelection().rangerect.width, m1.getUserSelection().rangerect.height);
 					g.drawImage(m1.getUserSelection().getImg(), m1.getUserX(), m1.getUserY(), m1.getUserSelection().width, m1.getUserSelection().height, null);
-
 				}
 			}
 		};
