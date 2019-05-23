@@ -229,6 +229,12 @@ public abstract class BTDMap {
 	
 	public void clickedAt(MouseEvent me) {
 		if(!clicked) {
+			userselection = (new DartMonkey(me.getX(), me.getY()).getImg();
+			userx = me.getX() - SQUARESIZE/2;
+			usery = me.getY() - SQUARESIZE/2;
+		}
+		else {
+			gameobjects.add(new DartMonkey(me.getX(),me.getY()));
 			int ind = -1;
 			for(int i = 0; i < 10; i++) {
 				if(tp.monkeyarr[i].imgrect.contains(me.getX(), me.getY())) {
