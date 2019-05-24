@@ -12,8 +12,8 @@ public abstract class Projectile {
     Rectangle r;
     private int x;
     private int y;
-    private final int HEIGHT = 20;
-    private final int WIDTH = 45;
+    private final int HEIGHT = 38;
+    private final int WIDTH = 15;
     private Image img;
     private double angle = 40;
     boolean finish;
