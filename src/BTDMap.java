@@ -247,7 +247,7 @@ public abstract class BTDMap {
 					userselection = new MonkeyApprentice(me.getX(), me.getY());
 					break;
 				case 3:
-					userselection = new MonkeyAce(me.getX(), me.getY());
+					userselection = new MonkeyAce(me.getX(), me.getY(), false);
 					break;
 				case 4:
 					userselection = new BananaFarm(me.getX(), me.getY());
