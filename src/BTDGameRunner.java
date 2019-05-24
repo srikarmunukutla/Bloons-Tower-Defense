@@ -30,7 +30,7 @@ public class BTDGameRunner {
 				super.paintComponent(g);
 				m1.draw(g, panel);
 				for (GameObject go : m1.getGameObjectsList()) {
-					if(go instanceof Monkey && ((Monkey) go).isclicked && ((Monkey) go).hasRange()) {
+					if(go instanceof Monkey && ((Monkey) go).isclicked && ((Monkey) go).hasRange() && !m1.clicked) {
 						g.setColor(new Color(0, 255, 0, 100));
 						g.fillRect(((Monkey) go).rangerect.x, ((Monkey) go).rangerect.y, ((Monkey) go).rangerect.width, ((Monkey) go).rangerect.height);
 					}
