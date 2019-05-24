@@ -4,6 +4,7 @@ public class MonkeyApprentice extends Monkey {
         super(a,b,200,"Monkey_Apprentice.png",1,2,300,2,550);
         width = 50;
         height = 50;
+        hasrange = true;
         setImgRect();
     }
     

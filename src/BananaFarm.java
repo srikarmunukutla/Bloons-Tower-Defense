@@ -18,6 +18,7 @@ public class BananaFarm extends Monkey {
 		secsbeforereload = CONSTANT/numBananas;
 		width = 50;
 		height = 50;
+		hasrange = false;
 		setImgRect();
 	}
     

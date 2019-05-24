@@ -29,7 +29,11 @@ public class BTDGameRunner {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				m1.draw(g, panel);
-				for (GameObject go : m1.getGameObjectsList()){
+				for (GameObject go : m1.getGameObjectsList()) {
+					if(go instanceof Monkey && ((Monkey) go).isclicked && ((Monkey) go).hasRange() && !m1.clicked) {
+						g.setColor(new Color(0, 255, 0, 100));
+						g.fillRect(((Monkey) go).rangerect.x, ((Monkey) go).rangerect.y, ((Monkey) go).rangerect.width, ((Monkey) go).rangerect.height);
+					}
 					go.draw(g, this);
 				}
 				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
@@ -37,8 +41,17 @@ public class BTDGameRunner {
 					Map.Entry pair = (Map.Entry)it.next();
 					((Projectile)pair.getValue()).draw(g,this);
 				}
-				if (m1.isClicked()){
-					m1.getUserSelection().fillRangeRect(g, m1.isValid());
+				if (m1.isClicked()) {
+//					m1.getUserSelection().fillRangeRect(g, m1.isValid());
+					if(m1.isValid()) {
+			    		g.setColor(new Color(0, 255, 0, 100));
+			    	}
+			    	else {
+			    		g.setColor(new Color(255, 0, 0, 100));
+			    	}
+					if(m1.getUserSelection().hasRange()) {
+						g.fillRect((int) m1.getUserSelection().getRangeRect().getX(), (int) m1.getUserSelection().getRangeRect().getY(), (int) m1.getUserSelection().getRangeRect().getWidth(), (int) m1.getUserSelection().getRangeRect().getHeight());
+					}
 					g.drawImage(m1.getUserSelection().getImg(), m1.getUserX(), m1.getUserY(), m1.getUserSelection().width, m1.getUserSelection().height, null);
 				}
 			}
@@ -47,6 +60,14 @@ public class BTDGameRunner {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent me) {
+				for(GameObject go: m1.getGameObjectsList()) {
+					if(go instanceof Monkey && ((Monkey) go).getImgRect().contains(me.getX(), me.getY())) {
+						((Monkey) go).setClicked();
+					}
+					else if(go instanceof Monkey && ((Monkey) go).isclicked) {
+						((Monkey) go).setClicked();
+					}
+				}
 				m1.clickedAt(me);
 				panel.repaint();
 			}

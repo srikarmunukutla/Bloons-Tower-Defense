@@ -9,6 +9,7 @@ public class TackShooter extends Monkey{
 		super(a,b,150,"Tack_Shooter.png",8,1,250,1,360);
 		width = 50;
 		height = 50;
+		hasrange = true;
 		setImgRect();
 	}
 	

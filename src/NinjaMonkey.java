@@ -4,6 +4,7 @@ public class NinjaMonkey extends Monkey {
 		super(a,b,200,"Ninja_Monkey.png",1,1,50,4,500);
 		width = 50;
 		height = 57;
+		hasrange = true;
 		setImgRect();
 	}
 	

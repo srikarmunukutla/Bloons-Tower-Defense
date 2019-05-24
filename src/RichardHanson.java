@@ -4,6 +4,7 @@ public class RichardHanson extends Monkey {
 		super(a,b,200,"Hanson.png",1,1,100,32,1337);
 		width = 50;
 		height = 62;
+		hasrange = true;
 		setImgRect();
 	}
 	
