@@ -42,10 +42,10 @@ public abstract class Monkey implements GameObject{
     
     protected void fillRangeRect(Graphics g, boolean isValid) {
     	if(isValid) {
-    		g.setColor(Color.LIGHT_GRAY);
+    		g.setColor(new Color(0, 250, 0, 100));
     	}
     	else {
-    		g.setColor(Color.RED);
+    		g.setColor(new Color(255, 0, 0, 100));
     	}
     	g.fillRect(rangerect.x, rangerect.y, range*2, range*2);
     }
