@@ -37,7 +37,7 @@ public class Banana implements GameObject {
         return img;
     }
     private void moveRect(int aa, int bb) {
-    	r.translate(aa-r.x, bb-r.y);
+    	r.translate(aa-width/2-r.x, bb-height/2-r.y);
     }
     
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
