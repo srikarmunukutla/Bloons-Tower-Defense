@@ -11,14 +11,22 @@ import javax.swing.*;
 public class BananaFarm extends Monkey {
 	int bananaOutput, numBananas, secsbeforereload;
 	private final static int CONSTANT = 7800;
-	public BananaFarm(int a, int b) {
+	private boolean ontowerpanel;
+	public BananaFarm(int a, int b, boolean tp) {
 		super(a, b, 0, "Banana_Farm.png", 1, 1, 1, 1, 1000);
 		bananaOutput = 20;
 		numBananas = 25;
 		secsbeforereload = CONSTANT/numBananas;
-		width = 50;
-		height = 50;
 		hasrange = false;
+		ontowerpanel = tp;
+		if(ontowerpanel) {
+			width = 50;
+			height = 50;
+		}
+		else {
+			width = 75;
+			height = 75;
+		}
 		setImgRect();
 	}
     
