@@ -38,7 +38,14 @@ public class BTDGameRunner {
 					((Projectile)pair.getValue()).draw(g,this);
 				}
 				if (m1.isClicked()){
-					m1.getUserSelection().fillRangeRect(g, m1.isValid());
+//					m1.getUserSelection().fillRangeRect(g, m1.isValid());
+					if(m1.isValid()) {
+			    		g.setColor(new Color(0, 255, 0, 100));
+			    	}
+			    	else {
+			    		g.setColor(new Color(255, 0, 0, 100));
+			    	}
+			    	g.fillRect((int) m1.getUserSelection().getRangeRect().getX(), (int) m1.getUserSelection().getRangeRect().getY(), (int) m1.getUserSelection().getRangeRect().getWidth(), (int) m1.getUserSelection().getRangeRect().getHeight());
 					g.drawImage(m1.getUserSelection().getImg(), m1.getUserX(), m1.getUserY(), m1.getUserSelection().width, m1.getUserSelection().height, null);
 				}
 			}

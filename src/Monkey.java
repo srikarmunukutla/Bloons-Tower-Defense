@@ -36,7 +36,7 @@ public abstract class Monkey implements GameObject{
         cost = co;
     }
     
-    protected void setRangeRect() {
+    protected void setRangeRect(int x, int y) {
     	rangerect = new Rectangle(x-range, y-range, range*2, range*2);
     }
     
@@ -73,7 +73,7 @@ public abstract class Monkey implements GameObject{
     public void setLoc(int x, int y) {
     	this.x = x;
     	this.y = y;
-    	setRangeRect();
+    	setRangeRect(x, y);
     	setImgRect();
     }
 

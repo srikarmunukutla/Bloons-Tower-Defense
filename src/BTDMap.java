@@ -279,22 +279,31 @@ public abstract class BTDMap {
 				clicked = !clicked;
 				return;
 			}
-			for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
-				for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
-					if(r < height && c < width && grid[r][c].coveredUp()) {
-						isselectionvalid = false;
-						return;
-					}
-				}
-			}
-			if(!onTheMap(userselection, me.getX(), me.getY())) {
+			if(!isPlacementValid(me)) {
 				return;
 			}
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
 			coverUp(userselection);
+			userselection = null;
 		}
 		clicked = !clicked;
+	}
+	
+	private boolean isPlacementValid(MouseEvent me) {
+		if(!onTheMap(userselection, me.getX(), me.getY())) {
+			isselectionvalid = false;
+			return false;
+		}
+		for(int r = getUserY(); r < getUserY() + userselection.height; r++) {
+			for(int c = getUserX(); c < getUserX() + userselection.width; c++) {
+				if(r < height && c < width && grid[r][c].coveredUp()) {
+					isselectionvalid = false;
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	private boolean onTheMap(Monkey m, int x, int y) {
@@ -309,6 +318,8 @@ public abstract class BTDMap {
 		if (clicked) {
 			userx = me.getX()-userselection.width/2;
 			usery = me.getY()-userselection.height/2;
+			userselection.setRangeRect(me.getX(), me.getY());
+			isselectionvalid = isPlacementValid(me);
 		}
 	}
 
