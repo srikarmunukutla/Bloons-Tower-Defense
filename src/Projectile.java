@@ -12,19 +12,21 @@ public abstract class Projectile {
     Rectangle r;
     private int x;
     private int y;
-    private final int HEIGHT = 38;
-    private final int WIDTH = 15;
+    private int height;
+    private int width;
     private Image img;
     private double angle = 40;
     boolean finish;
-    private final int PROJSPEED = 20;
+    private final int PROJSPEED = 1;
     private int ticks;
     private final static String PATH_PREFIX = "images/";
     
-    public Projectile(int a, int b, String str) {
+    public Projectile(int a, int b, String str, int w, int h) {
         x = a;
         y = b;
-        r = new Rectangle(x, y, WIDTH, HEIGHT);
+        width = w;
+        height = h;
+        r = new Rectangle(x, y, width, height);
         img = getImage(str);
         finish =false;
         ticks = 0;
@@ -41,7 +43,7 @@ public abstract class Projectile {
         Graphics2D g2 = (Graphics2D) g.create();// get a copy
         g2.translate(x, y);// translate this card's (x,y)
         g2.rotate(Math.toRadians(angle));// rotate around this card
-        g2.drawImage(img, 0,0, WIDTH,HEIGHT,null);// draw my image on the rotated Graphics
+        g2.drawImage(img, 0, 0, width, height, null);// draw my image on the rotated Graphics
         g2.dispose();// dispose so the other cards are not affected.
     }
 
