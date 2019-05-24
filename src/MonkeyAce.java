@@ -11,8 +11,9 @@ public class MonkeyAce extends Monkey {
 	private int radius, platwidth, platheight;
 	private double angle = 0, omega = 10, x, y;
 	private Image platform;
-    
-	public MonkeyAce(int a, int b) {
+	private boolean ontowerpanel;
+	
+	public MonkeyAce(int a, int b, boolean tp) {
 		super(a,b,100,"Plane.png",8,1,200,1,900);
 		x = a+radius;
 		y = b;
@@ -23,6 +24,7 @@ public class MonkeyAce extends Monkey {
 		platwidth = 100;
 		radius = 200;
 		setImgRect();
+		ontowerpanel = tp;
 	}
 	
 	@Override
@@ -30,8 +32,8 @@ public class MonkeyAce extends Monkey {
 		//runs regardless if there are bloons
 		angle += omega * time;
 		setAngle(angle);
-		x = getX()+radius*Math.cos(angle*Math.PI/180);
-		y = getY()-radius*Math.sin(angle*Math.PI/180);
+		x = getX()-radius*Math.cos(Math.toRadians(angle));
+		y = getY()+radius*Math.sin(Math.toRadians(angle));
         if (secsbefreload > 0){
             secsbefreload--;
             return;
@@ -53,14 +55,14 @@ public class MonkeyAce extends Monkey {
         return new Dart((int) x, (int) y);
     }
     
-    public void draw(Graphics g, JPanel panel, boolean tp) {
+    public void draw(Graphics g, JPanel panel) {
+    	if(!ontowerpanel) {
+        	g.drawImage(platform, getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
+        }
     	Graphics2D g2 = (Graphics2D) g.create();// get a copy
         g2.translate(x, y);// translate this card's (x,y)
         g2.rotate(Math.toRadians(angle));// rotate around this card
         g2.drawImage(getImg(), -width/2, -height/2, width, height, null);
-        if(!tp) {
-        	g2.drawImage(platform, getX()-platwidth/2, getY()-platheight/2, platwidth, platheight, null);
-        }
         g2.dispose();
     }
 }

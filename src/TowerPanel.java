@@ -35,12 +35,7 @@ public class TowerPanel {
 		g.drawLine(m.getWidth(), 535, m.getWidth() + width, 535);
 		g.drawLine(m.getWidth(), 625, m.getWidth() + width, 625);
 		for(Monkey monkey: monkeyarr) {
-			if(monkey instanceof MonkeyAce) {
-				((MonkeyAce) monkey).draw(g, panel, true);
-			}
-			else {
-				monkey.draw(g, panel);
-			}
+			monkey.draw(g, panel);
 		}
 	}
 	
@@ -48,7 +43,7 @@ public class TowerPanel {
 		monkeyarr[0] = new DartMonkey(m.getWidth() + 30, 220);
 		monkeyarr[1] = new TackShooter(m.getWidth() + 90, 220);
 		monkeyarr[2] = new MonkeyApprentice(m.getWidth() + 30, 310);
-		monkeyarr[3] = new MonkeyAce(m.getWidth() + 90, 310);
+		monkeyarr[3] = new MonkeyAce(m.getWidth() + 90, 310, true);
 		monkeyarr[4] = new BananaFarm(m.getWidth() + 30, 400);
 		monkeyarr[5] = new SuperMonkey(m.getWidth() + 90, 400);
 		monkeyarr[6] = new NinjaMonkey(m.getWidth() + 30, 490);
