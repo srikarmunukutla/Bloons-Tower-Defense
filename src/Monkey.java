@@ -216,4 +216,8 @@ public abstract class Monkey implements GameObject{
     public Image getImg(){
         return img;
     }
+    
+	public void addMoney(BTDMap m) {
+		
+	}
 }

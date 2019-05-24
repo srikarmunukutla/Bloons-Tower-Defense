@@ -253,5 +253,9 @@ public class Bloon implements GameObject{
     public void clickedAt(){
 
     }
+    
+	public void addMoney(BTDMap m) {
+		
+	}
 
 }

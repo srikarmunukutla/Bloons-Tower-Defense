@@ -12,4 +12,5 @@ public class SuperMonkey extends Monkey {
     public Projectile getProj(){
         return new Dart(this.getX(),this.getY());
     }
+    
 }

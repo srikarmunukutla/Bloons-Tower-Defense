@@ -12,4 +12,5 @@ public class GlueGunner extends Monkey {
 	public Projectile getProj() {
         return new GlueProjectile(this.getX(),this.getY());
     }
+	
 }

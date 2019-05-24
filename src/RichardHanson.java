@@ -12,4 +12,5 @@ public class RichardHanson extends Monkey {
     public Projectile getProj(){
         return new API(this.getX(),this.getY());
     }
+
 }

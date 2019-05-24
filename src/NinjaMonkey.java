@@ -12,4 +12,5 @@ public class NinjaMonkey extends Monkey {
     public Projectile getProj(){
         return new Shuriken(this.getX(),this.getY());
     }
+    
 }

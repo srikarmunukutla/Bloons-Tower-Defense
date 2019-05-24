@@ -95,4 +95,8 @@ public class Spikes implements GameObject{
 		
 	}
 	
+	public void addMoney(BTDMap m) {
+		
+	}
+	
 }

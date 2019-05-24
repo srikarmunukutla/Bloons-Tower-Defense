@@ -7,4 +7,5 @@ public interface GameObject{
     void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile);
     void clickedAt();
     void draw(Graphics g, JPanel panel);
+    void addMoney(BTDMap btdmap);
 }
