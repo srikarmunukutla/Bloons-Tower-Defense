@@ -103,10 +103,9 @@ public class Bloon implements GameObject{
         }
         return false;
     }
-
+    private int addmoney = 0;
     public ArrayList<Bloon> hit(int a, int b, int damage) {
         ArrayList<Bloon> bloons = new ArrayList<Bloon>();
-        int addmoney = 0;
     	int startrank = rank;
 		health -= damage;
 		while (rank > 0 && health <= 0) {
@@ -118,10 +117,11 @@ public class Bloon implements GameObject{
 				rank -= 2;
 			}
 			rank--;
+            addmoney += count[startrank-1]/count[temprank-1];
+            System.out.println(addmoney);
 			if (rank == 0) {
 				return bloons;
 			}
-			addmoney += count[startrank-1]/count[temprank-1];
 			health+=healthArr[rank-1];
 		}
 		int numBloons = count[startrank-1]/count[rank-1];
@@ -235,6 +235,7 @@ public class Bloon implements GameObject{
         if(x > 0 && y > 0) {
             setAngle(grid[(int) y][(int) x].getAngle());
         }
+        clickedAt(m);
     }
     public void addDart(int a){
         darthit.add(a);
@@ -254,7 +255,9 @@ public class Bloon implements GameObject{
     	return rect;
     }
     public void clickedAt(BTDMap btdm){
-
+        System.out.println(addmoney);
+        btdm.increaseMoney(addmoney);
+        addmoney = 0;
     }
     
 

@@ -13,7 +13,6 @@ public class BTDGameRunner {
 	private JPanel panel;
 	private JFrame frame = new JFrame("Bloons Tower Defense");
 	private BTDMap m1;
-	Integer money = 650;
 	private final int SQUARESIZE = 50;
 	Timer monkey;
 	long ticks = 0;

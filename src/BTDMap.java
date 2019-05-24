@@ -32,7 +32,7 @@ public abstract class BTDMap {
 	private int spawny;
 	private boolean isselectionvalid;
 	private boolean monkeyclicked;
-	private int money;
+	private int money = 650;
 
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
@@ -350,5 +350,6 @@ public abstract class BTDMap {
 	
 	public void increaseMoney(int amount) {
 		money += amount;
+//		System.out.println(money);
 	}
 }
