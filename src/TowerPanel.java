@@ -23,12 +23,12 @@ public class TowerPanel {
 	}
 	
 	public void draw(Graphics g, BTDMap m, JPanel panel) {
-		g.setColor(Color.DARK_GRAY);
+		g.setColor(new Color(89, 58, 22));
 		g.fillRect(m.getWidth(), 0, width, height);
 		g.drawImage(towerstitle, m.getWidth(), 0, width, 114, null);
 		g.drawImage(moneylivesimg, m.getWidth(), 114, width, 61, null);
 		g.setColor(Color.BLACK);
-		g.drawLine(m.getWidth() + width/2, 175, m.getWidth() + width/2, height);
+		g.drawLine(m.getWidth() + width/2, 175, m.getWidth() + width/2, 625);
 		for(int i = 1; i <= 3; i++) {
 			g.drawLine(m.getWidth(), 175 + (90 * i), m.getWidth() + width, 175 + (90 * i));
 		}
