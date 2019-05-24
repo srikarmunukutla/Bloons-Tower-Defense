@@ -87,7 +87,7 @@ public class Spikes implements GameObject{
 
 	}
 	
-	public void clickedAt(){
+	public void clickedAt(BTDMap btdm){
 
 	}
 	
@@ -97,6 +97,9 @@ public class Spikes implements GameObject{
 	
 	public void addMoney(BTDMap m) {
 		
+	}
+	public Rectangle getImgRect() {
+		return new Rectangle(1,1,1,1);
 	}
 	
 }

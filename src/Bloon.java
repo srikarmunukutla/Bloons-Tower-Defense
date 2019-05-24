@@ -250,12 +250,13 @@ public class Bloon implements GameObject{
         }
         return false;
     }
-    public void clickedAt(){
+    public Rectangle getImgRect() {
+    	return rect;
+    }
+    public void clickedAt(BTDMap btdm){
 
     }
     
-	public void addMoney(BTDMap m) {
-		
-	}
+
 
 }

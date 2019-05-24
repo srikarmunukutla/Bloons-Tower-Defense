@@ -60,12 +60,16 @@ public class BTDGameRunner {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent me) {
-				for(GameObject go: m1.getGameObjectsList()) {
-					if(go instanceof Monkey && ((Monkey) go).getImgRect().contains(me.getX(), me.getY())) {
-						((Monkey) go).setClicked();
+				ArrayList<GameObject> alobj = m1.getGameObjectsList();
+				for(int i = alobj.size()-1; i >= 0; i--) {
+					if(alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).getImgRect().contains(me.getX(), me.getY())) {
+						((Monkey) alobj.get(i)).setClicked();
 					}
-					else if(go instanceof Monkey && ((Monkey) go).isclicked) {
-						((Monkey) go).setClicked();
+					else if(alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).isclicked) {
+						((Monkey) alobj.get(i)).setClicked();
+					}
+					if(alobj.get(i).getImgRect().contains(me.getX(),me.getY())) {
+						alobj.get(i).clickedAt(m1);
 					}
 				}
 				m1.clickedAt(me);

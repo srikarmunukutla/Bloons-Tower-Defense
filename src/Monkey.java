@@ -209,7 +209,7 @@ public abstract class Monkey implements GameObject{
         }
     }
     
-    public void clickedAt() {
+    public void clickedAt(BTDMap btdm) {
     	
     }
     
@@ -217,7 +217,4 @@ public abstract class Monkey implements GameObject{
         return img;
     }
     
-	public void addMoney(BTDMap m) {
-		
-	}
 }

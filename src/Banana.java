@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ public class Banana implements GameObject {
 	int money, radius = 20, width = 39, height = 35;
 	double angle, distance, x, y, srcx, srcy, time = 0;
     private final static String PATH_PREFIX = "images/";
+    private Rectangle r;
 	Image img;
 	public Banana(int value, double angle, double distance, int a, int b, int c, int d) {
 		money = value;
@@ -21,6 +23,7 @@ public class Banana implements GameObject {
 		srcx = c;
 		srcy = d;
 		img = getImage("Banana.png");
+		r = new Rectangle((int)(x-width/2),(int)(y-height/2),width,height);
 	}
 	
     protected Image getImage(String fn) {
@@ -33,6 +36,9 @@ public class Banana implements GameObject {
         }
         return img;
     }
+    private void moveRect(int aa, int bb) {
+    	r.translate(aa-r.x, bb-r.y);
+    }
     
     public void update(ArrayList<GameObject> al, Pixel[][] grid, BTDMap m, double time, JPanel panel, HashMap<Integer,Projectile> gameprojectile) {
 		if (getDistance() > distance){
@@ -44,6 +50,10 @@ public class Banana implements GameObject {
     	double b = y - distance*(1-Math.exp(time/20)) * Math.sin(theta);
     	x = a;
     	y = b;
+    	moveRect((int)a,(int)b);
+    }
+    public Rectangle getImgRect() {
+    	return r;
     }
     private double getDistance(){
 		return Math.sqrt(Math.pow(srcx-x,2) + Math.pow(srcy-y,2));
@@ -51,12 +61,17 @@ public class Banana implements GameObject {
     public void draw(Graphics g, JPanel panel) {
     	g.drawImage(img, (int) (x-width/2), (int) (y-height/2), width, height, null);
     }
-    public void clickedAt(){
-    	
-	}
-    
-	public void addMoney(BTDMap m) {
-		
-	}
+    public void clickedAt(BTDMap btdm){
+    	btdm.increaseMoney(money);
+    	ArrayList<GameObject> al = btdm.getGameObjectsList();
+    	for(int i = 0; i < al.size(); i++) {
+    		if(al.get(i).equals(this)) {
+    			al.remove(i);
+    			return;
+    		}
+    		
+    	}
+    }
+
 
 }
