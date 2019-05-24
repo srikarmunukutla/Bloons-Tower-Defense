@@ -4,6 +4,7 @@ public class DartMonkey extends Monkey {
         super(a,b,100,"Dart_Monkey.png",1,1,225,1,200);
         width = 50;
         height = 50;
+        hasrange = true;
         setImgRect();
     }
     

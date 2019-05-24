@@ -21,6 +21,8 @@ public abstract class Monkey implements GameObject{
     int pierce;
     int secsbefreload = 0;
     private int cost;
+    protected boolean isclicked;
+    protected boolean hasrange;
     private final static String PATH_PREFIX = "images/";
     
     public Monkey(int a, int b, int ra, String str, int target, int dmg, int reload, int p, int co){
@@ -34,6 +36,15 @@ public abstract class Monkey implements GameObject{
         reloadrate = reload;
         pierce = p;
         cost = co;
+        isclicked = false;
+    }
+    
+    public void setClicked() {
+    	isclicked = !isclicked;
+    }
+    
+    public boolean hasRange() {
+    	return hasrange;
     }
     
     protected void setRangeRect(int x, int y) {
@@ -198,8 +209,8 @@ public abstract class Monkey implements GameObject{
         }
     }
     
-    public void clickedAt(){
-
+    public void clickedAt() {
+    	
     }
     
     public Image getImg(){

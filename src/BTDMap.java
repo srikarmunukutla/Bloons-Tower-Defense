@@ -31,6 +31,7 @@ public abstract class BTDMap {
 	private int spawnx;
 	private int spawny;
 	private boolean isselectionvalid;
+	private boolean monkeyclicked;
 
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
@@ -46,11 +47,20 @@ public abstract class BTDMap {
 		spawnx = spx;
 		spawny = spy;
 		isselectionvalid = false;
+		monkeyclicked = false;
 		startLevel();
 	}
 
 	private BTDMap getMap(){
 		return this;
+	}
+	
+	public void setMonkeyClicked() {
+		monkeyclicked = !monkeyclicked;
+	}
+	
+	public boolean isMonkeyClicked() {
+		return monkeyclicked;
 	}
 
 	Timer tim;

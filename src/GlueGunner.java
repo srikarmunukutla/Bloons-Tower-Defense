@@ -4,6 +4,7 @@ public class GlueGunner extends Monkey {
 		super(a,b,80,"Glue_Gunner.png",1,0,150,1,270);
 		width = 50;
 		height = 66;
+		hasrange = true;
 		setImgRect();
 	}
 	

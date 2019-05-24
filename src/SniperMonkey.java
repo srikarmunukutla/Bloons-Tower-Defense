@@ -8,6 +8,7 @@ public class SniperMonkey extends Monkey {
 		super(a,b,200,"Sniper_Monkey.png",1,2,300,1,350);
 		width = 50;
 		height = 84;
+		hasrange = false;
 		setImgRect();
 	}
 	

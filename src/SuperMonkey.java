@@ -4,6 +4,7 @@ public class SuperMonkey extends Monkey {
         super(a,b,300,"Super_Monkey.png",1,1,30,1,3500);
         width = 50;
         height = 50;
+        hasrange = true;
         setImgRect();
     }
     

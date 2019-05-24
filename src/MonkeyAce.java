@@ -23,6 +23,7 @@ public class MonkeyAce extends Monkey {
 		platheight = 50;
 		platwidth = 100;
 		radius = 200;
+		hasrange = true;
 		setImgRect();
 		ontowerpanel = tp;
 	}
