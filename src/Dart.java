@@ -1,6 +1,6 @@
 
 public class Dart extends Projectile {
     public Dart(int a, int b){
-        super(a,b,"Dart.png", 50, 23);
+        super(a,b,"Dart.png", 40, 18);
     }
 }
