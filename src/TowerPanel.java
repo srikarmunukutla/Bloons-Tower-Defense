@@ -44,7 +44,7 @@ public class TowerPanel {
 		monkeyarr[1] = new TackShooter(m.getWidth() + 90, 220);
 		monkeyarr[2] = new MonkeyApprentice(m.getWidth() + 30, 310);
 		monkeyarr[3] = new MonkeyAce(m.getWidth() + 90, 310, true);
-		monkeyarr[4] = new BananaFarm(m.getWidth() + 30, 400);
+		monkeyarr[4] = new BananaFarm(m.getWidth() + 30, 400, true);
 		monkeyarr[5] = new SuperMonkey(m.getWidth() + 90, 400);
 		monkeyarr[6] = new NinjaMonkey(m.getWidth() + 30, 490);
 		monkeyarr[7] = new RichardHanson(m.getWidth() + 90, 490);
