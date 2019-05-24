@@ -347,4 +347,8 @@ public abstract class BTDMap {
 			}
 		}
 	}
+	
+	public void increaseMoney(int amount) {
+		money += amount;
+	}
 }
