@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class MonkeyAce extends Monkey {
 	private int radius, platwidth, platheight;
-	private double angle = 0, omega = 10, x, y;
+	private double angle = 0, omega = 3, x, y;
 	private Image platform;
 	private boolean ontowerpanel;
 	
@@ -62,7 +62,7 @@ public class MonkeyAce extends Monkey {
         }
     	Graphics2D g2 = (Graphics2D) g.create();// get a copy
         g2.translate(x, y);// translate this card's (x,y)
-        g2.rotate(Math.toRadians(angle));// rotate around this card
+        g2.rotate(Math.toRadians(-angle));// rotate around this card
         g2.drawImage(getImg(), -width/2, -height/2, width, height, null);
         g2.dispose();
     }
