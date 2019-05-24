@@ -52,7 +52,7 @@ public class Banana implements GameObject {
     	g.drawImage(img, (int) (x-width/2), (int) (y-height/2), width, height, null);
     }
     public void clickedAt(){
-
+    	
 	}
 
 }
