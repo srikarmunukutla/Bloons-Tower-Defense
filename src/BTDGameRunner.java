@@ -63,7 +63,6 @@ public class BTDGameRunner {
 				for(GameObject go: m1.getGameObjectsList()) {
 					if(go instanceof Monkey && ((Monkey) go).getImgRect().contains(me.getX(), me.getY())) {
 						((Monkey) go).setClicked();
-						break;
 					}
 					else if(go instanceof Monkey && ((Monkey) go).isclicked) {
 						((Monkey) go).setClicked();
