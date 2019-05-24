@@ -18,14 +18,22 @@ public class MonkeyAce extends Monkey {
 		x = a+radius;
 		y = b;
 		platform = getImage("Monkey_Ace.png");
-		width = 50;
-		height = 50;
 		platheight = 50;
 		platwidth = 100;
 		radius = 200;
 		hasrange = false;
 		setImgRect();
 		ontowerpanel = tp;
+		width = 50;
+		height = 50;
+//		if(ontowerpanel) {
+//			width = 50;
+//			height = 50;
+//		}
+//		else {
+//			width = 75;
+//			height = 75;
+//		}
 	}
 	
 	@Override
