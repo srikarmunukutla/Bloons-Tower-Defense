@@ -9,12 +9,12 @@ import javax.swing.JPanel;
 
 public class MonkeyAce extends Monkey {
 	private int radius, platwidth, platheight;
-	private double angle = 0, omega = 3, x, y;
+	private double angle = 0, omega = 2, x, y;
 	private Image platform;
 	private boolean ontowerpanel;
 	
 	public MonkeyAce(int a, int b, boolean tp) {
-		super(a,b,100,"Plane.png",8,1,200,1,900);
+		super(a,b,1000,"Plane.png",8,1,400,1,900);
 		x = a+radius;
 		y = b;
 		platform = getImage("Monkey_Ace.png");
@@ -23,7 +23,7 @@ public class MonkeyAce extends Monkey {
 		platheight = 50;
 		platwidth = 100;
 		radius = 200;
-		hasrange = true;
+		hasrange = false;
 		setImgRect();
 		ontowerpanel = tp;
 	}
@@ -33,8 +33,8 @@ public class MonkeyAce extends Monkey {
 		//runs regardless if there are bloons
 		angle += omega * time;
 		setAngle(angle);
-		x = getX()-radius*Math.cos(Math.toRadians(angle));
-		y = getY()+radius*Math.sin(Math.toRadians(angle));
+		x = getX()+radius*Math.cos(Math.toRadians(angle));
+		y = getY()-radius*Math.sin(Math.toRadians(angle));
         if (secsbefreload > 0){
             secsbefreload--;
             return;
