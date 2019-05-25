@@ -20,8 +20,9 @@ public abstract class Projectile {
     private final int PROJSPEED = 10;
     private int ticks;
     private final static String PATH_PREFIX = "images/";
+    private boolean isboomer;
     
-    public Projectile(int a, int b, String str, int w, int h) {
+    public Projectile(int a, int b, String str, int w, int h, boolean boomer) {
         x = a;
         y = b;
         width = w;
@@ -30,6 +31,7 @@ public abstract class Projectile {
         img = getImage(str);
         finish =false;
         ticks = 0;
+        isboomer = boomer;
     }
 
     public void draw(Graphics g, JPanel panel) {
@@ -115,6 +117,12 @@ public abstract class Projectile {
                 multiplier = 1;
             }
         }
+        int origx = x;
+        int origy=y;
+        double radius = Math.sqrt((bx-origx)*(bx-origx)+(by-origy)*(by-origy))/2;
+        double cx = (origx+bx)/2;
+        double cy = (origy+by)/2;
+        double startAng = angle;
         timer = new Timer(REFRESH, new ActionListener() {
             double dx = x;
             double dy = y;
@@ -148,9 +156,23 @@ public abstract class Projectile {
                         }
                     }
                 }
-                dx += multiplier*PROJSPEED*slopey;
-                dy += multiplier*PROJSPEED*slopex;
-                moveTo((int) dx, (int) dy);
+                if(!isboomer) {
+                    dx += multiplier*PROJSPEED*slopey;
+                    dy += multiplier*PROJSPEED*slopex;
+                    moveTo((int) dx, (int) dy);
+                }
+                else {
+                    dx = cx+radius*Math.cos(angle);
+                    dy = cy+radius*Math.sin(angle);
+                    angle-=Math.PI/180;
+                    moveTo((int) dx,(int) dy);
+                    if(startAng-angle >= 2*Math.PI) {
+                    hm.remove(random);
+
+                    timer.stop();
+                    return;
+                    }
+                }
                 ticks++;
                 panel.repaint();
             }
