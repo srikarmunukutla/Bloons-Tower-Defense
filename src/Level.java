@@ -8,7 +8,7 @@ public class Level {
     private int[] whenspawn = {1,2,3,4,7,11,18,24,30,35,36,40,49,1000000000};
     
     public void spawn(ArrayList<GameObject> al, BTDMap bm, long ticks) {
-        if (wave <= 3) {
+        if (wave <= 20) {
             if (ticks % spawnrate != 0) {
                 return;
             }

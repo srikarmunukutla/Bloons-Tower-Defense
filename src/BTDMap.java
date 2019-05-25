@@ -86,7 +86,7 @@ public abstract class BTDMap {
 			public void actionPerformed(ActionEvent e) {
 				level.spawn(gameobjects, getMap(), ticks);
 				ticks++;
-				if (level.getWave() > 3){
+				if (level.getWave() > 20){
 					ticks = 0;
 					level.changeSpawn(gameobjects);
 				}

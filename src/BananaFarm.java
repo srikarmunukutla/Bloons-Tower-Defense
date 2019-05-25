@@ -12,6 +12,7 @@ public class BananaFarm extends Monkey {
 	int bananaOutput, numBananas, secsbeforereload;
 	private final static int CONSTANT = 7800;
 	private boolean ontowerpanel;
+	
 	public BananaFarm(int a, int b, boolean tp) {
 		super(a, b, 0, "Banana_Farm.png", 1, 1, 1, 1, 1000);
 		bananaOutput = 20;
