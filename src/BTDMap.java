@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -32,7 +33,11 @@ public abstract class BTDMap {
 	private int spawny;
 	private boolean isselectionvalid;
 	private boolean monkeyclicked;
-	private int money = 650;
+	private int money;
+	private Timer tim;
+	long ticks = 0;
+	protected Rectangle playbutton;
+	protected Image playbuttonimg;
 
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
@@ -45,15 +50,25 @@ public abstract class BTDMap {
 		gameprojectiles = new HashMap<Integer, Projectile>();
 		clicked = false;
 		health = 200;
+		money = 650;
 		spawnx = spx;
 		spawny = spy;
 		isselectionvalid = false;
 		monkeyclicked = false;
-		startLevel();
+		playbutton = new Rectangle(width - 50, 10, 40, 41);
+		playbuttonimg = getImage("Play_Button.png");
 	}
 
 	private BTDMap getMap(){
 		return this;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public int getMoney() {
+		return money;
 	}
 	
 	public void setMonkeyClicked() {
@@ -64,15 +79,14 @@ public abstract class BTDMap {
 		return monkeyclicked;
 	}
 
-	Timer tim;
-	long ticks = 0;
-	private void startLevel(){
+	
+	private void startLevel() {
 		tim = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				level.spawn(gameobjects, getMap(), ticks);
 				ticks++;
-				if (level.getWave() > 20){
+				if (level.getWave() > 3){
 					ticks = 0;
 					level.changeSpawn(gameobjects);
 				}
@@ -94,7 +108,6 @@ public abstract class BTDMap {
 
 	public void reduceHealth(Bloon b) {
 		health -= b.liveslost[b.getRank()-1];
-		System.out.println(health);
 	}
 
 	public Monkey getUserSelection() {
@@ -224,6 +237,7 @@ public abstract class BTDMap {
 	public void draw(Graphics g, JPanel panel) {
 		g.drawImage(img, 0, 0, width, height, null);
 		tp.draw(g, this, panel);
+		g.drawImage(playbuttonimg, width - 50, 10, 40, 41, null);
 	}
 
 	protected Image getImage(String fn) {
@@ -238,6 +252,10 @@ public abstract class BTDMap {
 	}
 
 	public void clickedAt(MouseEvent me) {
+		if(playbutton.contains(me.getX(), me.getY())) {
+			startLevel();
+			return;
+		}
 		if(!clicked) {
 			int ind = -1;
 			for(int i = 0; i < 10; i++) {
@@ -295,7 +313,7 @@ public abstract class BTDMap {
 			}
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
-			coverUp(userselection);
+			coverUp(userselection.getImgRect());
 			userselection = null;
 		}
 		clicked = !clicked;
@@ -338,9 +356,9 @@ public abstract class BTDMap {
 		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
 	}
 
-	protected void coverUp(Monkey m) {
-		for(int r = m.getImgRect().y; r < m.getImgRect().y + m.height; r++) {
-			for(int c = m.getImgRect().x; c < m.getImgRect().x + m.width; c++) {
+	protected void coverUp(Rectangle rect) {
+		for(int r = rect.y; r < rect.y + rect.height; r++) {
+			for(int c = rect.x; c < rect.x + rect.width; c++) {
 				if(r < height && c < width) {
 					grid[r][c].coverUp();
 				}

@@ -6,8 +6,9 @@ public class Level {
     private int spawnrate = 200;
     private int wave = 1;
     private int[] whenspawn = {1,2,3,4,7,11,18,24,30,35,36,40,49,1000000000};
-    public void spawn(ArrayList<GameObject> al, BTDMap bm, long ticks){
-        if (wave <= 20) {
+    
+    public void spawn(ArrayList<GameObject> al, BTDMap bm, long ticks) {
+        if (wave <= 3) {
             if (ticks % spawnrate != 0) {
                 return;
             }
@@ -28,6 +29,7 @@ public class Level {
             wave++;
         }
     }
+    
     public void changeSpawn(ArrayList<GameObject> al){
         for(GameObject go : al){
             if (go instanceof Bloon){
@@ -41,7 +43,6 @@ public class Level {
         spawnrate-=40;
         wave = 0;
     }
-
 
     public int getWave(){
         return wave;
