@@ -3,9 +3,10 @@ public class Map1 extends BTDMap {
 	private int trackSize = (int) (37 * Hratio);
 	
 	public Map1(int r, int c) {
-		super(r, c,10,93);
+		super(r, c, 10, 93);
 		img = getImage("Map1.png");
 		initializeTrack();
+		coverUp(playbutton);
 	}
 	
 	public int getTrackSize() {

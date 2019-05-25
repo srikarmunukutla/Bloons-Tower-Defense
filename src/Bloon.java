@@ -118,7 +118,7 @@ public class Bloon implements GameObject{
 			}
 			rank--;
             addmoney += count[startrank-1]/count[temprank-1];
-            System.out.println(addmoney);
+//            System.out.println(addmoney);
 			if (rank == 0) {
 				return bloons;
 			}
@@ -237,29 +237,31 @@ public class Bloon implements GameObject{
         }
         clickedAt(m);
     }
+    
     public void addDart(int a){
         darthit.add(a);
     }
+    
     public void removeDart(int a){
         if (darthit.contains(a)){
             darthit.remove(a);
         }
     }
+    
     public boolean checkDart(int a){
         if (darthit.contains(a)){
             return true;
         }
         return false;
     }
+    
     public Rectangle getImgRect() {
     	return rect;
     }
+    
     public void clickedAt(BTDMap btdm){
-        System.out.println(addmoney);
+//        System.out.println(addmoney);
         btdm.increaseMoney(addmoney);
         addmoney = 0;
     }
-    
-
-
 }

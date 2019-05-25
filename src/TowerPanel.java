@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -27,6 +28,10 @@ public class TowerPanel {
 		g.fillRect(m.getWidth(), 0, width, height);
 		g.drawImage(towerstitle, m.getWidth(), 0, width, 114, null);
 		g.drawImage(moneylivesimg, m.getWidth(), 114, width, 61, null);
+		g.setColor(Color.YELLOW);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+		g.drawString("" + m.getMoney(), m.getWidth() + 32, 137);
+		g.drawString("" + m.getHealth(), m.getWidth() + 32, 167);
 		g.setColor(Color.BLACK);
 		g.drawLine(m.getWidth() + width/2, 175, m.getWidth() + width/2, 625);
 		for(int i = 1; i <= 3; i++) {
