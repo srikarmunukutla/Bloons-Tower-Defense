@@ -306,11 +306,13 @@ public abstract class BTDMap {
 		else {
 			if(me.getX() >= width) {
 				clicked = !clicked;
+				userselection = null;
 				return;
 			}
 			if(!isPlacementValid(me)) {
 				return;
 			}
+			money -= userselection.getCost();
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
 			coverUp(userselection.getImgRect());
@@ -321,6 +323,10 @@ public abstract class BTDMap {
 	
 	private boolean isPlacementValid(MouseEvent me) {
 		if(!onTheMap(userselection, me.getX(), me.getY())) {
+			isselectionvalid = false;
+			return false;
+		}
+		if (userselection.getCost() > money){
 			isselectionvalid = false;
 			return false;
 		}

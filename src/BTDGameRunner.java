@@ -15,6 +15,8 @@ public class BTDGameRunner {
 	private BTDMap m1;
 	private final int SQUARESIZE = 50;
 	Timer monkey;
+	JLabel selectioncost;
+	JButton jb;
 	long ticks = 0;
 
 	public static void main(String[] args) {
@@ -26,15 +28,18 @@ public class BTDGameRunner {
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
+				boolean monksel = false;
 				super.paintComponent(g);
 				m1.draw(g, panel);
 				for (GameObject go : m1.getGameObjectsList()) {
 					if(go instanceof Monkey && ((Monkey) go).isclicked && ((Monkey) go).hasRange() && !m1.clicked) {
 						g.setColor(new Color(0, 255, 0, 100));
 						g.fillRect(((Monkey) go).rangerect.x, ((Monkey) go).rangerect.y, ((Monkey) go).rangerect.width, ((Monkey) go).rangerect.height);
+						monksel = true;
 					}
 					go.draw(g, this);
 				}
+				jb.setVisible(monksel);
 				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
@@ -55,7 +60,29 @@ public class BTDGameRunner {
 				}
 			}
 		};
-		
+		panel.setLayout(null);
+		jb = new JButton("Sell");
+		jb.setBounds(50,600,100,50);
+		jb.setVisible(false);
+		jb.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<GameObject> al = m1.getGameObjectsList();
+				for (int i = al.size()-1; i >= 0; i--){
+					if (al.get(i) instanceof Monkey && ((Monkey)(al.get(i))).isclicked){
+						m1.increaseMoney(((Monkey)al.get(i)).getCost());
+						al.remove(i);
+						break;
+					}
+				}
+			}
+		});
+		panel.add(jb);
+		selectioncost = new JLabel("");
+		selectioncost.setFont(new Font("Serif",Font.PLAIN,24));
+		selectioncost.setForeground(Color.WHITE);
+		selectioncost.setBounds(panelwidth*915/910,panelheight*600/676,200,100);
+		panel.add(selectioncost);
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent me) {
@@ -72,10 +99,14 @@ public class BTDGameRunner {
 					}
 				}
 				m1.clickedAt(me);
+				if (m1.getUserSelection() != null){
+					selectioncost.setText("Cost: "+m1.getUserSelection().getCost());
+				}else{
+					selectioncost.setText("");
+				}
 				panel.repaint();
 			}
 		});
-		
 		panel.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseMoved(MouseEvent me){
 				m1.mouseMoved(me);

@@ -76,7 +76,7 @@ public class Spikes implements GameObject{
 		for(int i = bloonal.size()-1; i >= 0; i--) {
 			if(bloonal.get(i).getRect().intersects(rect)) {
 				health--;
-				bloonal.addAll(bloonal.get(i).hit((int)bloonal.get(i).getX(),(int)bloonal.get(i).getY(),1));
+				bloonal.addAll(bloonal.get(i).hit((int)bloonal.get(i).getX(),(int)bloonal.get(i).getY(),1,m));
 				bloonal.remove(i);
 				if(health==0) {
 					spikeal.remove(this);

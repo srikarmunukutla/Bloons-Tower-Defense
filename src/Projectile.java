@@ -82,7 +82,7 @@ public abstract class Projectile {
     private double slopey;
     private int multiplier;
     private int pierce;
-    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<GameObject> al, int p, Rectangle re) {
+    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<GameObject> al, int p, Rectangle re, BTDMap btdm) {
         pierce = p;
         if (Math.abs(by-y) < Math.abs(bx-x)){
             slopex = 1.0 * (by - y) / (bx - x);
@@ -140,7 +140,7 @@ public abstract class Projectile {
                                 continue;
                             }
                             bloon.addDart(random);
-                            al.addAll(bloon.hit((int) bx, (int) by, dmg));
+                            al.addAll(bloon.hit((int) bx, (int) by, dmg,btdm));
                             al.remove(j);
                             pierce--;
                             if (pierce == 0) {

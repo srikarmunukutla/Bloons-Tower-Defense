@@ -44,7 +44,7 @@ public class SniperMonkey extends Monkey {
         } else {
             setAngle(180*Math.atan(1.0*(b.getY() - getY()) / (b.getX() - getX()))/Math.PI+90);
         }
-        al.addAll(((Bloon)al.get(index)).hit((int) ((Bloon)al.get(index)).getX(), (int) ((Bloon)al.get(index)).getY(), getDamage()));
+        al.addAll(((Bloon)al.get(index)).hit((int) ((Bloon)al.get(index)).getX(), (int) ((Bloon)al.get(index)).getY(), getDamage(),m));
         al.remove(index);
         secsbefreload = getReloadRate();
     }

@@ -53,7 +53,7 @@ public class MonkeyAce extends Monkey {
         	int BIGINT = 3780;
         	double a = x+BIGINT*Math.cos(i*Math.PI/4+angle);
             double b = y-BIGINT*Math.sin(i*Math.PI/4+angle);
-            gameprojectile.get(random).launch((int) a,(int) b, panel, gameprojectile, random, this.getDamage(), al, pierce, rangerect);
+            gameprojectile.get(random).launch((int) a,(int) b, panel, gameprojectile, random, this.getDamage(), al, pierce, rangerect,m);
         }
     }
 	

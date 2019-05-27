@@ -67,11 +67,11 @@ public class Pineapple {
 	}
 	public void explode(ArrayList<Bloon> al) {
 		for(int i=al.size()-1;i>=0;i--) {
-			if(al.get(i).distance(al.get(i).getX(), al.get(i).getY(), x+HEIGHT/2, y+HEIGHT/2)<RADIUS) {
-				al.addAll(al.get(i).hit((int)al.get(i).getX(),(int)al.get(i).getY(),1));
-				al.remove(i);
-
-			}
+//			if(al.get(i).distance(al.get(i).getX(), al.get(i).getY(), x+HEIGHT/2, y+HEIGHT/2)<RADIUS) {
+//				al.addAll(al.get(i).hit((int)al.get(i).getX(),(int)al.get(i).getY(),1));
+//				al.remove(i);
+//
+//			}
 		}
 		
 		

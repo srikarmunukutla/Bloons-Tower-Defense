@@ -64,7 +64,7 @@ public abstract class Monkey implements GameObject{
     protected void setImgRect() {
     	imgrect = new Rectangle(x-(width/2), y-(height/2), width, height);
     }
-    
+
     public void draw(Graphics g, JPanel panel){
 //    	g.drawImage(img, x, y, SQUARESIZE, SQUARESIZE, null);
 //        Graphics2D g2d = (Graphics2D) g.create();
@@ -205,7 +205,7 @@ public abstract class Monkey implements GameObject{
             Projectile pr = getProj();
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectile.put(random, pr);
-            gameprojectile.get(random).launch((int)b.getX(), (int)b.getY(), panel, gameprojectile, random, damage, al, pierce, rangerect);
+            gameprojectile.get(random).launch((int)b.getX(), (int)b.getY(), panel, gameprojectile, random, damage, al, pierce, rangerect,m);
         }
     }
     
