@@ -17,7 +17,7 @@ public abstract class Projectile {
     private Image img;
     private double angle = 40;
     boolean finish;
-    private final int PROJSPEED = 10;
+    static private final int PROJSPEED = 10;
     private int ticks;
     private final static String PATH_PREFIX = "images/";
     private boolean isboomer;

@@ -33,7 +33,7 @@ public abstract class Monkey implements GameObject{
         rangerect = new Rectangle(x-range, y-range, range*2, range*2);
         numtarget = target;
         damage = dmg;
-        reloadrate = reload;
+        reloadrate = reload/((new FastForward()).speedrate);
         pierce = p;
         cost = co;
         isclicked = false;

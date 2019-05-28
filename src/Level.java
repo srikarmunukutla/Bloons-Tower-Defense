@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Level {
 
     private int level = 1;
@@ -30,7 +29,7 @@ public class Level {
         wave++;
 
     }
-    
+
     public void changeSpawn(ArrayList<GameObject> al){
         for(GameObject go : al){
             if (go instanceof Bloon){
@@ -39,9 +38,9 @@ public class Level {
         }
         level++;
         if (level % 5 == 0){
-            spawnrate += 200;
+            spawnrate += 200/((new FastForward()).speedrate);
         }
-        spawnrate-=40;
+        spawnrate-=40/((new FastForward()).speedrate);
         wave = 0;
     }
 
