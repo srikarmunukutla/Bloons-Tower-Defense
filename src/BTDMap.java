@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 import javax.swing.*;
 
 public abstract class BTDMap {
@@ -49,7 +48,7 @@ public abstract class BTDMap {
 		gameobjects = new ArrayList<GameObject>();
 		gameprojectiles = new HashMap<Integer, Projectile>();
 		clicked = false;
-		health = 200;
+		health = 1;
 		money = 650;
 		spawnx = spx;
 		spawny = spy;
@@ -108,6 +107,19 @@ public abstract class BTDMap {
 
 	public void reduceHealth(Bloon b) {
 		health -= b.liveslost[b.getRank()-1];
+		if(health <= 0) {
+			tim.stop();
+			Timer stopTimer = null;
+			stopTimer = new Timer(5000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+
+			});
+			stopTimer.start();
+			JOptionPane.showMessageDialog(null, "You ran out of lives! :(");
+		}
 	}
 
 	public Monkey getUserSelection() {
