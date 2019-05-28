@@ -48,7 +48,7 @@ public abstract class BTDMap {
 		gameobjects = new ArrayList<GameObject>();
 		gameprojectiles = new HashMap<Integer, Projectile>();
 		clicked = false;
-		health = 1;
+		health = 200;
 		money = 650;
 		spawnx = spx;
 		spawny = spy;
