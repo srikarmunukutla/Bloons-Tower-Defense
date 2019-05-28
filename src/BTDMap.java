@@ -38,7 +38,6 @@ public abstract class BTDMap {
 	protected Rectangle playbutton;
 	protected boolean playbuttonclicked, fastforwardclicked;
 	protected Image playbuttonimg;
-
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
@@ -279,10 +278,24 @@ public abstract class BTDMap {
 			else if(!fastforwardclicked) {
 				fastforwardclicked = !fastforwardclicked;
 				playbuttonimg = getImage("Fast_Forward_Clicked.png");
+				new FastForward().fastforward();
+				for (GameObject go : gameobjects){
+					if (go instanceof Monkey){
+						((Monkey)(go)).speedup();
+					}
+				}
+				level.speedup();
 			}
 			else if(fastforwardclicked) {
 				fastforwardclicked = !fastforwardclicked;
 				playbuttonimg = getImage("Fast_Forward.png");
+				new FastForward().slowdown();
+				for (GameObject go : gameobjects){
+					if (go instanceof Monkey){
+						((Monkey)(go)).slowdown();
+					}
+				}
+				level.slowdown();
 			}
 		}
 		if(!clicked) {

@@ -43,6 +43,12 @@ public class Level {
         spawnrate-=40/((new FastForward()).speedrate);
         wave = 0;
     }
+    public void speedup(){
+        spawnrate /= 5;
+    }
+    public void slowdown(){
+        spawnrate *= 5;
+    }
 
     public int getWave(){
         return wave;

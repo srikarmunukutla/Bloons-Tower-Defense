@@ -38,7 +38,12 @@ public abstract class Monkey implements GameObject{
         cost = co;
         isclicked = false;
     }
-    
+    public void speedup(){
+        reloadrate /= 5;
+    }
+    public void slowdown(){
+        reloadrate *= 5;
+    }
     public void setClicked() {
     	isclicked = !isclicked;
     }

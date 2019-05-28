@@ -128,7 +128,7 @@ public class BTDGameRunner {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			for (int i = 0; i < m1.getGameObjectsList().size(); i++){
-					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), m1.getGrid(),m1,0.15, panel, m1.getGameProjectilesList());
+					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), m1.getGrid(),m1,0.15*(new FastForward()).speedrate, panel, m1.getGameProjectilesList());
 //					if (m1.getGameObjectsList().get(i) instanceof Spikes) {
 //						if (((Spikes) m1.getGameObjectsList().get(i)).getHealth() == 0) {
 //							m1.getGameObjectsList().remove(i);
