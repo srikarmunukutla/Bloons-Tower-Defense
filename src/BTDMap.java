@@ -36,6 +36,7 @@ public abstract class BTDMap {
 	private Timer tim;
 	long ticks = 0;
 	protected Rectangle playbutton;
+	protected boolean playbuttonclicked;
 	protected Image playbuttonimg;
 
 	public BTDMap(int r, int c, int spx, int spy) {
@@ -56,6 +57,7 @@ public abstract class BTDMap {
 		monkeyclicked = false;
 		playbutton = new Rectangle(width - 50, 10, 40, 41);
 		playbuttonimg = getImage("Play_Button.png");
+		playbuttonclicked = false;
 	}
 
 	private BTDMap getMap(){
@@ -266,7 +268,8 @@ public abstract class BTDMap {
 	}
 
 	public void clickedAt(MouseEvent me) {
-		if(playbutton.contains(me.getX(), me.getY())) {
+		if(playbutton.contains(me.getX(), me.getY()) && !playbuttonclicked) {
+			playbuttonclicked = true;
 			startLevel();
 			return;
 		}
