@@ -78,7 +78,6 @@ public abstract class BTDMap {
 		return monkeyclicked;
 	}
 
-	
 	private void startLevel() {
 		tim = new Timer(1, new ActionListener() {
 			@Override
@@ -87,8 +86,10 @@ public abstract class BTDMap {
 				ticks++;
 				if (level.getWave() > 20){
 					ticks = 0;
-					money += 100;
 					level.changeSpawn(gameobjects);
+				}
+				if (level.getWave() == 21){
+					money += 100;
 				}
 			}
 

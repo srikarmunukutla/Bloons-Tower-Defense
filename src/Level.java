@@ -26,8 +26,9 @@ public class Level {
             for (int i = 0; i < Math.ceil((Math.log(level + 1) / Math.log(whenspawn[bloon] + 1))); i++) {
                 al.add(bm.createBloon(bloon, 8 * i));
             }
-            wave++;
         }
+        wave++;
+
     }
     
     public void changeSpawn(ArrayList<GameObject> al){
