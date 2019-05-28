@@ -88,6 +88,7 @@ public abstract class BTDMap {
 				ticks++;
 				if (level.getWave() > 20){
 					ticks = 0;
+					money += 100;
 					level.changeSpawn(gameobjects);
 				}
 			}
