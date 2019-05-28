@@ -36,7 +36,7 @@ public abstract class BTDMap {
 	private Timer tim;
 	long ticks = 0;
 	protected Rectangle playbutton;
-	protected boolean playbuttonclicked;
+	protected boolean playbuttonclicked, fastforwardclicked;
 	protected Image playbuttonimg;
 
 	public BTDMap(int r, int c, int spx, int spy) {
@@ -58,6 +58,7 @@ public abstract class BTDMap {
 		playbutton = new Rectangle(width - 50, 10, 40, 41);
 		playbuttonimg = getImage("Play_Button.png");
 		playbuttonclicked = false;
+		fastforwardclicked = false;
 	}
 
 	private BTDMap getMap(){
@@ -268,10 +269,21 @@ public abstract class BTDMap {
 	}
 
 	public void clickedAt(MouseEvent me) {
-		if(playbutton.contains(me.getX(), me.getY()) && !playbuttonclicked) {
-			playbuttonclicked = true;
-			startLevel();
-			return;
+		if(playbutton.contains(me.getX(), me.getY())) {
+			if(!playbuttonclicked) {
+				playbuttonimg = getImage("Fast_Forward.png");
+				playbuttonclicked = true;
+				startLevel();
+				return;
+			}
+			else if(!fastforwardclicked) {
+				fastforwardclicked = !fastforwardclicked;
+				playbuttonimg = getImage("Fast_Forward_Clicked.png");
+			}
+			else if(fastforwardclicked) {
+				fastforwardclicked = !fastforwardclicked;
+				playbuttonimg = getImage("Fast_Forward.png");
+			}
 		}
 		if(!clicked) {
 			int ind = -1;
