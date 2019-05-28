@@ -62,7 +62,7 @@ public class BTDGameRunner {
 		};
 		panel.setLayout(null);
 		jb = new JButton("Sell");
-		jb.setBounds(50,600,100,50);
+		jb.setBounds(m1.getWidth() + 10,625,100,50);
 		jb.setVisible(false);
 		jb.addActionListener(new ActionListener() {
 			@Override
@@ -70,7 +70,8 @@ public class BTDGameRunner {
 				ArrayList<GameObject> al = m1.getGameObjectsList();
 				for (int i = al.size()-1; i >= 0; i--){
 					if (al.get(i) instanceof Monkey && ((Monkey)(al.get(i))).isclicked){
-						m1.increaseMoney(((Monkey)al.get(i)).getCost());
+						m1.increaseMoney((int) (((Monkey)al.get(i)).getCost() * 0.8));
+						m1.flipCover(((Monkey) al.get(i)).getImgRect());
 						al.remove(i);
 						break;
 					}
@@ -81,7 +82,7 @@ public class BTDGameRunner {
 		selectioncost = new JLabel("");
 		selectioncost.setFont(new Font("Serif",Font.PLAIN,24));
 		selectioncost.setForeground(Color.WHITE);
-		selectioncost.setBounds(panelwidth*915/910,panelheight*600/676,200,100);
+		selectioncost.setBounds(panelwidth*920/910,panelheight*600/676,200,100);
 		panel.add(selectioncost);
 		panel.addMouseListener(new MouseAdapter() {
 			@Override

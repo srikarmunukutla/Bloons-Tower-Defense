@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 import javax.swing.*;
 
 public abstract class BTDMap {
@@ -109,6 +108,19 @@ public abstract class BTDMap {
 
 	public void reduceHealth(Bloon b) {
 		health -= b.liveslost[b.getRank()-1];
+		if(health <= 0) {
+			tim.stop();
+			Timer stopTimer = null;
+			stopTimer = new Timer(5000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+
+			});
+			stopTimer.start();
+			JOptionPane.showMessageDialog(null, "You ran out of lives! :(");
+		}
 	}
 
 	public Monkey getUserSelection() {
@@ -316,7 +328,7 @@ public abstract class BTDMap {
 			money -= userselection.getCost();
 			userselection.setLoc(me.getX(), me.getY());
 			gameobjects.add(userselection);
-			coverUp(userselection.getImgRect());
+			flipCover(userselection.getImgRect());
 			userselection = null;
 		}
 		clicked = !clicked;
@@ -363,11 +375,11 @@ public abstract class BTDMap {
 		return new Bloon(num,spawnx-offset,spawny,0,new HashSet<Integer>());
 	}
 
-	protected void coverUp(Rectangle rect) {
+	protected void flipCover(Rectangle rect) {
 		for(int r = rect.y; r < rect.y + rect.height; r++) {
 			for(int c = rect.x; c < rect.x + rect.width; c++) {
 				if(r < height && c < width) {
-					grid[r][c].coverUp();
+					grid[r][c].flipCover();
 				}
 			}
 		}
