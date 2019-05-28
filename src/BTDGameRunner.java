@@ -70,7 +70,7 @@ public class BTDGameRunner {
 				ArrayList<GameObject> al = m1.getGameObjectsList();
 				for (int i = al.size()-1; i >= 0; i--){
 					if (al.get(i) instanceof Monkey && ((Monkey)(al.get(i))).isclicked){
-						m1.increaseMoney(((Monkey)al.get(i)).getCost());
+						m1.increaseMoney((int) (((Monkey)al.get(i)).getCost() * 0.8));
 						m1.flipCover(((Monkey) al.get(i)).getImgRect());
 						al.remove(i);
 						break;
