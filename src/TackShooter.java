@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class TackShooter extends Monkey{
 	private int secbeforereload = 0;
 	public TackShooter(int a, int b) {
-		super(a,b,150,"Tack_Shooter.png",8,1,250,1,360);
+		super(a,b,100,"Tack_Shooter.png",8,1,250,1,360);
 		width = 50;
 		height = 50;
 		hasrange = true;
