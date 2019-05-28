@@ -20,8 +20,8 @@ public class Pixel {
 		angle = theta;
 	}
 	
-	public void coverUp() {
-		iscovered = true;
+	public void flipCover() {
+		iscovered = !iscovered;
 	}
 	
 	public void setPixel(int theta, boolean bool) {

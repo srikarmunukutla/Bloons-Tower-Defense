@@ -6,7 +6,7 @@ public class Map1 extends BTDMap {
 		super(r, c, 10, 93);
 		img = getImage("Map1.png");
 		initializeTrack();
-		coverUp(playbutton);
+		flipCover(playbutton);
 	}
 	
 	public int getTrackSize() {
@@ -18,7 +18,7 @@ public class Map1 extends BTDMap {
 		// first portion
 		for(int c = 0; c < (int) (154 * Wratio); c++) {
 			for(int r = (int) (53 * Hratio); r < (int) (90 * Hratio); r++) {
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 			}
 		}
 		
@@ -29,7 +29,7 @@ public class Map1 extends BTDMap {
 				r = (int) (140 * Hratio);
 			}
 			while(r < (int) (177 * Hratio)) {
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 				r++;
 			}
 		}
@@ -49,7 +49,7 @@ public class Map1 extends BTDMap {
 			}
 			while(r > (int) (53 * Hratio)) {
 				r--;
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 			}
 		}
 		
@@ -63,7 +63,7 @@ public class Map1 extends BTDMap {
 		// fourth portion
 		for(int c = (int) (389 * Wratio); c < (int) (426 * Wratio); c++) {
 			for(int r = (int) (53 * Hratio); r < (int) (276 * Hratio); r++) {
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 			}
 		}
 		
@@ -82,7 +82,7 @@ public class Map1 extends BTDMap {
 			}
 			while(r > (int) (239 * Hratio)) {
 				r--;
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 			}
 		}
 		
@@ -107,7 +107,7 @@ public class Map1 extends BTDMap {
 				r = (int) (338 * Hratio);
 			}
 			while(r < (int) (461 * Hratio)) {
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 				r++;
 			}
 		}
@@ -127,7 +127,7 @@ public class Map1 extends BTDMap {
 			}
 			while(r > (int) (338 * Hratio)) {
 				r--;
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 			}
 		}
 		
@@ -141,7 +141,7 @@ public class Map1 extends BTDMap {
 		// eighth portion
 		for(int c = (int) (544 * Wratio); c < (int) (700 * Wratio); c++) {
 			for(int r = (int) (424 * Hratio); r < (int) (461 * Hratio); r++) {
-				grid[r][c].coverUp();
+				grid[r][c].flipCover();
 			}
 		}
 
