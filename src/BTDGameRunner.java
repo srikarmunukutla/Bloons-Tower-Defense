@@ -15,7 +15,7 @@ public class BTDGameRunner {
 	private BTDMap m1;
 	private final int SQUARESIZE = 50;
 	Timer monkey;
-	JLabel selectioncost;
+	JLabel selectioncost, levelnum;
 	JButton jb;
 	long ticks = 0;
 
@@ -40,6 +40,9 @@ public class BTDGameRunner {
 					go.draw(g, this);
 				}
 				jb.setVisible(monksel);
+				if (m1.getUserSelection() == null && !monksel) {
+					selectioncost.setText("Level " + m1.getLevelNum());
+				}
 				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
 				while (it.hasNext()){
 					Map.Entry pair = (Map.Entry)it.next();
@@ -101,7 +104,7 @@ public class BTDGameRunner {
 				}
 				m1.clickedAt(me);
 				if (m1.getUserSelection() != null){
-					selectioncost.setText("Cost: "+m1.getUserSelection().getCost());
+					selectioncost.setText("Cost: " + m1.getUserSelection().getCost());
 				}else{
 					selectioncost.setText("");
 				}
@@ -122,13 +125,28 @@ public class BTDGameRunner {
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
-
-
+		
 		monkey = new Timer(1, new ActionListener() {
+			int seconds = 5;
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			for (int i = 0; i < m1.getGameObjectsList().size(); i++){
 					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), m1.getGrid(),m1,0.15*(new FastForward()).speedrate, panel, m1.getGameProjectilesList());
+					if(m1.getHealth() <= 0) {
+						monkey.stop();
+						Timer stopTimer = new Timer(1000, new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								seconds--;
+								if(seconds == 0) {
+									System.exit(0);
+								}
+							}
+						});
+						stopTimer.start();
+						JOptionPane.showMessageDialog(null, "You ran out of lives on level " + m1.getLevelNum() + "! :(\n"
+						+ "The game will close in " + seconds + " seconds.");
+					}
 //					if (m1.getGameObjectsList().get(i) instanceof Spikes) {
 //						if (((Spikes) m1.getGameObjectsList().get(i)).getHealth() == 0) {
 //							m1.getGameObjectsList().remove(i);

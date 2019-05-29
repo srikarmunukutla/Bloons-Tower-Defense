@@ -34,10 +34,12 @@ public abstract class BTDMap {
 	private boolean monkeyclicked;
 	private int money;
 	private Timer tim;
-	long ticks = 0;
+	protected long ticks = 0;
 	protected Rectangle playbutton;
 	protected boolean playbuttonclicked, fastforwardclicked;
 	protected Image playbuttonimg;
+	protected int levelnum;
+	
 	public BTDMap(int r, int c, int spx, int spy) {
 		height = r;
 		width = c;
@@ -48,7 +50,7 @@ public abstract class BTDMap {
 		gameobjects = new ArrayList<GameObject>();
 		gameprojectiles = new HashMap<Integer, Projectile>();
 		clicked = false;
-		health = 200;
+		health = 1;
 		money = 650;
 		spawnx = spx;
 		spawny = spy;
@@ -78,6 +80,10 @@ public abstract class BTDMap {
 	
 	public boolean isMonkeyClicked() {
 		return monkeyclicked;
+	}
+	
+	public int getLevelNum() {
+		return level.getLevelNum();
 	}
 
 	private void startLevel() {
@@ -111,19 +117,6 @@ public abstract class BTDMap {
 
 	public void reduceHealth(Bloon b) {
 		health -= b.liveslost[b.getRank()-1];
-		if(health <= 0) {
-			tim.stop();
-			Timer stopTimer = null;
-			stopTimer = new Timer(5000, new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
-				}
-
-			});
-			stopTimer.start();
-			JOptionPane.showMessageDialog(null, "You ran out of lives! :(");
-		}
 	}
 
 	public Monkey getUserSelection() {
@@ -416,6 +409,5 @@ public abstract class BTDMap {
 	
 	public void increaseMoney(int amount) {
 		money += amount;
-//		System.out.println(money);
 	}
 }

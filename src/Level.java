@@ -27,7 +27,6 @@ public class Level {
             }
         }
         wave++;
-
     }
 
     public void changeSpawn(ArrayList<GameObject> al){
@@ -43,13 +42,18 @@ public class Level {
         spawnrate-=40/((new FastForward()).speedrate);
         wave = 0;
     }
+    
     public void speedup(){
         spawnrate /= 5;
     }
+    
     public void slowdown(){
         spawnrate *= 5;
     }
-
+    
+    public int getLevelNum() {
+    	return level;
+    }
     public int getWave(){
         return wave;
     }
