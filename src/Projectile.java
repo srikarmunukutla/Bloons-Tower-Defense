@@ -167,7 +167,7 @@ public abstract class Projectile {
                 else {
                     dx = cx+radius*Math.cos(angle);
                     dy = cy+radius*Math.sin(angle);
-                    angle-=Math.PI/180;
+                    angle-=Math.PI/180*(new FastForward().speedrate);
                     moveTo((int) dx,(int) dy);
 //                    if(startAng-angle >= 2*Math.PI) {
 //                        hm.remove(random);
