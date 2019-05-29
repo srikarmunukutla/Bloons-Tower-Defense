@@ -82,7 +82,7 @@ public abstract class Projectile {
     private double slopey;
     private int multiplier;
     private int pierce;
-    public void launch(int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<GameObject> al, int p, Rectangle re, BTDMap btdm) {
+    public void launch(Monkey m,int bx, int by, JPanel panel, HashMap<Integer,Projectile> hm, int random , int dmg, ArrayList<GameObject> al, int p, Rectangle re, BTDMap btdm) {
         pierce = p;
         if (Math.abs(by-y) < Math.abs(bx-x)){
             slopex = 1.0 * (by - y) / (bx - x);
@@ -122,7 +122,7 @@ public abstract class Projectile {
         double radius = Math.sqrt((bx-origx)*(bx-origx)+(by-origy)*(by-origy))/2;
         double cx = (origx+bx)/2;
         double cy = (origy+by)/2;
-        double startAng = angle;
+        double startAng = Math.atan((origy-cy)/(origx-cx));
         timer = new Timer(REFRESH, new ActionListener() {
             double dx = x;
             double dy = y;
@@ -148,6 +148,9 @@ public abstract class Projectile {
                                 for (int i = al.size() - 1; i >= 0; i--) {
                                     if (al.get(i) instanceof Bloon) {
                                         ((Bloon) al.get(i)).removeDart(random);
+                                        if (m instanceof BoomerMonkey){
+                                            ((BoomerMonkey)(m)).decboomer();
+                                        }
                                     }
                                 }
                                 timer.stop();
@@ -166,12 +169,11 @@ public abstract class Projectile {
                     dy = cy+radius*Math.sin(angle);
                     angle-=Math.PI/180;
                     moveTo((int) dx,(int) dy);
-                    if(startAng-angle >= 2*Math.PI) {
-                    hm.remove(random);
-
-                    timer.stop();
-                    return;
-                    }
+//                    if(startAng-angle >= 2*Math.PI) {
+//                        hm.remove(random);
+//                        timer.stop();
+//                        return;
+//                    }
                 }
                 ticks++;
                 panel.repaint();

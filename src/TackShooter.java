@@ -37,7 +37,7 @@ public class TackShooter extends Monkey{
                     gameprojectile.put(random, pr);
                     double x = this.getX()+17*Math.cos(j*Math.PI/4);
                     double y = this.getY()-17*Math.sin(j*Math.PI/4);
-                    gameprojectile.get(random).launch((int) x,(int) y, panel,gameprojectile,random, this.getDamage(), al, pierce, rangerect,m);
+                    gameprojectile.get(random).launch(this,(int) x,(int) y, panel,gameprojectile,random, this.getDamage(), al, pierce, rangerect,m);
         		}
         		break;
         	}

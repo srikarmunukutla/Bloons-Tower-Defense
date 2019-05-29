@@ -208,9 +208,16 @@ public abstract class Monkey implements GameObject{
                 setAngle(180*Math.atan(1.0*(b.getY() - y) / (b.getX() - x))/Math.PI+90);
             }
             Projectile pr = getProj();
+            if (this instanceof BoomerMonkey){
+                if (((BoomerMonkey)(this)).getNumboomer() >= 10){
+                    return;
+                }
+                ((BoomerMonkey)(this)).incboomer();
+            }
             int random = (int) ((Math.random()) * Integer.MAX_VALUE);
             gameprojectile.put(random, pr);
-            gameprojectile.get(random).launch((int)b.getX(), (int)b.getY(), panel, gameprojectile, random, damage, al, pierce, rangerect,m);
+
+            gameprojectile.get(random).launch(this,(int)b.getX(), (int)b.getY(), panel, gameprojectile, random, damage, al, pierce, rangerect,m);
         }
     }
     
