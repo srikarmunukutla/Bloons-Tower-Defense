@@ -54,6 +54,7 @@ public class Level {
     public int getLevelNum() {
     	return level;
     }
+    
     public int getWave(){
         return wave;
     }
