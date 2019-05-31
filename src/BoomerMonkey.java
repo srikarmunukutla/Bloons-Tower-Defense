@@ -2,7 +2,7 @@ public class BoomerMonkey extends Monkey {
 	private boolean ontowerpanel;
 	
 	public BoomerMonkey(int a, int b, boolean tp) {
-    	super(a,b,200,"Glaive_Lord.png",1,1,400,5,400);
+    	super(a,b,200,"Glaive_Lord.png",1,1,400,5,300);
         hasrange = true;
         ontowerpanel = tp;
         if(ontowerpanel) {
