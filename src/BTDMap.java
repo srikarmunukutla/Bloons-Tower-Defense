@@ -116,7 +116,7 @@ public abstract class BTDMap {
 	}
 
 	public void reduceHealth(Bloon b) {
-		health -= b.liveslost[b.getRank()-1];
+		health -= b.liveslost[b.getRank() - 1];
 	}
 
 	public Monkey getUserSelection() {

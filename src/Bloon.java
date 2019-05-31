@@ -1,31 +1,29 @@
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Bloon implements GameObject{
+public class Bloon implements GameObject {
     private int rank, radius, health;
     private Image img;
-    public final static String PATH_PREFIX = "images/";
+    private final static String PATH_PREFIX = "images/";
     private double x, y, angle, distance = 0;
-    int[] width = {24,25,27,29,30,21,21,30,30,30,30,80,120,170};
-    int[] height = {32,34,36,38,40,28,28,40,40,40,40,50,80,102};
-    int[] healthArr = {1,1,1,1,1,1,1,1,1,1,10,200,700,4000};
-    double[] speed = {3,4,5,10,11,5,6,5,3,7,8,3,1,0.5};
-    int[] count = {1,1,1,1,1,2,2,4,4,8,16,64,256,1024};
-    int[] sep = {6,7,8,9,10,5,5,10,10,10,10,10,15,20};
-    int[] liveslost = {1,2,3,4,5,11,11,23,23,47,104,616,3164,16656};
+    private int[] width = {24,25,27,29,30,21,21,30,30,30,30,80,120,170};
+    private int[] height = {32,34,36,38,40,28,28,40,40,40,40,50,80,102};
+    private int[] healthArr = {1,1,1,1,1,1,1,1,1,1,10,200,700,4000};
+    private double[] speed = {3,4,5,10,11,5,6,5,3,7,8,3,1,0.5};
+    private int[] count = {1,1,1,1,1,2,2,4,4,8,16,64,256,1024};
+    private int[] sep = {6,7,8,9,10,5,5,10,10,10,10,10,15,20};
+    public int[] liveslost = {1,2,3,4,5,11,11,23,23,47,104,616,3164,16656};
     private Rectangle rect;
     private boolean isRegrow = false, isCamo = false;
     private HashSet<Integer> darthit;
+    
     public Bloon(int r, double x, double y, double angle, HashSet<Integer> hm) {
         rank = r;
         this.x = x;
