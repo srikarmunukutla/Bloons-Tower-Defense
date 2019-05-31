@@ -38,14 +38,12 @@ public abstract class Monkey implements GameObject{
         cost = co;
         isclicked = false;
     }
-    public void speedup(){
+    public void speedup() {
         reloadrate /= 5;
     }
-    public void slowdown(){
+    
+    public void slowdown() {
         reloadrate *= 5;
-    }
-    public void setClicked() {
-    	isclicked = !isclicked;
     }
     
     public boolean hasRange() {
@@ -222,7 +220,7 @@ public abstract class Monkey implements GameObject{
     }
     
     public void clickedAt(BTDMap btdm) {
-    	
+    	isclicked = !isclicked;
     }
     
     public Image getImg(){

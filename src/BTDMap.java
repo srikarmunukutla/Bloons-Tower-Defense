@@ -116,7 +116,7 @@ public abstract class BTDMap {
 	}
 
 	public void reduceHealth(Bloon b) {
-		health -= b.liveslost[b.getRank()-1];
+		health -= b.liveslost[b.getRank() - 1];
 	}
 
 	public Monkey getUserSelection() {
@@ -326,7 +326,7 @@ public abstract class BTDMap {
 					userselection = new RichardHanson(me.getX(), me.getY());
 					break;
 				case 8:
-					userselection = new BoomerMonkey(me.getX(), me.getY());
+					userselection = new BoomerMonkey(me.getX(), me.getY(), false);
 					break;
 				case 9:
 					userselection = new SniperMonkey(me.getX(), me.getY());

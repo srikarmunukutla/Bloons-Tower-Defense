@@ -1,147 +1,165 @@
 //import java.awt.*;
 //import java.awt.event.*;
-//import java.util.*;
 //
-//import javax.swing.JButton;
-//import javax.swing.JFrame;
-//import javax.swing.JPanel;
+//import javax.swing.*;
+//import java.io.*;
+//import java.util.*;
+//import javax.imageio.ImageIO;
 //import javax.swing.Timer;
 //
 //public class TesterClass {
+//	private int panelheight = 676;
+//	private int panelwidth = 910;
 //	private JPanel panel;
 //	private JFrame frame = new JFrame("Bloons Tower Defense");
-//	private static Pixel[][] grid;
-//	private int ticks = 0, numBloons = 0;
-//	private Timer timer, bloonsTimer;
-//	private static int height = 676, width = 910;
-//	private Image userselection;
-//	private int userx,usery = 0;
-//	private boolean clicked = false;
+//	private BTDMap m1;
 //	private final int SQUARESIZE = 50;
-//	BTDMap m1 = new Map1(height, width);
-//	
+//	Timer monkey;
+//	JLabel selectioncost, levelnum;
+//	JButton jb;
+//	long ticks = 0;
+//
 //	public static void main(String[] args) {
 //		new TesterClass().start();
 //	}
 //
 //	private void start() {
-//		TowerPanel tp = new TowerPanel(height, 145);
-//		m1.initializeTrack();
-//		grid = m1.getGrid();
-////		m1.addSpikes(new Spikes((int) (268 * m1.getWratio()), 100));
-////		m1.addBloon(new Bloon(12,0,93,0, new HashSet<Integer>()));
-////		m1.addBloon(new Bloon(10,0,93,0, new HashSet<Integer>()));
+//		m1 = new Map1(panelheight,panelwidth);
 //		panel = new JPanel() {
 //			@Override
 //			public void paintComponent(Graphics g) {
+//				boolean monksel = false;
 //				super.paintComponent(g);
-//				g.setColor(Color.BLACK);
-//				m1.draw(g);
-////				for(int r = 0; r < grid.length; r++) {
-////					for(int c = 0; c < grid[0].length; c++) {
-////						if(grid[r][c].coveredByTrack()) {
-////							g.drawRect(c, r, 1, 1);
-////						}
-////						if(grid[r][c].getAngle() != 0) {
-////							g.setColor(Color.GREEN);
-////							g.drawRect(c, r, 1, 1);
-////							g.setColor(Color.BLACK);
-////						}
-////					}
-////				}
-//				for(GameObject go: m1.getGameObjectsList()) {
-//					go.draw(g, panel);
+//				m1.draw(g, panel);
+//				for (GameObject go : m1.getGameObjectsList()) {
+//					if(go instanceof Monkey && ((Monkey) go).isclicked && ((Monkey) go).hasRange() && !m1.clicked) {
+//						g.setColor(new Color(0, 255, 0, 100));
+//						g.fillRect(((Monkey) go).rangerect.x, ((Monkey) go).rangerect.y, ((Monkey) go).rangerect.width, ((Monkey) go).rangerect.height);
+//						monksel = true;
+//					}
+//					go.draw(g, this);
 //				}
-//				if (clicked){
-//					g.drawImage(userselection,userx,usery,SQUARESIZE,SQUARESIZE,null);
+//				jb.setVisible(monksel);
+//				if (m1.getUserSelection() == null && !monksel) {
+//					selectioncost.setText("Level " + m1.getLevelNum());
 //				}
-//				tp.draw(g, m1);
+//				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
+//				while (it.hasNext()){
+//					Map.Entry pair = (Map.Entry)it.next();
+//					((Projectile)pair.getValue()).draw(g,this);
+//				}
+//				if (m1.isClicked()) {
+////					m1.getUserSelection().fillRangeRect(g, m1.isValid());
+//					if(m1.isValid()) {
+//			    		g.setColor(new Color(0, 255, 0, 100));
+//			    	}
+//			    	else {
+//			    		g.setColor(new Color(255, 0, 0, 100));
+//			    	}
+//					if(m1.getUserSelection().hasRange()) {
+//						g.fillRect((int) m1.getUserSelection().getRangeRect().getX(), (int) m1.getUserSelection().getRangeRect().getY(), (int) m1.getUserSelection().getRangeRect().getWidth(), (int) m1.getUserSelection().getRangeRect().getHeight());
+//					}
+//					g.drawImage(m1.getUserSelection().getImg(), m1.getUserX(), m1.getUserY(), m1.getUserSelection().width, m1.getUserSelection().height, null);
+//				}
 //			}
 //		};
-//		panel.setBackground(Color.WHITE);
+//		panel.setLayout(null);
+//		jb = new JButton("Sell");
+//		jb.setBounds(m1.getWidth() + 10,625,100,50);
+//		jb.setVisible(false);
+//		jb.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				ArrayList<GameObject> al = m1.getGameObjectsList();
+//				for (int i = al.size()-1; i >= 0; i--){
+//					if (al.get(i) instanceof Monkey && ((Monkey)(al.get(i))).isclicked){
+//						m1.increaseMoney((int) (((Monkey)al.get(i)).getCost() * 0.8));
+//						m1.flipCover(((Monkey) al.get(i)).getImgRect());
+//						al.remove(i);
+//						break;
+//					}
+//				}
+//			}
+//		});
+//		panel.add(jb);
+//		selectioncost = new JLabel("");
+//		selectioncost.setFont(new Font("Serif",Font.PLAIN,24));
+//		selectioncost.setForeground(Color.WHITE);
+//		selectioncost.setBounds(panelwidth*920/910,panelheight*600/676,200,100);
+//		panel.add(selectioncost);
 //		panel.addMouseListener(new MouseAdapter() {
 //			@Override
 //			public void mousePressed(MouseEvent me) {
-//				clickedAt(me);
+//				ArrayList<GameObject> alobj = m1.getGameObjectsList();
+//				for(int i = alobj.size()-1; i >= 0; i--) {
+//					if(alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).getImgRect().contains(me.getX(), me.getY())) {
+//						((Monkey) alobj.get(i)).setClicked();
+//					}
+//					else if(alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).isclicked) {
+//						((Monkey) alobj.get(i)).setClicked();
+//					}
+//					if(alobj.get(i).getImgRect().contains(me.getX(),me.getY())) {
+//						alobj.get(i).clickedAt(m1);
+//					}
+//				}
+//				m1.clickedAt(me);
+//				if (m1.getUserSelection() != null){
+//					selectioncost.setText("Cost: " + m1.getUserSelection().getCost());
+//				}else{
+//					selectioncost.setText("");
+//				}
 //				panel.repaint();
 //			}
 //		});
 //		panel.addMouseMotionListener(new MouseMotionAdapter(){
 //			public void mouseMoved(MouseEvent me){
-//				if (clicked) {
-//					userx = me.getX()-SQUARESIZE/2;
-//					usery = me.getY()-SQUARESIZE/2;
-//					panel.repaint();
-//
-//				}
+//				m1.mouseMoved(me);
+//				panel.repaint();
 //			}
 //		});
-//		panel.setPreferredSize(new Dimension(width + 145, height));
+//		
+//		panel.setBackground(Color.WHITE);
+//
+//		panel.setPreferredSize(new Dimension(panelwidth + TowerPanel.truewidth, panelheight));
 //		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 //		frame.add(panel);
 //		frame.pack();
 //		frame.setVisible(true);
-//
-//		bloonsTimer = new Timer(500, new ActionListener() {
+//		
+//		monkey = new Timer(1, new ActionListener() {
+//			int seconds = 5;
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
-//				numBloons++;
-//				m1.addBloon(new Bloon(1, 0, 93, 0, new HashSet<Integer>()));
-//				if(numBloons == 25) {
-//					bloonsTimer.stop();
-//				}
-//			}
-//		});
-//
-//		timer = new Timer(1, new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				ticks++;
-//				ArrayList<GameObject> gameobjects = m1.getGameObjectsList();
-//				for(int i = 0; i < gameobjects.size(); i++) {
-//					if(gameobjects.get(i) instanceof Spikes) {
-//						gameobjects.get(i).update(gameobjects, 0, panel, new HashMap<>());
-//					}
-//					if(gameobjects.get(i) instanceof Bloon) {
-//						gameobjects.get(i).update(gameobjects, 0.5, panel, new HashMap<>());
-//						int x = (int) ((Bloon) gameobjects.get(i)).getX();
-//						int y = (int) ((Bloon) gameobjects.get(i)).getY();
-//						if(x >= grid[0].length || y >= grid.length) {
-//							m1.removeBloon(i);
-//							if(m1.getBloonsList().size() == 0) {
-//								timer.stop();
-//								System.out.println("Done");
+//			for (int i = 0; i < m1.getGameObjectsList().size(); i++){
+//					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), m1.getGrid(),m1,0.15*(new FastForward()).speedrate, panel, m1.getGameProjectilesList());
+//					if(m1.getHealth() <= 0) {
+//						monkey.stop();
+//						Timer stopTimer = new Timer(1000, new ActionListener() {
+//							@Override
+//							public void actionPerformed(ActionEvent e) {
+//								seconds--;
+//								if(seconds == 0) {
+//									System.exit(0);
+//								}
 //							}
-//							continue;
-//						}
-//						if(grid[y][x].getAngle() != ((Bloon) gameobjects.get(i)).getAngle()) {
-//							((Bloon) gameobjects.get(i)).setAngle(grid[y][x].getAngle());
-//						}
+//						});
+//						stopTimer.start();
+//						JOptionPane.showMessageDialog(null, "You ran out of lives on level " + m1.getLevelNum() + "! :(\n"
+//						+ "The game will close in " + seconds + " seconds.");
 //					}
-//					
+////					if (m1.getGameObjectsList().get(i) instanceof Spikes) {
+////						if (((Spikes) m1.getGameObjectsList().get(i)).getHealth() == 0) {
+////							m1.getGameObjectsList().remove(i);
+////							i--;
+////						}
+////					}
 //				}
 //				panel.repaint();
-////				if(ticks == 5) {
-////					timer.stop();
-//////					frame.dispose();
-////					System.exit(0);
-////				}
+//				ticks++;
 //			}
+//
 //		});
-//
-//		timer.start();
-//		bloonsTimer.start();
+//		monkey.start();
 //
 //	}
-//	private void clickedAt(MouseEvent me){
-//		if (!clicked){
-//			userselection = new SniperMonkey(me.getX(),me.getY()).getImg();
-//			userx = me.getX()-SQUARESIZE/2;
-//			usery = me.getY()-SQUARESIZE/2;
-//		}else{
-//			m1.gameobjects.add(new SniperMonkey(me.getX(),me.getY()));
-//		}
-//		clicked = !clicked;
-//	}
-//
 //}

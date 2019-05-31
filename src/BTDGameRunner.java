@@ -1,10 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-import java.io.*;
 import java.util.*;
-import javax.imageio.ImageIO;
+import java.util.Map.Entry;
 import javax.swing.Timer;
 
 public class BTDGameRunner {
@@ -12,12 +10,10 @@ public class BTDGameRunner {
 	private int panelwidth = 910;
 	private JPanel panel;
 	private JFrame frame = new JFrame("Bloons Tower Defense");
+	private JLabel levelandcost;
+	private JButton sellbutton;
 	private BTDMap m1;
-	private final int SQUARESIZE = 50;
-	Timer monkey;
-	JLabel selectioncost, levelnum;
-	JButton jb;
-	long ticks = 0;
+	private Timer monkey;
 
 	public static void main(String[] args) {
 		new BTDGameRunner().start();
@@ -25,27 +21,35 @@ public class BTDGameRunner {
 
 	private void start() {
 		m1 = new Map1(panelheight,panelwidth);
+		
 		panel = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void paintComponent(Graphics g) {
 				boolean monksel = false;
 				super.paintComponent(g);
 				m1.draw(g, panel);
 				for (GameObject go : m1.getGameObjectsList()) {
-					if(go instanceof Monkey && ((Monkey) go).isclicked && ((Monkey) go).hasRange() && !m1.clicked) {
-						g.setColor(new Color(0, 255, 0, 100));
-						g.fillRect(((Monkey) go).rangerect.x, ((Monkey) go).rangerect.y, ((Monkey) go).rangerect.width, ((Monkey) go).rangerect.height);
+					if(go instanceof Monkey && ((Monkey) go).isclicked && !m1.clicked) {
 						monksel = true;
+						if(((Monkey) go).hasRange()) {
+							g.setColor(new Color(0, 255, 0, 100));
+							g.fillRect(((Monkey) go).rangerect.x, ((Monkey) go).rangerect.y, ((Monkey) go).rangerect.width, ((Monkey) go).rangerect.height);
+						}
 					}
 					go.draw(g, this);
 				}
-				jb.setVisible(monksel);
+				sellbutton.setVisible(monksel);
 				if (m1.getUserSelection() == null && !monksel) {
-					selectioncost.setText("Level " + m1.getLevelNum());
+					levelandcost.setText("Level " + m1.getLevelNum());
 				}
-				Iterator it = m1.getGameProjectilesList().entrySet().iterator();
+				Iterator<Entry<Integer, Projectile>> it = m1.getGameProjectilesList().entrySet().iterator();
 				while (it.hasNext()){
-					Map.Entry pair = (Map.Entry)it.next();
+					Map.Entry<Integer, Projectile> pair = (Map.Entry<Integer, Projectile>) it.next();
 					((Projectile)pair.getValue()).draw(g,this);
 				}
 				if (m1.isClicked()) {
@@ -64,15 +68,16 @@ public class BTDGameRunner {
 			}
 		};
 		panel.setLayout(null);
-		jb = new JButton("Sell");
-		jb.setBounds(m1.getWidth() + 10,625,100,50);
-		jb.setVisible(false);
-		jb.addActionListener(new ActionListener() {
+		
+		sellbutton = new JButton("Sell");
+		sellbutton.setBounds(m1.getWidth() + 10,625,100,50);
+		sellbutton.setVisible(false);
+		sellbutton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<GameObject> al = m1.getGameObjectsList();
-				for (int i = al.size()-1; i >= 0; i--){
-					if (al.get(i) instanceof Monkey && ((Monkey)(al.get(i))).isclicked){
+				for (int i = al.size()-1; i >= 0; i--) {
+					if (al.get(i) instanceof Monkey && ((Monkey)(al.get(i))).isclicked) {
 						m1.increaseMoney((int) (((Monkey)al.get(i)).getCost() * 0.8));
 						m1.flipCover(((Monkey) al.get(i)).getImgRect());
 						al.remove(i);
@@ -81,38 +86,34 @@ public class BTDGameRunner {
 				}
 			}
 		});
-		panel.add(jb);
-		selectioncost = new JLabel("");
-		selectioncost.setFont(new Font("Serif",Font.PLAIN,24));
-		selectioncost.setForeground(Color.WHITE);
-		selectioncost.setBounds(panelwidth*920/910,panelheight*600/676,200,100);
-		panel.add(selectioncost);
+		panel.add(sellbutton);
+		
+		levelandcost = new JLabel("");
+		levelandcost.setFont(new Font("Serif", Font.PLAIN, 24));
+		levelandcost.setForeground(Color.WHITE);
+		levelandcost.setBounds(panelwidth * 920/910, panelheight * 600/676, 200, 100);
+		panel.add(levelandcost);
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent me) {
 				ArrayList<GameObject> alobj = m1.getGameObjectsList();
 				for(int i = alobj.size()-1; i >= 0; i--) {
-					if(alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).getImgRect().contains(me.getX(), me.getY())) {
-						((Monkey) alobj.get(i)).setClicked();
-					}
-					else if(alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).isclicked) {
-						((Monkey) alobj.get(i)).setClicked();
-					}
-					if(alobj.get(i).getImgRect().contains(me.getX(),me.getY())) {
+					if(alobj.get(i).getImgRect().contains(me.getX(), me.getY()) || (alobj.get(i) instanceof Monkey && ((Monkey) alobj.get(i)).isclicked)) {
 						alobj.get(i).clickedAt(m1);
 					}
 				}
 				m1.clickedAt(me);
-				if (m1.getUserSelection() != null){
-					selectioncost.setText("Cost: " + m1.getUserSelection().getCost());
-				}else{
-					selectioncost.setText("");
+				if (m1.getUserSelection() != null) {
+					levelandcost.setText("Cost: " + m1.getUserSelection().getCost());
+				}
+				else {
+					levelandcost.setText("");
 				}
 				panel.repaint();
 			}
 		});
-		panel.addMouseMotionListener(new MouseMotionAdapter(){
-			public void mouseMoved(MouseEvent me){
+		panel.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseMoved(MouseEvent me) {
 				m1.mouseMoved(me);
 				panel.repaint();
 			}
@@ -121,7 +122,7 @@ public class BTDGameRunner {
 		panel.setBackground(Color.WHITE);
 
 		panel.setPreferredSize(new Dimension(panelwidth + TowerPanel.truewidth, panelheight));
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
@@ -130,8 +131,8 @@ public class BTDGameRunner {
 			int seconds = 5;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			for (int i = 0; i < m1.getGameObjectsList().size(); i++){
-					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), m1.getGrid(),m1,0.15*(new FastForward()).speedrate, panel, m1.getGameProjectilesList());
+				for (int i = 0; i < m1.getGameObjectsList().size(); i++) {
+					m1.getGameObjectsList().get(i).update(m1.getGameObjectsList(), m1.getGrid(), m1, 0.15 * FastForward.speedrate, panel, m1.getGameProjectilesList());
 					if(m1.getHealth() <= 0) {
 						monkey.stop();
 						Timer stopTimer = new Timer(1000, new ActionListener() {
@@ -155,7 +156,6 @@ public class BTDGameRunner {
 //					}
 				}
 				panel.repaint();
-				ticks++;
 			}
 
 		});

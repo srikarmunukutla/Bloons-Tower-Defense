@@ -1,10 +1,18 @@
 public class BoomerMonkey extends Monkey {
+	private boolean ontowerpanel;
 	
-	public BoomerMonkey(int a, int b) {
-    	super(a,b,200,"Boomer_Monkey.png",1,1,400,5,100);
-        width = 50;
-        height = 72;
+	public BoomerMonkey(int a, int b, boolean tp) {
+    	super(a,b,200,"Glaive_Lord.png",1,1,400,5,300);
         hasrange = true;
+        ontowerpanel = tp;
+        if(ontowerpanel) {
+        	width = 50;
+            height = 56;
+        }
+        else {
+        	width = 68;
+        	height = 76;
+        }
         setImgRect();
     }
 

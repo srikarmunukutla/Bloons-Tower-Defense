@@ -35,7 +35,7 @@ public class Map1 extends BTDMap {
 		}
 		
 		// first turn
-		for(int c = (int) (172 * Wratio); c < (int) (178 * Wratio); c++) {
+		for(int c = (int) (170 * Wratio); c < (int) (180 * Wratio); c++) {
 			for(int r = (int) (71 * Hratio); r < (int) (159 * Wratio); r++) {
 				grid[r][c].setAngle(-90);
 			}
@@ -54,7 +54,7 @@ public class Map1 extends BTDMap {
 		}
 		
 		// second turn
-		for(int c = (int) (284 * Wratio); c < (int) (290 * Wratio); c++) {
+		for(int c = (int) (282 * Wratio); c < (int) (292 * Wratio); c++) {
 			for(int r = (int) (71 * Hratio); r < (int) (176 * Wratio); r++) {
 				grid[r][c].setAngle(90);
 			}
@@ -68,7 +68,7 @@ public class Map1 extends BTDMap {
 		}
 		
 		// third turn
-		for(int c = (int) (406 * Wratio); c < (int) (412 * Wratio); c++) {
+		for(int c = (int) (404 * Wratio); c < (int) (414 * Wratio); c++) {
 			for(int r = (int) (53 * Hratio); r < (int) (255 * Hratio); r++) {
 				grid[r][c].setAngle(-90);
 			}
@@ -88,13 +88,13 @@ public class Map1 extends BTDMap {
 		
 		// fourth turn
 		for(int c = (int) (292 * Wratio); c < (int) (410 * Wratio); c++) {
-			for(int r = (int) (255 * Hratio); r < (int) (261 * Hratio); r++) {
+			for(int r = (int) (253 * Hratio); r < (int) (263 * Hratio); r++) {
 				grid[r][c].setAngle(180);
 			}
 		}
 		
 		// fifth turn
-		for(int c = (int) (288 * Wratio); c < (int) (294 * Wratio); c++) {
+		for(int c = (int) (286 * Wratio); c < (int) (296 * Wratio); c++) {
 			for(int r = (int) (239 * Hratio); r < (int) (443 * Hratio); r++) {
 				grid[r][c].setAngle(-90);
 			}
@@ -113,7 +113,7 @@ public class Map1 extends BTDMap {
 		}
 		
 		// sixth turn
-		for(int c = (int) (411 * Wratio); c < (int) (417 * Wratio); c++) {
+		for(int c = (int) (409 * Wratio); c < (int) (419 * Wratio); c++) {
 			for(int r = (int) (356 * Hratio); r < (int) (461 * Hratio); r++) {
 				grid[r][c].setAngle(90);
 			}
@@ -132,7 +132,7 @@ public class Map1 extends BTDMap {
 		}
 		
 		// seventh turn
-		for(int c = (int) (522 * Wratio); c < (int) (528 * Wratio); c++) {
+		for(int c = (int) (520 * Wratio); c < (int) (530 * Wratio); c++) {
 			for(int r = (int) (338 * Hratio); r < (int) (443 * Hratio); r++) {
 				grid[r][c].setAngle(-90);
 			}

@@ -4,7 +4,7 @@ public class Level {
     private int level = 1;
     private int spawnrate = 200;
     private int wave = 1;
-    private int[] whenspawn = {1,2,3,4,7,11,18,24,30,35,36,40,49,1000000000};
+    private int[] whenspawn = {1,2,3,4,7,11,18,24,30,35,36,40,49,54,59,1000000000};
     
     public void spawn(ArrayList<GameObject> al, BTDMap bm, long ticks) {
         if (wave <= 20) {
@@ -23,6 +23,9 @@ public class Level {
                 bloon--;
             }
             for (int i = 0; i < Math.ceil((Math.log(level + 1) / Math.log(whenspawn[bloon] + 1))); i++) {
+                if (bloon == 13 || bloon == 14){
+                    i++;
+                }
                 al.add(bm.createBloon(bloon, 8 * i));
             }
         }
@@ -54,6 +57,7 @@ public class Level {
     public int getLevelNum() {
     	return level;
     }
+    
     public int getWave(){
         return wave;
     }
